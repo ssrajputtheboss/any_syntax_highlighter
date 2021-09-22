@@ -29,7 +29,7 @@ class RegexCollection{
   static const operators = r'[+-/*<>=&|\^%?!~@\.]+';
 
   // number regex
-  static const number = r'\d+[lLfF]?';
+  static const number = r'\d+(\.\d+)?[lLfF]?|\d+e\d+';
 
   // title regex ( this is to differentiate a class and normal variable or a function or constructor )
   static const title = r'_?[A-Z]\w*';

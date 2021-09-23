@@ -62,103 +62,71 @@ class _MainApp extends State<MainApp> {
             child: SingleChildScrollView(
                 child: AnySyntaxHighlighter(
           _text,
+          fontSize: Props.fontSize,
+          letterSpacing: Props.letterSpacing,
+          wordSpacing: Props.wordSpacing,
+          fontFamily: Props.fontFamily,
           theme: AnySyntaxHighlighterTheme(
               classStyle: TextStyle(
                   color: _theme['classStyle']?.color,
                   fontWeight: fontWeights[_theme['classStyle']?.weight]!,
-                  fontStyle: fontStyles[_theme['classStyle']?.style]!,
-                  fontSize: Props.fontSize,
-                  fontFamily: Props.fontFamily,
-                  letterSpacing: Props.letterSpacing,
-                  wordSpacing: Props.wordSpacing),
+                  fontStyle: fontStyles[_theme['classStyle']?.style]!
+              ),
               staticStyle: TextStyle(
                   color: _theme['staticStyle']?.color,
                   fontWeight: fontWeights[_theme['staticStyle']?.weight]!,
                   fontStyle: fontStyles[_theme['staticStyle']?.style]!,
-                  fontSize: Props.fontSize,
-                  fontFamily: Props.fontFamily,
-                  letterSpacing: Props.letterSpacing,
-                  wordSpacing: Props.wordSpacing),
+              ),
               constructor: TextStyle(
                   color: _theme['constructor']?.color,
                   fontWeight: fontWeights[_theme['constructor']?.weight]!,
                   fontStyle: fontStyles[_theme['constructor']?.style]!,
-                  fontSize: Props.fontSize,
-                  fontFamily: Props.fontFamily,
-                  letterSpacing: Props.letterSpacing,
-                  wordSpacing: Props.wordSpacing),
+              ),
               multilineComment: TextStyle(
                   color: _theme['multilineComment']?.color,
                   fontWeight: fontWeights[_theme['multilineComment']?.weight]!,
                   fontStyle: fontStyles[_theme['multilineComment']?.style]!,
-                  fontSize: Props.fontSize,
-                  fontFamily: Props.fontFamily,
-                  letterSpacing: Props.letterSpacing,
-                  wordSpacing: Props.wordSpacing),
+              ),
               comment: TextStyle(
                   color: _theme['comment']?.color,
                   fontWeight: fontWeights[_theme['comment']?.weight]!,
                   fontStyle: fontStyles[_theme['comment']?.style]!,
-                  fontSize: Props.fontSize,
-                  fontFamily: Props.fontFamily,
-                  letterSpacing: Props.letterSpacing,
-                  wordSpacing: Props.wordSpacing),
+              ),
               keyword: TextStyle(
                   color: _theme['keyword']?.color,
                   fontWeight: fontWeights[_theme['keyword']?.weight]!,
                   fontStyle: fontStyles[_theme['keyword']?.style]!,
-                  fontSize: Props.fontSize,
-                  fontFamily: Props.fontFamily,
-                  letterSpacing: Props.letterSpacing,
-                  wordSpacing: Props.wordSpacing),
+              ),
               identifier: TextStyle(
                   color: _theme['identifier']?.color,
                   fontWeight: fontWeights[_theme['identifier']?.weight]!,
                   fontStyle: fontStyles[_theme['identifier']?.style]!,
-                  fontSize: Props.fontSize,
-                  fontFamily: Props.fontFamily,
-                  letterSpacing: Props.letterSpacing,
-                  wordSpacing: Props.wordSpacing),
+              ),
               function: TextStyle(
                   color: _theme['function']?.color,
                   fontWeight: fontWeights[_theme['function']?.weight]!,
                   fontStyle: fontStyles[_theme['function']?.style]!,
-                  fontSize: Props.fontSize,
-                  fontFamily: Props.fontFamily,
-                  letterSpacing: Props.letterSpacing,
-                  wordSpacing: Props.wordSpacing),
+              ),
               number: TextStyle(
                   color: _theme['number']?.color,
                   fontWeight: fontWeights[_theme['number']?.weight]!,
                   fontStyle: fontStyles[_theme['number']?.style]!,
-                  fontSize: Props.fontSize,
-                  fontFamily: Props.fontFamily,
-                  letterSpacing: Props.letterSpacing,
-                  wordSpacing: Props.wordSpacing),
+              ),
               string: TextStyle(
                   color: _theme['string']?.color,
                   fontWeight: fontWeights[_theme['string']?.weight]!,
                   fontStyle: fontStyles[_theme['string']?.style]!,
-                  fontSize: Props.fontSize,
-                  fontFamily: Props.fontFamily,
-                  letterSpacing: Props.letterSpacing,
-                  wordSpacing: Props.wordSpacing),
+              ),
               operator: TextStyle(
                   color: _theme['operator']?.color,
                   fontWeight: fontWeights[_theme['operator']?.weight]!,
                   fontStyle: fontStyles[_theme['operator']?.style]!,
-                  fontSize: Props.fontSize,
-                  fontFamily: Props.fontFamily,
-                  letterSpacing: Props.letterSpacing,
-                  wordSpacing: Props.wordSpacing),
+              ),
               separator: TextStyle(
                   color: _theme['separator']?.color,
                   fontWeight: fontWeights[_theme['separator']?.weight]!,
                   fontStyle: fontStyles[_theme['separator']?.style]!,
-                  fontSize: Props.fontSize,
-                  fontFamily: Props.fontFamily,
-                  letterSpacing: Props.letterSpacing,
-                  wordSpacing: Props.wordSpacing),
+              ),
               boxDecoration: BoxDecoration(color: _bgColor)),
         ))),
         Expanded(
@@ -187,11 +155,17 @@ class _MainApp extends State<MainApp> {
                     context: context,
                     builder: (ctx) {
                       return AlertDialog(
+                        actions: [
+                          IconButton(
+                              onPressed: ()=>Navigator.canPop(context)?Navigator.pop(context):{},
+                              icon: const Icon(Icons.close)
+                          )
+                        ],
                         content:
-                            SelectableText(generateThemeCode(_theme, _bgColor)),
+                            AnySyntaxHighlighter(generateThemeCode(_theme, _bgColor),isSelectableText: true),
                       );
                     }),
-                icon: const Icon(Icons.code)),
+                icon: const Icon(Icons.code,color: Colors.yellowAccent,)),
           )
         ],
       ),
@@ -213,6 +187,12 @@ class _MainApp extends State<MainApp> {
                           builder: (ctx) {
                             return AlertDialog(
                               title: const Text('Pick A Color'),
+                              actions: [
+                                IconButton(
+                                    onPressed: ()=>Navigator.canPop(context)?Navigator.pop(context):{},
+                                    icon: const Icon(Icons.close)
+                                )
+                              ],
                               content: SingleChildScrollView(
                                 child: ColorPicker(
                                     pickerColor: e.value.color,
@@ -263,6 +243,12 @@ class _MainApp extends State<MainApp> {
                     builder: (ctx) {
                       return AlertDialog(
                         title: const Text('Pick A Color'),
+                        actions: [
+                          IconButton(
+                              onPressed: ()=>Navigator.canPop(context)?Navigator.pop(context):{},
+                              icon: const Icon(Icons.close)
+                          )
+                        ],
                         content: SingleChildScrollView(
                             child: ColorPicker(
                                 pickerColor: _bgColor,
@@ -375,10 +361,6 @@ String generateThemeCode(Map<String, Props> theme, Color bgColor) {
     color: const Color.fromRGBO(${value.color.red}, ${value.color.green}, ${value.color.blue}, ${value.color.opacity}),
     fontWeight: Fontweight.${value.weight},
     fontStyle: FontStyle.${value.style},
-    fontFamily: ${Props.fontFamily},
-    letterSpacing: ${Props.letterSpacing},
-    wordSpacing: ${Props.wordSpacing},
-    fontSize: ${Props.fontSize}
     ),
     ''');
   });

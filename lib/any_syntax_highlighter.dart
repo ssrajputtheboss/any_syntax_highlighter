@@ -26,6 +26,8 @@ class AnySyntaxHighlighter extends StatelessWidget{
   final StrutStyle? strutStyle;
   final TextWidthBasis textWidthBasis;
   final TextHeightBehavior? textHeightBehavior;
+  final double? fontSize, letterSpacing, wordSpacing;
+  final String? fontFamily;
 
   const AnySyntaxHighlighter(this.text,{
     Key? key,
@@ -42,7 +44,11 @@ class AnySyntaxHighlighter extends StatelessWidget{
     this.padding = 2,
     this.margin = 0,
     this.isSelectableText = false,
-    this.theme = const AnySyntaxHighlighterTheme()
+    this.theme = const AnySyntaxHighlighterTheme(),
+    this.fontSize,
+    this.letterSpacing,
+    this.wordSpacing,
+    this.fontFamily
   }) : super(key: key);
 
   /*
@@ -74,6 +80,12 @@ class AnySyntaxHighlighter extends StatelessWidget{
   Widget _highlighter() => !isSelectableText ? RichText(
     text: TextSpan(
       text: '',
+      style: TextStyle(
+          fontSize: fontSize,
+          fontFamily: fontFamily,
+          letterSpacing: letterSpacing,
+          wordSpacing: wordSpacing
+      ),
       children: _createSpans(),
     ),
     textAlign: textAlign,
@@ -90,6 +102,12 @@ class AnySyntaxHighlighter extends StatelessWidget{
   SelectableText.rich(
     TextSpan(
       text: '',
+      style: TextStyle(
+        fontSize: fontSize,
+        fontFamily: fontFamily,
+        letterSpacing: letterSpacing,
+        wordSpacing: wordSpacing
+      ),
       children: _createSpans(),
     ),
     textAlign: textAlign,

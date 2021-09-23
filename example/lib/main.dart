@@ -37,6 +37,7 @@ class ExampleApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return const MaterialApp(
+      debugShowCheckedModeBanner: false,
       home: MainApp(),
     );
   }
@@ -58,6 +59,109 @@ class _MainApp extends State<MainApp> {
   }
   List<Widget> mainWidgets() => [
         Expanded(
+            child: SingleChildScrollView(
+                child: AnySyntaxHighlighter(
+          _text,
+          theme: AnySyntaxHighlighterTheme(
+              classStyle: TextStyle(
+                  color: _theme['classStyle']?.color,
+                  fontWeight: fontWeights[_theme['classStyle']?.weight]!,
+                  fontStyle: fontStyles[_theme['classStyle']?.style]!,
+                  fontSize: Props.fontSize,
+                  fontFamily: Props.fontFamily,
+                  letterSpacing: Props.letterSpacing,
+                  wordSpacing: Props.wordSpacing),
+              staticStyle: TextStyle(
+                  color: _theme['staticStyle']?.color,
+                  fontWeight: fontWeights[_theme['staticStyle']?.weight]!,
+                  fontStyle: fontStyles[_theme['staticStyle']?.style]!,
+                  fontSize: Props.fontSize,
+                  fontFamily: Props.fontFamily,
+                  letterSpacing: Props.letterSpacing,
+                  wordSpacing: Props.wordSpacing),
+              constructor: TextStyle(
+                  color: _theme['constructor']?.color,
+                  fontWeight: fontWeights[_theme['constructor']?.weight]!,
+                  fontStyle: fontStyles[_theme['constructor']?.style]!,
+                  fontSize: Props.fontSize,
+                  fontFamily: Props.fontFamily,
+                  letterSpacing: Props.letterSpacing,
+                  wordSpacing: Props.wordSpacing),
+              multilineComment: TextStyle(
+                  color: _theme['multilineComment']?.color,
+                  fontWeight: fontWeights[_theme['multilineComment']?.weight]!,
+                  fontStyle: fontStyles[_theme['multilineComment']?.style]!,
+                  fontSize: Props.fontSize,
+                  fontFamily: Props.fontFamily,
+                  letterSpacing: Props.letterSpacing,
+                  wordSpacing: Props.wordSpacing),
+              comment: TextStyle(
+                  color: _theme['comment']?.color,
+                  fontWeight: fontWeights[_theme['comment']?.weight]!,
+                  fontStyle: fontStyles[_theme['comment']?.style]!,
+                  fontSize: Props.fontSize,
+                  fontFamily: Props.fontFamily,
+                  letterSpacing: Props.letterSpacing,
+                  wordSpacing: Props.wordSpacing),
+              keyword: TextStyle(
+                  color: _theme['keyword']?.color,
+                  fontWeight: fontWeights[_theme['keyword']?.weight]!,
+                  fontStyle: fontStyles[_theme['keyword']?.style]!,
+                  fontSize: Props.fontSize,
+                  fontFamily: Props.fontFamily,
+                  letterSpacing: Props.letterSpacing,
+                  wordSpacing: Props.wordSpacing),
+              identifier: TextStyle(
+                  color: _theme['identifier']?.color,
+                  fontWeight: fontWeights[_theme['identifier']?.weight]!,
+                  fontStyle: fontStyles[_theme['identifier']?.style]!,
+                  fontSize: Props.fontSize,
+                  fontFamily: Props.fontFamily,
+                  letterSpacing: Props.letterSpacing,
+                  wordSpacing: Props.wordSpacing),
+              function: TextStyle(
+                  color: _theme['function']?.color,
+                  fontWeight: fontWeights[_theme['function']?.weight]!,
+                  fontStyle: fontStyles[_theme['function']?.style]!,
+                  fontSize: Props.fontSize,
+                  fontFamily: Props.fontFamily,
+                  letterSpacing: Props.letterSpacing,
+                  wordSpacing: Props.wordSpacing),
+              number: TextStyle(
+                  color: _theme['number']?.color,
+                  fontWeight: fontWeights[_theme['number']?.weight]!,
+                  fontStyle: fontStyles[_theme['number']?.style]!,
+                  fontSize: Props.fontSize,
+                  fontFamily: Props.fontFamily,
+                  letterSpacing: Props.letterSpacing,
+                  wordSpacing: Props.wordSpacing),
+              string: TextStyle(
+                  color: _theme['string']?.color,
+                  fontWeight: fontWeights[_theme['string']?.weight]!,
+                  fontStyle: fontStyles[_theme['string']?.style]!,
+                  fontSize: Props.fontSize,
+                  fontFamily: Props.fontFamily,
+                  letterSpacing: Props.letterSpacing,
+                  wordSpacing: Props.wordSpacing),
+              operator: TextStyle(
+                  color: _theme['operator']?.color,
+                  fontWeight: fontWeights[_theme['operator']?.weight]!,
+                  fontStyle: fontStyles[_theme['operator']?.style]!,
+                  fontSize: Props.fontSize,
+                  fontFamily: Props.fontFamily,
+                  letterSpacing: Props.letterSpacing,
+                  wordSpacing: Props.wordSpacing),
+              separator: TextStyle(
+                  color: _theme['separator']?.color,
+                  fontWeight: fontWeights[_theme['separator']?.weight]!,
+                  fontStyle: fontStyles[_theme['separator']?.style]!,
+                  fontSize: Props.fontSize,
+                  fontFamily: Props.fontFamily,
+                  letterSpacing: Props.letterSpacing,
+                  wordSpacing: Props.wordSpacing),
+              boxDecoration: BoxDecoration(color: _bgColor)),
+        ))),
+        Expanded(
             child: TextField(
           minLines: 1,
           maxLines: 1000,
@@ -67,140 +171,42 @@ class _MainApp extends State<MainApp> {
             });
           },
         )),
-        Expanded(
-            child: SingleChildScrollView(
-                child: AnySyntaxHighlighter(
-          _text,
-          theme: AnySyntaxHighlighterTheme(
-              classStyle: TextStyle(
-                  color: _theme['classStyle']?.color,
-                  fontWeight: fontWeights[_theme['classStyle']?.weight]!,
-                  fontStyle: fontStyles[_theme['classStyle']?.style]!,
-                  fontSize: _theme['classStyle']?.fontSize,
-                  fontFamily: _theme['classStyle']?.fontFamily,
-                  letterSpacing: _theme['classStyle']?.letterSpacing,
-                  wordSpacing: _theme['classStyle']?.wordSpacing
-              ),
-              staticStyle: TextStyle(
-                  color: _theme['staticStyle']?.color,
-                  fontWeight: fontWeights[_theme['staticStyle']?.weight]!,
-                  fontStyle: fontStyles[_theme['staticStyle']?.style]!,
-                  fontSize: _theme['staticStyle']?.fontSize,
-                  fontFamily: _theme['staticStyle']?.fontFamily,
-                  letterSpacing: _theme['staticStyle']?.letterSpacing,
-                  wordSpacing: _theme['staticStyle']?.wordSpacing
-              ),
-              constructor: TextStyle(
-                  color: _theme['constructor']?.color,
-                  fontWeight: fontWeights[_theme['constructor']?.weight]!,
-                  fontStyle: fontStyles[_theme['constructor']?.style]!,
-                  fontSize: _theme['constructor']?.fontSize,
-                  fontFamily: _theme['constructor']?.fontFamily,
-                  letterSpacing: _theme['constructor']?.letterSpacing,
-                  wordSpacing: _theme['constructor']?.wordSpacing
-              ),
-              multilineComment: TextStyle(
-                  color: _theme['multilineComment']?.color,
-                  fontWeight: fontWeights[_theme['multilineComment']?.weight]!,
-                  fontStyle: fontStyles[_theme['multilineComment']?.style]!,
-                  fontSize: _theme['multilineComment']?.fontSize,
-                  fontFamily: _theme['multilineComment']?.fontFamily,
-                  letterSpacing: _theme['multilineComment']?.letterSpacing,
-                  wordSpacing: _theme['multilineComment']?.wordSpacing
-              ),
-              comment: TextStyle(
-                  color: _theme['comment']?.color,
-                  fontWeight: fontWeights[_theme['comment']?.weight]!,
-                  fontStyle: fontStyles[_theme['comment']?.style]!,
-                  fontSize: _theme['comment']?.fontSize,
-                  fontFamily: _theme['comment']?.fontFamily,
-                  letterSpacing: _theme['comment']?.letterSpacing,
-                  wordSpacing: _theme['comment']?.wordSpacing
-              ),
-              keyword: TextStyle(
-                  color: _theme['keyword']?.color,
-                  fontWeight: fontWeights[_theme['keyword']?.weight]!,
-                  fontStyle: fontStyles[_theme['keyword']?.style]!,
-                  fontSize: _theme['keyword']?.fontSize,
-                  fontFamily: _theme['keyword']?.fontFamily,
-                  letterSpacing: _theme['keyword']?.letterSpacing,
-                  wordSpacing: _theme['keyword']?.wordSpacing
-              ),
-              identifier: TextStyle(
-                  color: _theme['identifier']?.color,
-                  fontWeight: fontWeights[_theme['identifier']?.weight]!,
-                  fontStyle: fontStyles[_theme['identifier']?.style]!,
-                  fontSize: _theme['identifier']?.fontSize,
-                  fontFamily: _theme['identifier']?.fontFamily,
-                  letterSpacing: _theme['identifier']?.letterSpacing,
-                  wordSpacing: _theme['identifier']?.wordSpacing
-              ),
-              function: TextStyle(
-                  color: _theme['function']?.color,
-                  fontWeight: fontWeights[_theme['function']?.weight]!,
-                  fontStyle: fontStyles[_theme['function']?.style]!,
-                  fontSize: _theme['function']?.fontSize,
-                  fontFamily: _theme['function']?.fontFamily,
-                  letterSpacing: _theme['function']?.letterSpacing,
-                  wordSpacing: _theme['function']?.wordSpacing
-              ),
-              number: TextStyle(
-                  color: _theme['number']?.color,
-                  fontWeight: fontWeights[_theme['number']?.weight]!,
-                  fontStyle: fontStyles[_theme['number']?.style]!,
-                  fontSize: _theme['number']?.fontSize,
-                  fontFamily: _theme['number']?.fontFamily,
-                  letterSpacing: _theme['number']?.letterSpacing,
-                  wordSpacing: _theme['number']?.wordSpacing
-              ),
-              string: TextStyle(
-                  color: _theme['string']?.color,
-                  fontWeight: fontWeights[_theme['string']?.weight]!,
-                  fontStyle: fontStyles[_theme['string']?.style]!,
-                  fontSize: _theme['string']?.fontSize,
-                  fontFamily: _theme['string']?.fontFamily,
-                  letterSpacing: _theme['string']?.letterSpacing,
-                  wordSpacing: _theme['string']?.wordSpacing
-              ),
-              operator: TextStyle(
-                  color: _theme['operator']?.color,
-                  fontWeight: fontWeights[_theme['operator']?.weight]!,
-                  fontStyle: fontStyles[_theme['operator']?.style]!,
-                  fontSize: _theme['operator']?.fontSize,
-                  fontFamily: _theme['operator']?.fontFamily,
-                  letterSpacing: _theme['operator']?.letterSpacing,
-                  wordSpacing: _theme['operator']?.wordSpacing
-              ),
-              separator: TextStyle(
-                  color: _theme['separator']?.color,
-                  fontWeight: fontWeights[_theme['separator']?.weight]!,
-                  fontStyle: fontStyles[_theme['separator']?.style]!,
-                  fontSize: _theme['separator']?.fontSize,
-                  fontFamily: _theme['separator']?.fontFamily,
-                  letterSpacing: _theme['separator']?.letterSpacing,
-                  wordSpacing: _theme['separator']?.wordSpacing
-              ),
-              boxDecoration: BoxDecoration(color: _bgColor)),
-        )))
       ];
   @override
   Widget build(BuildContext context) {
     final isMobile = defaultTargetPlatform == TargetPlatform.android ||
         defaultTargetPlatform == TargetPlatform.iOS;
     return Scaffold(
-      appBar: AppBar(),
+      appBar: AppBar(
+        title: const Text('AnySyntaxHighlighterDemoApp'),
+        actions: [
+          Tooltip(
+            message: 'Generate Theme Code',
+            child: IconButton(
+                onPressed: () => showDialog(
+                    context: context,
+                    builder: (ctx) {
+                      return AlertDialog(
+                        content:
+                            SelectableText(generateThemeCode(_theme, _bgColor)),
+                      );
+                    }),
+                icon: const Icon(Icons.code)),
+          )
+        ],
+      ),
       body: isMobile
           ? Column(children: mainWidgets())
           : Row(children: mainWidgets()),
       drawer: Drawer(
           child: ListView(
-            controller: ScrollController(),
+        controller: ScrollController(),
         children: _theme.entries
             .map((e) => Wrap(
                   children: [
                     Text(e.key),
                     TextButton(
-                      child: Text('change..',
+                      child: Text('color',
                           style: TextStyle(backgroundColor: e.value.color)),
                       onPressed: () => showDialog(
                           context: context,
@@ -242,56 +248,6 @@ class _MainApp extends State<MainApp> {
                           e.value.weight = newWeight!;
                         });
                       },
-                    ),
-                    TextField(
-                      keyboardType: TextInputType.number,
-                      decoration: const InputDecoration(
-                        hintText: 'LetterSpacing'
-                      ),
-                      maxLines: 1,
-                      minLines: 1,
-                      onSubmitted: (value){
-                        double? val;
-                        try {
-                          val = double.parse(value);
-                        }catch(err){
-                          val = null;
-                        }
-                        setState(() {
-                          e.value.letterSpacing = val;
-                        });
-                      },
-                    ),
-                    TextField(
-                      keyboardType: TextInputType.number,
-                      decoration: const InputDecoration(
-                          hintText: 'WordSpacing',
-                      ),
-                      maxLines: 1,
-                      minLines: 1,
-                      onSubmitted: (value){
-                        double? val;
-                        try {
-                          val = double.parse(value);
-                        }catch(err){
-                          val = null;
-                        }
-                        setState(() {
-                          e.value.wordSpacing = val;
-                        });
-                      },
-                    ),
-                    TextField(
-                      decoration: const InputDecoration(
-                          hintText: 'FontFamily'
-                      ),
-                      maxLines: 1,
-                      minLines: 1,
-                      onSubmitted: (value){
-                        setState(() {
-                          e.value.fontFamily = value;
-                        });
-                      },
                     )
                   ],
                 ))
@@ -316,6 +272,69 @@ class _MainApp extends State<MainApp> {
                       );
                     }),
               ),
+              TextField(
+                keyboardType: TextInputType.number,
+                decoration: const InputDecoration(hintText: 'LetterSpacing'),
+                maxLines: 1,
+                minLines: 1,
+                onSubmitted: (value) {
+                  double? val;
+                  try {
+                    val = double.parse(value);
+                  } catch (err) {
+                    val = null;
+                  }
+                  setState(() {
+                    Props.letterSpacing = val;
+                  });
+                },
+              ),
+              TextField(
+                keyboardType: TextInputType.number,
+                decoration: const InputDecoration(hintText: 'FontSize'),
+                maxLines: 1,
+                minLines: 1,
+                onSubmitted: (value) {
+                  double? val;
+                  try {
+                    val = double.parse(value);
+                  } catch (err) {
+                    val = null;
+                  }
+                  setState(() {
+                    Props.fontSize = val;
+                  });
+                },
+              ),
+              TextField(
+                keyboardType: TextInputType.number,
+                decoration: const InputDecoration(
+                  hintText: 'WordSpacing',
+                ),
+                maxLines: 1,
+                minLines: 1,
+                onSubmitted: (value) {
+                  double? val;
+                  try {
+                    val = double.parse(value);
+                  } catch (err) {
+                    val = null;
+                  }
+                  setState(() {
+                    Props.wordSpacing = val;
+                  });
+                },
+              ),
+              TextField(
+                decoration: const InputDecoration(hintText: 'FontFamily'),
+                maxLines: 1,
+                minLines: 1,
+                onSubmitted: (value) {
+                  setState(() {
+                    Props.fontFamily = value;
+                  });
+                },
+              )
             ],
           )),
       )),
@@ -343,12 +362,28 @@ class _MainApp extends State<MainApp> {
 
 class Props {
   Color color;
-  String weight,style;
-  String? fontFamily;
-  double? letterSpacing,wordSpacing,fontSize;
-  Props(this.color, this.weight, this.style,{
-    this.letterSpacing,
-    this.wordSpacing,
-    this.fontFamily
+  String weight, style;
+  static String? fontFamily;
+  static double? letterSpacing, wordSpacing, fontSize;
+  Props(this.color, this.weight, this.style);
+}
+
+String generateThemeCode(Map<String, Props> theme, Color bgColor) {
+  StringBuffer s = StringBuffer('AnySyntaxHighlighterTheme(\n');
+  theme.forEach((key, value) {
+    s.write('''  $key : const TextStyle(
+    color: const Color.fromRGBO(${value.color.red}, ${value.color.green}, ${value.color.blue}, ${value.color.opacity}),
+    fontWeight: Fontweight.${value.weight},
+    fontStyle: FontStyle.${value.style},
+    fontFamily: ${Props.fontFamily},
+    letterSpacing: ${Props.letterSpacing},
+    wordSpacing: ${Props.wordSpacing},
+    fontSize: ${Props.fontSize}
+    ),
+    ''');
   });
+  s.write(
+      'bgColor: const Color.fromRGBO(${bgColor.red}, ${bgColor.green}, ${bgColor.blue}, ${bgColor.opacity})');
+  s.writeln(')');
+  return s.toString();
 }

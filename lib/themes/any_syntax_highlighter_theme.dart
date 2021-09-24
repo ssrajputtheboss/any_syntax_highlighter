@@ -9,6 +9,8 @@ import 'package:flutter/material.dart';
 class AnySyntaxHighlighterTheme extends AnySyntaxHighlighterBaseTheme{
   final TextStyle classStyle;
   final TextStyle staticStyle;
+  final TextStyle method;
+  final TextStyle private;
   final TextStyle constructor;
   final TextStyle multilineComment;
   const AnySyntaxHighlighterTheme({
@@ -24,6 +26,12 @@ class AnySyntaxHighlighterTheme extends AnySyntaxHighlighterBaseTheme{
     this.multilineComment = const TextStyle(
       color: Colors.red ,
       fontStyle: FontStyle.italic,
+    ),
+    this.method = const TextStyle(
+      color: Colors.lightBlueAccent,
+    ),
+    this.private = const TextStyle(
+      color: Colors.grey,
     ),
     final TextStyle comment = const TextStyle(
       color: Colors.red ,

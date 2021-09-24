@@ -66,18 +66,28 @@ List<Token> tokenizer(String input){
         currentToken?.type = TokenTypes.staticType;
         currentToken?.isClassContext = true;
       }else{
-        if(nextToken != null && nextToken.value.startsWith('(')){
+        if(nextToken != null && nextToken.value.trim().startsWith('(')){
           // function
-          currentToken?.isClassContext = false;
-          currentToken?.type = TokenTypes.function;
-        }else{
+          if(previousToken!=null && previousToken.value.endsWith('.')){
+            currentToken?.isClassContext = false;
+            currentToken?.type = TokenTypes.method;
+          }else {
+            currentToken?.isClassContext = false;
+            currentToken?.type = TokenTypes.function;
+          }
+        }else {
           // identifier
-          currentToken?.isClassContext = false;
-          currentToken?.type = TokenTypes.identifier;
+          if (currentToken != null && RegexCollection.isPrivate(currentToken.value)) {
+            currentToken.isClassContext = false;
+            currentToken.type = TokenTypes.private;
+          }else {
+            currentToken?.isClassContext = false;
+            currentToken?.type = TokenTypes.identifier;
+          }
         }
       }
     }else if(currentToken?.type ==  TokenTypes.classType){
-      if(nextToken!=null && nextToken.value.startsWith('(')){
+      if(nextToken!=null && nextToken.value.trim().startsWith('(')){
         // constructor
         currentToken?.type = TokenTypes.constructor;
         currentToken?.isClassContext = false;

@@ -14,4 +14,6 @@ class TokenTypes{
   static const string = 'string';
   static const operator = 'operator';
   static const separator = 'separator';
+  static const method = 'method';
+  static const private = 'private';
 }

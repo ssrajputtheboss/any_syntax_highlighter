@@ -35,6 +35,9 @@ class RegexCollection{
   // title regex ( this is to differentiate a class and normal variable or a function or constructor )
   static const title = r'_*[A-Z]\w*';
 
+  // private variable in python/dart starting with _
+  static const private = r'_+\w*';
+
   // identifier
   static const identifier = r'[a-zA-Z_]\w*';
 
@@ -56,5 +59,7 @@ class RegexCollection{
   static bool isOperator(String token) => RegExp(operators).stringMatch(token) == token;
 
   static bool isComment(String token) => RegExp([hashComment,doubleSlashComment,multilineComment,xmlComment].join('|')).stringMatch(token) == token;
+
+  static bool isPrivate(String token) => RegExp(private).stringMatch(token) == token;
 
 }

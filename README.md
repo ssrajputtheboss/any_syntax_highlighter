@@ -5,13 +5,14 @@ any_syntax_highlighter is a 'convention based' syntax highlighter which provides
 
 * set of keywords of ~9 programming languages which are mostly used ( if needed will add more...)
 * convention based highlighting 
-    * UpperCamelcase identifiers are considered as class/constructor
-    * UpperCamelCase.abc => static variable
+    * identifiers starting with uppercase are considered as class/constructor
+    * Class.abc => static variable
     * three types of comments are supported
         * single line comment staring with #
         * single line comment starting with //
         * multiline comment /*.....\*/
-
+    * identifier starting with _ => private
+    * functions after . operator => method (highlighting for function and method are now different)
 ## Getting started
 
 TODO: List prerequisites and provide or point to information on how to

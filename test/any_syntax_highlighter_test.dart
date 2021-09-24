@@ -4,6 +4,7 @@ import 'package:flutter_test/flutter_test.dart';
 import 'package:any_syntax_highlighter/any_syntax_highlighter.dart';
 
 void main() {
+  /* TODO yet to be implemented */
   const myApp = MaterialApp(
     home: Scaffold(
       body: AnySyntaxHighlighter(

@@ -46,7 +46,7 @@ class AnySyntaxHighlighter extends StatelessWidget{
     this.isSelectableText = false,
     this.theme = const AnySyntaxHighlighterTheme(),
     this.fontSize,
-    this.letterSpacing,
+    this.letterSpacing = 1,
     this.wordSpacing,
     this.fontFamily
   }) : super(key: key);
@@ -71,6 +71,8 @@ class AnySyntaxHighlighter extends StatelessWidget{
       case TokenTypes.string: return theme.string;
       case TokenTypes.operator: return theme.operator;
       case TokenTypes.separator: return theme.separator;
+      case TokenTypes.method: return theme.method;
+      case TokenTypes.private: return theme.private;
       default: return const TextStyle();
     }
   }

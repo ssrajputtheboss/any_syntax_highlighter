@@ -127,6 +127,16 @@ class _MainApp extends State<MainApp> {
                   fontWeight: fontWeights[_theme['separator']?.weight]!,
                   fontStyle: fontStyles[_theme['separator']?.style]!,
               ),
+              method: TextStyle(
+                color: _theme['method']?.color,
+                fontWeight: fontWeights[_theme['method']?.weight]!,
+                fontStyle: fontStyles[_theme['method']?.style]!,
+              ),
+              private: TextStyle(
+                color: _theme['private']?.color,
+                fontWeight: fontWeights[_theme['private']?.weight]!,
+                fontStyle: fontStyles[_theme['private']?.style]!,
+              ),
               boxDecoration: BoxDecoration(color: _bgColor)),
         ))),
         Expanded(
@@ -349,6 +359,8 @@ class _MainApp extends State<MainApp> {
       'string': Props(Colors.lightGreen, 'normal', 'normal'),
       'operator': Props(Colors.deepOrange, 'normal', 'normal'),
       'separator': Props(Colors.white, 'normal', 'normal'),
+      'method': Props(Colors.lightBlueAccent,'normal','normal'),
+      'private': Props(Colors.grey,'normal','normal')
     };
   }
 }

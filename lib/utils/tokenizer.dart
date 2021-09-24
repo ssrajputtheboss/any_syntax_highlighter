@@ -15,7 +15,8 @@ List<Token> tokenizer(String input){
     RegexCollection.doubleQuoteString,
     RegexCollection.hashComment,
     RegexCollection.doubleSlashComment,
-    RegexCollection.multilineComment
+    RegexCollection.multilineComment,
+    RegexCollection.xmlComment
   ].join('|');
   /*
   string and comment should be calculated at the beginning to avoid ambiguous matches later

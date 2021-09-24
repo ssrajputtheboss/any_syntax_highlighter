@@ -21,6 +21,7 @@ class RegexCollection{
 
   // multiline comments regex
   static const multilineComment = r'/\*(.|\n)*?\*/';
+  static const xmlComment = r'<!--(.|\n)*?-->';
 
   // null character
   static const nullChar = '\x00';
@@ -32,7 +33,7 @@ class RegexCollection{
   static const number = r'\d+(\.\d+)?[lLfF]?|\d+e\d+';
 
   // title regex ( this is to differentiate a class and normal variable or a function or constructor )
-  static const title = r'_?[A-Z]\w*';
+  static const title = r'_*[A-Z]\w*';
 
   // identifier
   static const identifier = r'[a-zA-Z_]\w*';
@@ -54,6 +55,6 @@ class RegexCollection{
 
   static bool isOperator(String token) => RegExp(operators).stringMatch(token) == token;
 
-  static bool isComment(String token) => RegExp([hashComment,doubleSlashComment,multilineComment].join('|')).stringMatch(token) == token;
+  static bool isComment(String token) => RegExp([hashComment,doubleSlashComment,multilineComment,xmlComment].join('|')).stringMatch(token) == token;
 
 }

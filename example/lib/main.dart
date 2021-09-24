@@ -146,10 +146,10 @@ class _MainApp extends State<MainApp> {
         defaultTargetPlatform == TargetPlatform.iOS;
     return Scaffold(
       appBar: AppBar(
-        title: const Text('AnySyntaxHighlighterDemoApp'),
+        title: const Text('AnySyntaxHighlighterLab'),
         actions: [
           Tooltip(
-            message: 'Generate Theme Code',
+            message: 'Generate Code For This Theme',
             child: IconButton(
                 onPressed: () => showDialog(
                     context: context,
@@ -173,157 +173,164 @@ class _MainApp extends State<MainApp> {
           ? Column(children: mainWidgets())
           : Row(children: mainWidgets()),
       drawer: Drawer(
-          child: ListView(
+          child: Container(
+            padding: const EdgeInsets.all(10),
+            child: ListView(
         controller: ScrollController(),
         children: _theme.entries
-            .map((e) => Wrap(
-                  children: [
-                    Text(e.key),
-                    TextButton(
-                      child: Text('color',
-                          style: TextStyle(backgroundColor: e.value.color)),
-                      onPressed: () => showDialog(
-                          context: context,
-                          builder: (ctx) {
-                            return AlertDialog(
-                              title: const Text('Pick A Color'),
-                              actions: [
-                                IconButton(
-                                    onPressed: ()=>Navigator.canPop(context)?Navigator.pop(context):{},
-                                    icon: const Icon(Icons.close)
-                                )
-                              ],
-                              content: SingleChildScrollView(
-                                child: ColorPicker(
-                                    pickerColor: e.value.color,
-                                    onColorChanged: (newColor) {
-                                      setState(() {
-                                        e.value.color = newColor;
-                                      });
-                                    }),
-                              ),
-                            );
-                          }),
-                    ),
-                    DropdownButton<String>(
-                      value: e.value.style,
-                      items: fontStyles.keys
-                          .map<DropdownMenuItem<String>>(
-                              (k) => DropdownMenuItem(value: k, child: Text(k)))
-                          .toList(),
-                      onChanged: (newStyle) {
-                        setState(() {
-                          e.value.style = newStyle!;
-                        });
-                      },
-                    ),
-                    DropdownButton<String>(
-                      value: e.value.weight,
-                      items: fontWeights.keys
-                          .map<DropdownMenuItem<String>>(
-                              (k) => DropdownMenuItem(value: k, child: Text(k)))
-                          .toList(),
-                      onChanged: (newWeight) {
-                        setState(() {
-                          e.value.weight = newWeight!;
-                        });
-                      },
-                    )
-                  ],
-                ))
-            .toList()
-          ..add(Wrap(
-            children: [
-              const Text('background color'),
-              TextButton(
-                child: Text('change..',
-                    style: TextStyle(backgroundColor: _bgColor)),
-                onPressed: () => showDialog(
-                    context: context,
-                    builder: (ctx) {
-                      return AlertDialog(
-                        title: const Text('Pick A Color'),
-                        actions: [
-                          IconButton(
-                              onPressed: ()=>Navigator.canPop(context)?Navigator.pop(context):{},
-                              icon: const Icon(Icons.close)
-                          )
-                        ],
-                        content: SingleChildScrollView(
-                            child: ColorPicker(
-                                pickerColor: _bgColor,
-                                onColorChanged: (c) {
-                                  setState(() => _bgColor = c);
-                                })),
-                      );
-                    }),
-              ),
-              TextField(
-                keyboardType: TextInputType.number,
-                decoration: const InputDecoration(hintText: 'LetterSpacing'),
-                maxLines: 1,
-                minLines: 1,
-                onSubmitted: (value) {
-                  double? val;
-                  try {
-                    val = double.parse(value);
-                  } catch (err) {
-                    val = null;
-                  }
-                  setState(() {
-                    Props.letterSpacing = val;
-                  });
-                },
-              ),
-              TextField(
-                keyboardType: TextInputType.number,
-                decoration: const InputDecoration(hintText: 'FontSize'),
-                maxLines: 1,
-                minLines: 1,
-                onSubmitted: (value) {
-                  double? val;
-                  try {
-                    val = double.parse(value);
-                  } catch (err) {
-                    val = null;
-                  }
-                  setState(() {
-                    Props.fontSize = val;
-                  });
-                },
-              ),
-              TextField(
-                keyboardType: TextInputType.number,
-                decoration: const InputDecoration(
-                  hintText: 'WordSpacing',
+              .map((e) => Wrap(
+                    children: [
+                      Text(e.key),
+                      TextButton(
+                        child: Text('color',
+                            style: TextStyle(
+                                backgroundColor: e.value.color,
+                                letterSpacing: 2
+                            )
+                        ),
+                        onPressed: () => showDialog(
+                            context: context,
+                            builder: (ctx) {
+                              return AlertDialog(
+                                title: const Text('Pick A Color'),
+                                actions: [
+                                  IconButton(
+                                      onPressed: ()=>Navigator.canPop(context)?Navigator.pop(context):{},
+                                      icon: const Icon(Icons.close)
+                                  )
+                                ],
+                                content: SingleChildScrollView(
+                                  child: ColorPicker(
+                                      pickerColor: e.value.color,
+                                      onColorChanged: (newColor) {
+                                        setState(() {
+                                          e.value.color = newColor;
+                                        });
+                                      }),
+                                ),
+                              );
+                            }),
+                      ),
+                      DropdownButton<String>(
+                        value: e.value.style,
+                        items: fontStyles.keys
+                            .map<DropdownMenuItem<String>>(
+                                (k) => DropdownMenuItem(value: k, child: Text(k)))
+                            .toList(),
+                        onChanged: (newStyle) {
+                          setState(() {
+                            e.value.style = newStyle!;
+                          });
+                        },
+                      ),
+                      DropdownButton<String>(
+                        value: e.value.weight,
+                        items: fontWeights.keys
+                            .map<DropdownMenuItem<String>>(
+                                (k) => DropdownMenuItem(value: k, child: Text(k)))
+                            .toList(),
+                        onChanged: (newWeight) {
+                          setState(() {
+                            e.value.weight = newWeight!;
+                          });
+                        },
+                      )
+                    ],
+                  ))
+              .toList()
+            ..add(Wrap(
+              children: [
+                const Text('background color'),
+                TextButton(
+                  child: Text('change..',
+                      style: TextStyle(backgroundColor: _bgColor)),
+                  onPressed: () => showDialog(
+                      context: context,
+                      builder: (ctx) {
+                        return AlertDialog(
+                          title: const Text('Pick A Color'),
+                          actions: [
+                            IconButton(
+                                onPressed: ()=>Navigator.canPop(context)?Navigator.pop(context):{},
+                                icon: const Icon(Icons.close)
+                            )
+                          ],
+                          content: SingleChildScrollView(
+                              child: ColorPicker(
+                                  pickerColor: _bgColor,
+                                  onColorChanged: (c) {
+                                    setState(() => _bgColor = c);
+                                  })),
+                        );
+                      }),
                 ),
-                maxLines: 1,
-                minLines: 1,
-                onSubmitted: (value) {
-                  double? val;
-                  try {
-                    val = double.parse(value);
-                  } catch (err) {
-                    val = null;
-                  }
-                  setState(() {
-                    Props.wordSpacing = val;
-                  });
-                },
-              ),
-              TextField(
-                decoration: const InputDecoration(hintText: 'FontFamily'),
-                maxLines: 1,
-                minLines: 1,
-                onSubmitted: (value) {
-                  setState(() {
-                    Props.fontFamily = value;
-                  });
-                },
-              )
-            ],
+                TextField(
+                  keyboardType: TextInputType.number,
+                  decoration: const InputDecoration(hintText: 'LetterSpacing'),
+                  maxLines: 1,
+                  minLines: 1,
+                  onSubmitted: (value) {
+                    double? val;
+                    try {
+                      val = double.parse(value);
+                    } catch (err) {
+                      val = null;
+                    }
+                    setState(() {
+                      Props.letterSpacing = val;
+                    });
+                  },
+                ),
+                TextField(
+                  keyboardType: TextInputType.number,
+                  decoration: const InputDecoration(hintText: 'FontSize'),
+                  maxLines: 1,
+                  minLines: 1,
+                  onSubmitted: (value) {
+                    double? val;
+                    try {
+                      val = double.parse(value);
+                    } catch (err) {
+                      val = null;
+                    }
+                    setState(() {
+                      Props.fontSize = val;
+                    });
+                  },
+                ),
+                TextField(
+                  keyboardType: TextInputType.number,
+                  decoration: const InputDecoration(
+                    hintText: 'WordSpacing',
+                  ),
+                  maxLines: 1,
+                  minLines: 1,
+                  onSubmitted: (value) {
+                    double? val;
+                    try {
+                      val = double.parse(value);
+                    } catch (err) {
+                      val = null;
+                    }
+                    setState(() {
+                      Props.wordSpacing = val;
+                    });
+                  },
+                ),
+                TextField(
+                  decoration: const InputDecoration(hintText: 'FontFamily'),
+                  maxLines: 1,
+                  minLines: 1,
+                  onSubmitted: (value) {
+                    setState(() {
+                      Props.fontFamily = value;
+                    });
+                  },
+                )
+              ],
+            )),
+      ),
           )),
-      )),
     );
   }
 
@@ -355,17 +362,18 @@ class Props {
 }
 
 String generateThemeCode(Map<String, Props> theme, Color bgColor) {
-  StringBuffer s = StringBuffer('AnySyntaxHighlighterTheme(\n');
+  StringBuffer s = StringBuffer('AnySyntaxHighlighterTheme(\n    ');
   theme.forEach((key, value) {
-    s.write('''  $key : const TextStyle(
-    color: const Color.fromRGBO(${value.color.red}, ${value.color.green}, ${value.color.blue}, ${value.color.opacity}),
-    fontWeight: Fontweight.${value.weight},
-    fontStyle: FontStyle.${value.style},
+    s.write('''$key : const TextStyle(
+      color: const Color.fromRGBO(${value.color.red}, ${value.color.green}, ${value.color.blue}, ${value.color.opacity}),
+      fontWeight: FontWeight.${value.weight},
+      fontStyle: FontStyle.${value.style},
     ),
     ''');
   });
-  s.write(
-      'bgColor: const Color.fromRGBO(${bgColor.red}, ${bgColor.green}, ${bgColor.blue}, ${bgColor.opacity})');
-  s.writeln(')');
+  s.write('''boxDecoration: const BoxDecoration( 
+      color: const Color.fromRGBO(${bgColor.red}, ${bgColor.green}, ${bgColor.blue}, ${bgColor.opacity})
+    )
+)''');
   return s.toString();
 }

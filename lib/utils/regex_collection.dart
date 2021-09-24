@@ -11,9 +11,10 @@ class RegexCollection{
   static const doubleQuoteString = r'[rf]?"(\\\n|\\"|[^"\n])*"';
   static const tripleDoubleQuoteString = r'[rf]?"""(.|\n)*?"""';
   static const tripleSingleQuoteString = r"[rf]?'''(.|\n)*?'''";
+  static const backtickString = r'`(.|\n)*?`';
 
   // any string used for testing if a given string is string or not
-  static const anyString = r'''[rf]?("(.|\n)*"|'(.|\n)*')''';
+  static const anyString = r'''[rf]?("(.|\n)*"|'(.|\n)*')|`(.|\n)*?`''';
 
   // single line comment regex
   static const hashComment = r'#.*';

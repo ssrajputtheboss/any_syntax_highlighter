@@ -9,6 +9,7 @@ List<Token> tokenizer(String input){
   List<Token> tokens = [];
   List<String> stringCommentList = [];
   final stringOrComment = [
+    RegexCollection.backtickString,
     RegexCollection.tripleSingleQuoteString,
     RegexCollection.tripleDoubleQuoteString,
     RegexCollection.singleQuoteString,

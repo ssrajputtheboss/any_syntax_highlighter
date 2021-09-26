@@ -376,15 +376,15 @@ class Props {
 String generateThemeCode(Map<String, Props> theme, Color bgColor) {
   StringBuffer s = StringBuffer('AnySyntaxHighlighterTheme(\n    ');
   theme.forEach((key, value) {
-    s.write('''$key : const TextStyle(
-      color: const Color.fromRGBO(${value.color.red}, ${value.color.green}, ${value.color.blue}, ${value.color.opacity}),
+    s.write('''$key : TextStyle(
+      color: Color.fromRGBO(${value.color.red}, ${value.color.green}, ${value.color.blue}, ${value.color.opacity}),
       fontWeight: FontWeight.${value.weight},
       fontStyle: FontStyle.${value.style},
     ),
     ''');
   });
-  s.write('''boxDecoration: const BoxDecoration( 
-      color: const Color.fromRGBO(${bgColor.red}, ${bgColor.green}, ${bgColor.blue}, ${bgColor.opacity})
+  s.write('''boxDecoration: BoxDecoration( 
+      color: Color.fromRGBO(${bgColor.red}, ${bgColor.green}, ${bgColor.blue}, ${bgColor.opacity})
     )
 )''');
   return s.toString();

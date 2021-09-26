@@ -73,6 +73,7 @@ class AnySyntaxHighlighter extends StatelessWidget{
       case TokenTypes.separator: return theme.separator;
       case TokenTypes.method: return theme.method;
       case TokenTypes.private: return theme.private;
+      case TokenTypes.multilineComment: return theme.multilineComment;
       default: return const TextStyle();
     }
   }

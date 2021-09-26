@@ -61,6 +61,8 @@ class RegexCollection{
 
   static bool isComment(String token) => RegExp([hashComment,doubleSlashComment,multilineComment,xmlComment].join('|')).stringMatch(token) == token;
 
+  static bool isSingleLineComment(String token) => RegExp([hashComment,doubleSlashComment].join("|")).stringMatch(token) == token;
+
   static bool isPrivate(String token) => RegExp(private).stringMatch(token) == token;
 
 }

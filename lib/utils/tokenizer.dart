@@ -136,7 +136,11 @@ Token getTokenByString(String value){
     return Token(value, TokenTypes.string, false);
   }else if(RegexCollection.isComment(value)){
     //comment found
-    return Token(value,TokenTypes.comment,false);
+    if(RegexCollection.isSingleLineComment(value)) {
+      return Token(value, TokenTypes.comment, false);
+    }else{
+      return Token(value, TokenTypes.multilineComment, false);
+    }
   }else if(RegexCollection.isNumber(value)){
     //number found
     return Token(value,TokenTypes.number,false);

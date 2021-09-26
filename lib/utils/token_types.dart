@@ -16,4 +16,5 @@ class TokenTypes{
   static const separator = 'separator';
   static const method = 'method';
   static const private = 'private';
+  static const multilineComment = 'multilinecomment';
 }

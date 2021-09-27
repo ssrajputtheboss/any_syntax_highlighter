@@ -28,9 +28,9 @@ const fontWeights = <String, FontWeight>{
   'w900': FontWeight.w900
 };
 final fontFeatures = <String,FontFeature>{
-  'slashZero': FontFeature.stylisticSet(6),
-  'tabularFigures': const FontFeature.tabularFigures(),
-  'proportionalFigures': const FontFeature.proportionalFigures()
+  'FontFeature.stylisticSet(6)': FontFeature.stylisticSet(6),
+  'FontFeature.tabularFigures()': const FontFeature.tabularFigures(),
+  'FontFeature.proportionalFigures()': const FontFeature.proportionalFigures()
 };
 
 void main() {
@@ -144,7 +144,7 @@ class _MainApp extends State<MainApp> {
               letterSpacing: Props.letterSpacing,
               wordSpacing: Props.wordSpacing,
               fontFamily: Props.fontFamily,
-              fontFeatures: [],
+              fontFeatures: Props.fontFeatures.map((k) => fontFeatures[k]!).toList(),
           ),
         ))),
         Expanded(
@@ -344,8 +344,31 @@ class _MainApp extends State<MainApp> {
                       Props.fontFamily = value;
                     });
                   },
-                )
-              ],
+                ),
+                const Text('Choose Font Features'),
+              ]..addAll(
+                  fontFeatures.keys.map(
+                          (k) => Row(
+                        children: [
+                          Checkbox(
+                              value: Props.fontFeatures.contains(k),
+                              onChanged: (b){
+                                if(b == true){
+                                  setState(() {
+                                    Props.fontFeatures.add(k);
+                                  });
+                                }else{
+                                  setState(() {
+                                    Props.fontFeatures.remove(k);
+                                  });
+                                }
+                              }
+                          ),
+                          Text(k)
+                        ],
+                      )
+                  ).toList()
+              )
             )),
       ),
           )),
@@ -378,7 +401,7 @@ class Props {
   String weight, style;
   static String? fontFamily;
   static double? letterSpacing, wordSpacing, fontSize;
-  static List<FontFeature> fontFeatures = [];
+  static Set<String> fontFeatures = {};
   Props(this.color, this.weight, this.style);
 }
 
@@ -400,7 +423,7 @@ String generateThemeCode(Map<String, Props> theme, Color bgColor) {
     wordSpacing: ${Props.wordSpacing},
     fontFamily: "${Props.fontFamily}",
     fontFeatures: [
-      ${Props.fontFeatures.join(',\n')}
+      ${Props.fontFeatures.join(',\n      ')}
     ],
 )''');
   return s.toString();

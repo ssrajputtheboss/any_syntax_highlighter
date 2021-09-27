@@ -5,6 +5,8 @@ this file contains the widget that this package is going to provide AnySyntaxHig
  */
 
 
+import 'dart:ui';
+
 import 'package:any_syntax_highlighter/themes/any_syntax_highlighter_theme.dart';
 import 'package:any_syntax_highlighter/utils/token_types.dart';
 import 'package:any_syntax_highlighter/utils/tokenizer.dart';
@@ -26,8 +28,6 @@ class AnySyntaxHighlighter extends StatelessWidget{
   final StrutStyle? strutStyle;
   final TextWidthBasis textWidthBasis;
   final TextHeightBehavior? textHeightBehavior;
-  final double? fontSize, letterSpacing, wordSpacing;
-  final String? fontFamily;
 
   const AnySyntaxHighlighter(this.text,{
     Key? key,
@@ -45,10 +45,6 @@ class AnySyntaxHighlighter extends StatelessWidget{
     this.margin = 0,
     this.isSelectableText = false,
     this.theme = const AnySyntaxHighlighterTheme(),
-    this.fontSize,
-    this.letterSpacing = 1,
-    this.wordSpacing,
-    this.fontFamily
   }) : super(key: key);
 
   /*
@@ -84,10 +80,11 @@ class AnySyntaxHighlighter extends StatelessWidget{
     text: TextSpan(
       text: '',
       style: TextStyle(
-          fontSize: fontSize,
-          fontFamily: fontFamily,
-          letterSpacing: letterSpacing,
-          wordSpacing: wordSpacing
+          fontSize: theme.fontSize,
+          fontFamily: theme.fontFamily,
+          letterSpacing: theme.letterSpacing,
+          wordSpacing: theme.wordSpacing,
+          fontFeatures: theme.fontFeatures
       ),
       children: _createSpans(),
     ),
@@ -106,10 +103,11 @@ class AnySyntaxHighlighter extends StatelessWidget{
     TextSpan(
       text: '',
       style: TextStyle(
-        fontSize: fontSize,
-        fontFamily: fontFamily,
-        letterSpacing: letterSpacing,
-        wordSpacing: wordSpacing
+          fontSize: theme.fontSize,
+          fontFamily: theme.fontFamily,
+          letterSpacing: theme.letterSpacing,
+          wordSpacing: theme.wordSpacing,
+          fontFeatures: theme.fontFeatures
       ),
       children: _createSpans(),
     ),

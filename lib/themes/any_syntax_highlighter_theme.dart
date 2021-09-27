@@ -2,6 +2,8 @@
 this file contains the actual theme class for any syntax highlighter with more types of tokens
  */
 
+import 'dart:ui';
+
 import 'package:any_syntax_highlighter/themes/any_syntax_highlighter_base_theme.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -13,6 +15,9 @@ class AnySyntaxHighlighterTheme extends AnySyntaxHighlighterBaseTheme{
   final TextStyle private;
   final TextStyle constructor;
   final TextStyle multilineComment;
+  final double? fontSize, letterSpacing, wordSpacing;
+  final String? fontFamily;
+  final List<FontFeature> fontFeatures;
   const AnySyntaxHighlighterTheme({
     this.classStyle = const TextStyle(
       color: Colors.cyanAccent ,
@@ -61,7 +66,12 @@ class AnySyntaxHighlighterTheme extends AnySyntaxHighlighterBaseTheme{
     ),
     final BoxDecoration boxDecoration = const BoxDecoration(
         color: Colors.black87
-    )
+    ),
+    this.letterSpacing = 1,
+    this.wordSpacing,
+    this.fontSize,
+    this.fontFamily,
+    this.fontFeatures = const []
   }): super(
     comment: comment,
     keyword: keyword,

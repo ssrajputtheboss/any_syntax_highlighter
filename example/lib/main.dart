@@ -27,6 +27,12 @@ const fontWeights = <String, FontWeight>{
   'w800': FontWeight.w800,
   'w900': FontWeight.w900
 };
+final fontFeatures = <String,FontFeature>{
+  'slashZero': FontFeature.stylisticSet(6),
+  'tabularFigures': const FontFeature.tabularFigures(),
+  'proportionalFigures': const FontFeature.proportionalFigures()
+};
+
 void main() {
   runApp(const ExampleApp());
 }
@@ -62,10 +68,6 @@ class _MainApp extends State<MainApp> {
             child: SingleChildScrollView(
                 child: AnySyntaxHighlighter(
           _text,
-          fontSize: Props.fontSize,
-          letterSpacing: Props.letterSpacing,
-          wordSpacing: Props.wordSpacing,
-          fontFamily: Props.fontFamily,
           theme: AnySyntaxHighlighterTheme(
               classStyle: TextStyle(
                   color: _theme['classStyle']?.color,
@@ -137,7 +139,13 @@ class _MainApp extends State<MainApp> {
                 fontWeight: fontWeights[_theme['private']?.weight]!,
                 fontStyle: fontStyles[_theme['private']?.style]!,
               ),
-              boxDecoration: BoxDecoration(color: _bgColor)),
+              boxDecoration: BoxDecoration(color: _bgColor),
+              fontSize: Props.fontSize,
+              letterSpacing: Props.letterSpacing,
+              wordSpacing: Props.wordSpacing,
+              fontFamily: Props.fontFamily,
+              fontFeatures: [],
+          ),
         ))),
         Expanded(
             child: TextField(
@@ -370,6 +378,7 @@ class Props {
   String weight, style;
   static String? fontFamily;
   static double? letterSpacing, wordSpacing, fontSize;
+  static List<FontFeature> fontFeatures = [];
   Props(this.color, this.weight, this.style);
 }
 
@@ -385,7 +394,14 @@ String generateThemeCode(Map<String, Props> theme, Color bgColor) {
   });
   s.write('''boxDecoration: BoxDecoration( 
       color: Color.fromRGBO(${bgColor.red}, ${bgColor.green}, ${bgColor.blue}, ${bgColor.opacity})
-    )
+    ),
+    fontSize: ${Props.fontSize},
+    letterSpacing: ${Props.letterSpacing},
+    wordSpacing: ${Props.wordSpacing},
+    fontFamily: "${Props.fontFamily}",
+    fontFeatures: [
+      ${Props.fontFeatures.join(',\n')}
+    ],
 )''');
   return s.toString();
 }

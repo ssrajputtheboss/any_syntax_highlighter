@@ -68,6 +68,7 @@ class _MainApp extends State<MainApp> {
             child: SingleChildScrollView(
                 child: AnySyntaxHighlighter(
           _text,
+          fontSize: Props.fontSize,
           theme: AnySyntaxHighlighterTheme(
               classStyle: TextStyle(
                   color: _theme['classStyle']?.color,
@@ -140,7 +141,6 @@ class _MainApp extends State<MainApp> {
                 fontStyle: fontStyles[_theme['private']?.style]!,
               ),
               boxDecoration: BoxDecoration(color: _bgColor),
-              fontSize: Props.fontSize,
               letterSpacing: Props.letterSpacing,
               wordSpacing: Props.wordSpacing,
               fontFamily: Props.fontFamily,
@@ -418,7 +418,6 @@ String generateThemeCode(Map<String, Props> theme, Color bgColor) {
   s.write('''boxDecoration: BoxDecoration( 
       color: Color.fromRGBO(${bgColor.red}, ${bgColor.green}, ${bgColor.blue}, ${bgColor.opacity})
     ),
-    fontSize: ${Props.fontSize},
     letterSpacing: ${Props.letterSpacing},
     wordSpacing: ${Props.wordSpacing},
     fontFamily: "${Props.fontFamily}",

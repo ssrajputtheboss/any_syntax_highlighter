@@ -15,7 +15,7 @@ class AnySyntaxHighlighterTheme extends AnySyntaxHighlighterBaseTheme{
   final TextStyle private;
   final TextStyle constructor;
   final TextStyle multilineComment;
-  final double? fontSize, letterSpacing, wordSpacing;
+  final double? letterSpacing, wordSpacing;
   final String? fontFamily;
   final List<FontFeature> fontFeatures;
   const AnySyntaxHighlighterTheme({
@@ -69,7 +69,6 @@ class AnySyntaxHighlighterTheme extends AnySyntaxHighlighterBaseTheme{
     ),
     this.letterSpacing = 1,
     this.wordSpacing,
-    this.fontSize,
     this.fontFamily,
     this.fontFeatures = const []
   }): super(

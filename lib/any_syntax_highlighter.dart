@@ -28,6 +28,7 @@ class AnySyntaxHighlighter extends StatelessWidget{
   final StrutStyle? strutStyle;
   final TextWidthBasis textWidthBasis;
   final TextHeightBehavior? textHeightBehavior;
+  final double? fontSize;
 
   const AnySyntaxHighlighter(this.text,{
     Key? key,
@@ -45,6 +46,7 @@ class AnySyntaxHighlighter extends StatelessWidget{
     this.margin = 0,
     this.isSelectableText = false,
     this.theme = const AnySyntaxHighlighterTheme(),
+    this.fontSize
   }) : super(key: key);
 
   /*
@@ -80,7 +82,7 @@ class AnySyntaxHighlighter extends StatelessWidget{
     text: TextSpan(
       text: '',
       style: TextStyle(
-          fontSize: theme.fontSize,
+          fontSize: fontSize,
           fontFamily: theme.fontFamily,
           letterSpacing: theme.letterSpacing,
           wordSpacing: theme.wordSpacing,
@@ -103,7 +105,7 @@ class AnySyntaxHighlighter extends StatelessWidget{
     TextSpan(
       text: '',
       style: TextStyle(
-          fontSize: theme.fontSize,
+          fontSize: fontSize,
           fontFamily: theme.fontFamily,
           letterSpacing: theme.letterSpacing,
           wordSpacing: theme.wordSpacing,

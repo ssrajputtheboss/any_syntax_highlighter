@@ -3,6 +3,8 @@ collection of default themes
  */
 
 
+import 'dart:ui';
+
 import 'package:any_syntax_highlighter/themes/any_syntax_highlighter_theme.dart';
 import 'package:flutter/cupertino.dart';
 
@@ -82,7 +84,10 @@ class AnySyntaxHighlighterThemeCollection {
       ),
       boxDecoration: BoxDecoration(
           color: Color.fromRGBO(30, 28, 28, 1)
-      )
+      ),
+      fontFeatures: [
+        FontFeature.slashedZero()
+      ]
   );
 
   static const defaultLightTheme = AnySyntaxHighlighterTheme(
@@ -158,7 +163,10 @@ class AnySyntaxHighlighterThemeCollection {
       ),
       boxDecoration: BoxDecoration(
           color: Color.fromRGBO(255, 255, 255, 0)
-      )
+      ),
+    fontFeatures: [
+      FontFeature.slashedZero()
+    ]
   );
 
 }

@@ -5,9 +5,10 @@ import 'package:any_syntax_highlighter/utils/regex_collection.dart';
 import 'package:any_syntax_highlighter/utils/token.dart';
 import 'package:any_syntax_highlighter/utils/token_types.dart';
 
-List<Token> tokenizer(String input){
+List<Token> tokenizer(String input,{required bool lineNumbers}){
   List<Token> tokens = [];
   List<String> stringCommentList = [];
+  final largestLineLength = '${input.split('\n').length}'.length;
   final stringOrComment = [
     RegexCollection.backtickString,
     RegexCollection.tripleSingleQuoteString,
@@ -60,6 +61,15 @@ List<Token> tokenizer(String input){
       nextToken = getTokenByString(tokenList[1]);
     }
   }
+  int currentLineNumber = 2;
+  if(lineNumbers){
+    tokens.add(Token([
+      '  ',
+      '  '*(largestLineLength-1),
+      '1',
+      '  '
+    ].join(),TokenTypes.lineNumber,false));
+  }
   for (int i=0;i<listLength;++i) {
     if(currentToken?.type == TokenTypes.identifier){
       if(previousToken != null && previousToken.value.endsWith('.') && previousToken.isClassContext){
@@ -104,9 +114,31 @@ List<Token> tokenizer(String input){
         currentToken?.isClassContext = false;
       }
     }
-    tokens.add(currentToken!);
-    if(currentToken.type != TokenTypes.separator){
+    if(currentToken?.type != TokenTypes.separator){
       previousToken = currentToken;
+    }
+    if(currentToken!=null && ![TokenTypes.separator,TokenTypes.string,TokenTypes.multilineComment].contains(currentToken.type)){ // testing
+      tokens.add(currentToken);
+    }else{
+      if(currentToken!=null && currentToken.value.contains('\n') && lineNumbers){
+        final subTokens = currentToken.value.split('\n');
+        final tokenType = currentToken.type;
+        for (int ti=0;ti<subTokens.length-1;++ti) {
+          tokens.add(Token(subTokens[ti]+'\n',tokenType,false));
+          tokens.add(Token([
+            '  ',
+            '  '*(largestLineLength-'$currentLineNumber'.length),
+            '$currentLineNumber',
+            '  '
+          ].join(),TokenTypes.lineNumber,false));
+          currentLineNumber++;
+        }
+        if(subTokens[subTokens.length-1].isNotEmpty){
+          tokens.add(Token(subTokens[subTokens.length-1],tokenType,false));
+        }
+      }else{
+        tokens.add(currentToken!);
+      }
     }
     currentToken = nextToken;
     if(i < (listLength-2)){

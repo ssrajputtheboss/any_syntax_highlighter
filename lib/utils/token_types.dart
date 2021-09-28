@@ -17,4 +17,5 @@ class TokenTypes{
   static const method = 'method';
   static const private = 'private';
   static const multilineComment = 'multilinecomment';
+  static const lineNumber = 'lineNumber'; // testing
 }

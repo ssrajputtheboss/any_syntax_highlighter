@@ -18,6 +18,7 @@ class AnySyntaxHighlighterTheme extends AnySyntaxHighlighterBaseTheme{
   final double? letterSpacing, wordSpacing;
   final String? fontFamily;
   final List<FontFeature> fontFeatures;
+  final TextStyle lineNumber; // testing
   const AnySyntaxHighlighterTheme({
     this.classStyle = const TextStyle(
       color: Colors.cyanAccent ,
@@ -70,7 +71,14 @@ class AnySyntaxHighlighterTheme extends AnySyntaxHighlighterBaseTheme{
     this.letterSpacing = 1,
     this.wordSpacing,
     this.fontFamily,
-    this.fontFeatures = const []
+    this.fontFeatures = const [],
+    this.lineNumber = const TextStyle(
+      backgroundColor: Colors.brown,
+      color: Colors.white,
+      fontFeatures: [
+        FontFeature.tabularFigures()
+      ]
+    )
   }): super(
     comment: comment,
     keyword: keyword,

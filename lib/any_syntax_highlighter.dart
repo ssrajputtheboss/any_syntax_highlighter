@@ -29,6 +29,7 @@ class AnySyntaxHighlighter extends StatelessWidget{
   final TextWidthBasis textWidthBasis;
   final TextHeightBehavior? textHeightBehavior;
   final double? fontSize;
+  final bool lineNumbers;
 
   const AnySyntaxHighlighter(this.text,{
     Key? key,
@@ -46,7 +47,8 @@ class AnySyntaxHighlighter extends StatelessWidget{
     this.margin = 0,
     this.isSelectableText = false,
     this.theme = const AnySyntaxHighlighterTheme(),
-    this.fontSize
+    this.fontSize,
+    this.lineNumbers = false
   }) : super(key: key);
 
   /*
@@ -72,11 +74,12 @@ class AnySyntaxHighlighter extends StatelessWidget{
       case TokenTypes.method: return theme.method;
       case TokenTypes.private: return theme.private;
       case TokenTypes.multilineComment: return theme.multilineComment;
+      case TokenTypes.lineNumber: return theme.lineNumber; //testing
       default: return const TextStyle();
     }
   }
 
-  List<TextSpan> _createSpans() => tokenizer(text).map((token) => TextSpan(text: token.value,style: _getStyleByTokenType(token.type))).toList();
+  List<TextSpan> _createSpans() => tokenizer(text,lineNumbers: lineNumbers).map((token) => TextSpan(text: token.value,style: _getStyleByTokenType(token.type))).toList();
 
   Widget _highlighter() => !isSelectableText ? RichText(
     text: TextSpan(

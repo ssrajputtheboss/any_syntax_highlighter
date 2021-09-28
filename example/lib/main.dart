@@ -69,6 +69,7 @@ class _MainApp extends State<MainApp> {
                 child: AnySyntaxHighlighter(
           _text,
           fontSize: Props.fontSize,
+          lineNumbers: Props.lineNumbers,
           theme: AnySyntaxHighlighterTheme(
               classStyle: TextStyle(
                   color: _theme['classStyle']?.color,
@@ -345,6 +346,21 @@ class _MainApp extends State<MainApp> {
                     });
                   },
                 ),
+                Checkbox(
+                    value: Props.lineNumbers,
+                    onChanged: (b){
+                      if(b == true){
+                        setState(() {
+                          Props.lineNumbers = true;
+                        });
+                      }else{
+                        setState(() {
+                          Props.lineNumbers = false;
+                        });
+                      }
+                    }
+                ),
+                const Text("Show Line Numbers(beta)"),
                 const Text('Choose Font Features'),
               ]..addAll(
                   fontFeatures.keys.map(
@@ -401,6 +417,7 @@ class Props {
   String weight, style;
   static String? fontFamily;
   static double? letterSpacing, wordSpacing, fontSize;
+  static bool lineNumbers = false;
   static Set<String> fontFeatures = {};
   Props(this.color, this.weight, this.style);
 }

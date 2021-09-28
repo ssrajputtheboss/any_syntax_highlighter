@@ -14,7 +14,7 @@ void main() {
         print(i);
       }
     }""";
-    List<Token> tokens = tokenizer(input);
+    List<Token> tokens = tokenizer(input,lineNumbers:false);
     int c=0;
     for(Token token in tokens){
       token.type == TokenTypes.staticType ? c++ : 0;

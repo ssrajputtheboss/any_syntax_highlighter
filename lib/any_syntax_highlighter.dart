@@ -55,6 +55,7 @@ class AnySyntaxHighlighter extends StatelessWidget{
   assertions before building widget
    */
   void assertions(){
+    // text must not contain \x00 character asserting before building
     assert(!text.contains('\x00'));
   }
 
@@ -74,12 +75,13 @@ class AnySyntaxHighlighter extends StatelessWidget{
       case TokenTypes.method: return theme.method;
       case TokenTypes.private: return theme.private;
       case TokenTypes.multilineComment: return theme.multilineComment;
-      case TokenTypes.lineNumber: return theme.lineNumber; //testing
       default: return const TextStyle();
     }
   }
 
-  List<TextSpan> _createSpans() => tokenizer(text,lineNumbers: lineNumbers).map((token) => TextSpan(text: token.value,style: _getStyleByTokenType(token.type))).toList();
+  String _getLineValue(int value,int maxLength) => '  '+'  '*(maxLength - '$value'.length) + '$value';
+
+  List<TextSpan> _createSpans() => tokenizer(text).map((token) => TextSpan(text: token.value,style: _getStyleByTokenType(token.type))).toList();
 
   Widget _highlighter() => !isSelectableText ? RichText(
     text: TextSpan(
@@ -125,15 +127,40 @@ class AnySyntaxHighlighter extends StatelessWidget{
     textHeightBehavior: textHeightBehavior,
   );
 
+  Widget _lineNumberWidget(){
+    final int lineCount = text.split('\n').length + 1;
+    final maxLength = '$lineCount'.length;
+    var lineNumberWidgets = <Widget>[];
+    for(int i = 1;i<=lineCount;++i){
+      lineNumberWidgets.add(Text(
+        _getLineValue(i, maxLength),
+        style: theme.lineNumber,
+      ));
+    }
+    return Row(
+      children: [
+        Column(
+          children: lineNumberWidgets,
+        ),
+        SingleChildScrollView(
+          scrollDirection: Axis.horizontal,
+          child: _highlighter(),
+        )
+      ],
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
-    // text must not contain \x00 character asserting before building
     assertions();
     return Container(
         padding: EdgeInsets.all(padding),
         margin: EdgeInsets.all(margin),
         decoration: theme.boxDecoration,
-        child: _highlighter()
+        child: lineNumbers ? _lineNumberWidget() : SingleChildScrollView(
+          scrollDirection: Axis.horizontal,
+          child: _highlighter(),
+        )
     );
   }
 }

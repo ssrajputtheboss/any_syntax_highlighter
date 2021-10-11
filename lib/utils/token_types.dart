@@ -2,8 +2,7 @@
 list of types of token
  */
 
-class TokenTypes{
-
+class TokenTypes {
   static const keyword = 'keyword';
 
   static const number = 'number';
@@ -31,5 +30,4 @@ class TokenTypes{
   static const private = 'private';
 
   static const multilineComment = 'multilinecomment';
-
 }

@@ -4,7 +4,6 @@ library any_syntax_highlighter;
 this file contains the widget that this package is going to provide AnySyntaxHighlighterText
  */
 
-
 import 'dart:ui';
 
 import 'package:any_syntax_highlighter/themes/any_syntax_highlighter_theme.dart';
@@ -13,15 +12,14 @@ import 'package:any_syntax_highlighter/utils/tokenizer.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 
-class AnySyntaxHighlighter extends StatelessWidget{
-
+class AnySyntaxHighlighter extends StatelessWidget {
   final String text;
 
   final AnySyntaxHighlighterTheme theme;
 
   final bool isSelectableText; // for building SelectableText.rich() widget
 
-  final double padding,margin;
+  final double padding, margin;
 
   final TextAlign textAlign;
 
@@ -47,252 +45,176 @@ class AnySyntaxHighlighter extends StatelessWidget{
 
   final bool lineNumbers;
 
-  const AnySyntaxHighlighter(this.text,{
-
-    Key? key,
-
-    this.textAlign = TextAlign.start,
-
-    this.textDirection,
-
-    this.softWrap = true,
-
-    this.overflow = TextOverflow.clip,
-
-    this.textScaleFactor = 1.0,
-
-    this.maxLines,
-
-    this.locale,
-
-    this.strutStyle,
-
-    this.textWidthBasis = TextWidthBasis.parent,
-
-    this.textHeightBehavior,
-
-    this.padding = 2,
-
-    this.margin = 0,
-
-    this.isSelectableText = false,
-
-    this.theme = const AnySyntaxHighlighterTheme(),
-
-    this.fontSize,
-
-    this.lineNumbers = false
-
-  }) : super(key: key);
+  const AnySyntaxHighlighter(this.text,
+      {Key? key,
+      this.textAlign = TextAlign.start,
+      this.textDirection,
+      this.softWrap = true,
+      this.overflow = TextOverflow.clip,
+      this.textScaleFactor = 1.0,
+      this.maxLines,
+      this.locale,
+      this.strutStyle,
+      this.textWidthBasis = TextWidthBasis.parent,
+      this.textHeightBehavior,
+      this.padding = 2,
+      this.margin = 0,
+      this.isSelectableText = false,
+      this.theme = const AnySyntaxHighlighterTheme(),
+      this.fontSize,
+      this.lineNumbers = false})
+      : super(key: key);
 
   /*
   assertions before building widget
    */
 
-  void assertions(){
-
+  void assertions() {
     // text must not contain \x00 character asserting before building
 
     assert(!text.contains('\x00'));
-
   }
 
   TextStyle _getStyleByTokenType(String type) {
+    switch (type) {
+      case TokenTypes.keyword:
+        return theme.keyword;
 
-    switch(type){
+      case TokenTypes.number:
+        return theme.number;
 
-      case TokenTypes.keyword: return theme.keyword;
+      case TokenTypes.classType:
+        return theme.classStyle;
 
-      case TokenTypes.number: return theme.number;
+      case TokenTypes.function:
+        return theme.function;
 
-      case TokenTypes.classType: return theme.classStyle;
+      case TokenTypes.identifier:
+        return theme.identifier;
 
-      case TokenTypes.function: return theme.function;
+      case TokenTypes.staticType:
+        return theme.staticStyle;
 
-      case TokenTypes.identifier: return theme.identifier;
+      case TokenTypes.constructor:
+        return theme.constructor;
 
-      case TokenTypes.staticType: return theme.staticStyle;
+      case TokenTypes.comment:
+        return theme.comment;
 
-      case TokenTypes.constructor: return theme.constructor;
+      case TokenTypes.string:
+        return theme.string;
 
-      case TokenTypes.comment: return theme.comment;
+      case TokenTypes.operator:
+        return theme.operator;
 
-      case TokenTypes.string: return theme.string;
+      case TokenTypes.separator:
+        return theme.separator;
 
-      case TokenTypes.operator: return theme.operator;
+      case TokenTypes.method:
+        return theme.method;
 
-      case TokenTypes.separator: return theme.separator;
+      case TokenTypes.private:
+        return theme.private;
 
-      case TokenTypes.method: return theme.method;
+      case TokenTypes.multilineComment:
+        return theme.multilineComment;
 
-      case TokenTypes.private: return theme.private;
-
-      case TokenTypes.multilineComment: return theme.multilineComment;
-
-      default: return const TextStyle();
-
+      default:
+        return const TextStyle();
     }
-
   }
 
-  String _getLineValue(int value,int maxLength) => '  '+'  '*(maxLength - '$value'.length) + '$value';
+  String _getLineValue(int value, int maxLength) =>
+      '  ' + '  ' * (maxLength - '$value'.length) + '$value';
 
-  List<TextSpan> _createSpans() => tokenizer(text).map((token) => TextSpan(text: token.value,style: _getStyleByTokenType(token.type))).toList();
+  List<TextSpan> _createSpans() => tokenizer(text)
+      .map((token) =>
+          TextSpan(text: token.value, style: _getStyleByTokenType(token.type)))
+      .toList();
 
-  Widget _highlighter() => !isSelectableText ? RichText(
+  Widget _highlighter() => !isSelectableText
+      ? RichText(
+          text: TextSpan(
+            text: '',
+            style: TextStyle(
+                fontSize: fontSize,
+                fontFamily: theme.fontFamily,
+                letterSpacing: theme.letterSpacing,
+                wordSpacing: theme.wordSpacing,
+                fontFeatures: theme.fontFeatures),
+            children: _createSpans(),
+          ),
+          textAlign: textAlign,
+          textDirection: textDirection,
+          softWrap: softWrap,
+          overflow: overflow,
+          textScaleFactor: textScaleFactor,
+          maxLines: maxLines,
+          locale: locale,
+          strutStyle: strutStyle,
+          textWidthBasis: textWidthBasis,
+          textHeightBehavior: textHeightBehavior,
+        )
+      : SelectableText.rich(
+          TextSpan(
+            text: '',
+            style: TextStyle(
+                fontSize: fontSize,
+                fontFamily: theme.fontFamily,
+                letterSpacing: theme.letterSpacing,
+                wordSpacing: theme.wordSpacing,
+                fontFeatures: theme.fontFeatures),
+            children: _createSpans(),
+          ),
+          textAlign: textAlign,
+          textDirection: textDirection,
+          textScaleFactor: textScaleFactor,
+          maxLines: maxLines,
+          strutStyle: strutStyle,
+          textWidthBasis: textWidthBasis,
+          textHeightBehavior: textHeightBehavior,
+        );
 
-    text: TextSpan(
-
-      text: '',
-
-      style: TextStyle(
-
-          fontSize: fontSize,
-
-          fontFamily: theme.fontFamily,
-
-          letterSpacing: theme.letterSpacing,
-
-          wordSpacing: theme.wordSpacing,
-
-          fontFeatures: theme.fontFeatures
-
-      ),
-
-      children: _createSpans(),
-
-    ),
-
-    textAlign: textAlign,
-
-    textDirection: textDirection,
-
-    softWrap: softWrap,
-
-    overflow: overflow,
-
-    textScaleFactor: textScaleFactor,
-
-    maxLines: maxLines,
-
-    locale: locale,
-
-    strutStyle: strutStyle,
-
-    textWidthBasis: textWidthBasis,
-
-    textHeightBehavior: textHeightBehavior,
-
-  ) :
-
-  SelectableText.rich(
-
-    TextSpan(
-
-      text: '',
-
-      style: TextStyle(
-
-          fontSize: fontSize,
-
-          fontFamily: theme.fontFamily,
-
-          letterSpacing: theme.letterSpacing,
-
-          wordSpacing: theme.wordSpacing,
-
-          fontFeatures: theme.fontFeatures
-
-      ),
-
-      children: _createSpans(),
-
-    ),
-
-    textAlign: textAlign,
-
-    textDirection: textDirection,
-
-    textScaleFactor: textScaleFactor,
-
-    maxLines: maxLines,
-
-    strutStyle: strutStyle,
-
-    textWidthBasis: textWidthBasis,
-
-    textHeightBehavior: textHeightBehavior,
-
-  );
-
-  Widget _lineNumberWidget(){
-
+  Widget _lineNumberWidget() {
     final int lineCount = text.split('\n').length + 1;
 
     final maxLength = '$lineCount'.length;
 
     var lineNumberWidgets = <Widget>[];
 
-    for(int i = 1;i<=lineCount;++i){
-
+    for (int i = 1; i <= lineCount; ++i) {
       lineNumberWidgets.add(Text(
-
         _getLineValue(i, maxLength),
-
         style: theme.lineNumber,
-
       ));
-
     }
 
     return Row(
-
       children: [
-
         Column(
-
           children: lineNumberWidgets,
-
         ),
-
         SingleChildScrollView(
-
           scrollDirection: Axis.horizontal,
-
           child: _highlighter(),
-
         )
-
       ],
-
     );
-
   }
 
   @override
-
   Widget build(BuildContext context) {
-
     assertions();
 
     return Container(
-
         padding: EdgeInsets.all(padding),
-
         margin: EdgeInsets.all(margin),
-
         decoration: theme.boxDecoration,
-
-        child: lineNumbers ? _lineNumberWidget() : SingleChildScrollView(
-
-          scrollDirection: Axis.horizontal,
-
-          child: _highlighter(),
-
-        )
-
-    );
-
+        child: lineNumbers
+            ? _lineNumberWidget()
+            : SingleChildScrollView(
+                scrollDirection: Axis.horizontal,
+                child: _highlighter(),
+              ));
   }
-
 }

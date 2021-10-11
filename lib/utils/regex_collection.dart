@@ -1,11 +1,9 @@
-
 /*
 this file provides a class RegexCollection which is collection
 of regex strings on based of which we will tokenize our input
  */
 
-class RegexCollection{
-
+class RegexCollection {
   // string regex
 
   static const singleQuoteString = r"[rf]?'(\\\n|(\\')|[^'\n])*'";
@@ -64,22 +62,33 @@ class RegexCollection{
 
   // functions for checking
 
-  static bool isTitle(String token) => RegExp(title).stringMatch(token) == token;
+  static bool isTitle(String token) =>
+      RegExp(title).stringMatch(token) == token;
 
-  static bool isNumber(String token) => RegExp(number).stringMatch(token) == token;
+  static bool isNumber(String token) =>
+      RegExp(number).stringMatch(token) == token;
 
-  static bool isString(String token) => RegExp(anyString).stringMatch(token) == token;
+  static bool isString(String token) =>
+      RegExp(anyString).stringMatch(token) == token;
 
   static bool isNullChar(String token) => RegExp(nullChar).hasMatch(token);
 
-  static bool isIdentifier(String token) => RegExp(identifier).stringMatch(token) == token;
+  static bool isIdentifier(String token) =>
+      RegExp(identifier).stringMatch(token) == token;
 
-  static bool isOperator(String token) => RegExp(operators).stringMatch(token) == token;
+  static bool isOperator(String token) =>
+      RegExp(operators).stringMatch(token) == token;
 
-  static bool isComment(String token) => RegExp([hashComment,doubleSlashComment,multilineComment,xmlComment].join('|')).stringMatch(token) == token;
+  static bool isComment(String token) =>
+      RegExp([hashComment, doubleSlashComment, multilineComment, xmlComment]
+              .join('|'))
+          .stringMatch(token) ==
+      token;
 
-  static bool isSingleLineComment(String token) => RegExp([hashComment,doubleSlashComment].join("|")).stringMatch(token) == token;
+  static bool isSingleLineComment(String token) =>
+      RegExp([hashComment, doubleSlashComment].join("|")).stringMatch(token) ==
+      token;
 
-  static bool isPrivate(String token) => RegExp(private).stringMatch(token) == token;
-
+  static bool isPrivate(String token) =>
+      RegExp(private).stringMatch(token) == token;
 }

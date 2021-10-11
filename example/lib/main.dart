@@ -426,21 +426,37 @@ String generateThemeCode(Map<String, Props> theme, Color bgColor) {
   StringBuffer s = StringBuffer('AnySyntaxHighlighterTheme(\n    ');
   theme.forEach((key, value) {
     s.write('''$key : TextStyle(
+    
       color: Color.fromRGBO(${value.color.red}, ${value.color.green}, ${value.color.blue}, ${value.color.opacity}),
+
       fontWeight: FontWeight.${value.weight},
+
       fontStyle: FontStyle.${value.style},
+
     ),
+
     ''');
+
   });
+
   s.write('''boxDecoration: BoxDecoration( 
+
       color: Color.fromRGBO(${bgColor.red}, ${bgColor.green}, ${bgColor.blue}, ${bgColor.opacity})
+
     ),
+
     letterSpacing: ${Props.letterSpacing},
+
     wordSpacing: ${Props.wordSpacing},
+
     fontFamily: "${Props.fontFamily}",
+
     fontFeatures: [
+
       ${Props.fontFeatures.join(',\n      ')}
+
     ],
+
 )''');
   return s.toString();
 }

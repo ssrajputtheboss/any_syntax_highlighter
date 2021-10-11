@@ -1,3 +1,4 @@
 ## 0.0.1
 
-* TODO: Describe initial release.
+* any_syntax_highlighter release 0.0.1
+* initial release

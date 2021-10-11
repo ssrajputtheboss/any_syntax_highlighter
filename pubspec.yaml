@@ -1,7 +1,7 @@
 name: any_syntax_highlighter
-description: Syntax highlighter for any language.
+description: A convention based syntax highlighter for any language.
 version: 0.0.1
-homepage:
+homepage: https://github.com/ssrajputtheboss/any_syntax_highlighter.git
 
 environment:
   sdk: ">=2.12.0 <3.0.0"

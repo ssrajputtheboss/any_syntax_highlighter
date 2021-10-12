@@ -1,3 +1,4 @@
+# any_syntax_highlighter
 
 any_syntax_highlighter is a 'convention based' syntax highlighter which provides highlighting to input text code.
 
@@ -13,22 +14,70 @@ any_syntax_highlighter is a 'convention based' syntax highlighter which provides
         * multiline comment /*.....\*/
     * identifier starting with _ => private
     * functions after . operator => method (highlighting for function and method are now different)
+
 ## Getting started
 
-TODO: List prerequisites and provide or point to information on how to
-start using the package.
+import package-
+```dart
+import 'package:any_syntax_highlighter/any_syntax_highlighter.dart';
+```
+![github_web_theme](https://ssrajputtheboss.github.io/testing/ashs3.png)
+![default_theme](https://ssrajputtheboss.github.io/testing/ahss2.png)
 
 ## Usage
 
-TODO: Include short and useful examples for package users. Add longer examples
-to `/example` folder. 
-
+Basic usage
 ```dart
-const like = 'sample';
+AnySyntaxHighlighter(
+  '''Class Main{
+  public static void main(String args[]){
+    
+  }
+}'''
+)
 ```
+
+Usage with optional fields
+```dart
+AnySyntaxHighlighter(
+          '#your code goes here',
+          fontSize: 16,
+          lineNumbers: true, // by default false
+          theme: AnySyntaxHighlighterThemeCollection.githubWebTheme, // you can create and pass custom theme using AnySyntaxHighlighterTheme class
+          isSelectable true, // this creates a SelectableText.rich() widget, makes text selectable (by default false)
+          padding = 2,
+          margin = 0,
+          /* other options are:- 
+          textAlign,
+          this.textDirection,
+          softWrap,
+          overflow,
+          textScaleFactor,
+          maxLines,
+          locale,
+          strutStyle,
+          textWidthBasis,
+          textHeightBehavior,
+          */
+)
+```
+
+## packages,classes and their definition
+
+|package/classes|definition|
+| :--: | :--- |
+|AnySyntaxHighlighter|Widget that provides highlighting|
+|AnySyntaxHighlighterBaseTheme|super class of AnySyntaxHighlighterTheme no use case for user|
+|AnySyntaxHighlighterTheme|for making custom themes you can use this class and pass it to theme option of widget|
+|AnySyntaxHighlighterThemeCollection|collection of default themes provided by this package|
+|RegexCollection|collection of regular expression strings used to tokenize the input code, no or less use case for user|
+|Token|token class for internal usage only|
 
 ## Additional information
 
-TODO: Tell users more about the package: where to find more information, how to 
-contribute to the package, how to file issues, what response they can expect 
-from the package authors, and more.
+Open for contribution, specially you can create beautiful themes using our web tool [AnySyntaxHighlighterThemeLab](https://ssrajputtheboss.github.io/any_syntax_highlighter_web_app/)
+For themes you need not necessarily need to raise an issue just build the theme, make sure you these things:-
+* your made changes to any_syntax_highlighter_theme_collection.dart file only
+* you have dart formatted your code before making pull request
+
+If you find any bug/suggestion feel free to raise an issue on [github repository](https://github.com/ssrajputtheboss/any_syntax_highlighter).

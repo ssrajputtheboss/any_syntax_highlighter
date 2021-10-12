@@ -1,5 +1,4 @@
 import 'dart:ui';
-
 import 'package:any_syntax_highlighter/any_syntax_highlighter.dart';
 import 'package:any_syntax_highlighter/themes/any_syntax_highlighter_theme.dart';
 import 'package:flutter/cupertino.dart';
@@ -27,7 +26,7 @@ const fontWeights = <String, FontWeight>{
   'w800': FontWeight.w800,
   'w900': FontWeight.w900
 };
-final fontFeatures = <String,FontFeature>{
+final fontFeatures = <String, FontFeature>{
   'FontFeature.stylisticSet(6)': FontFeature.stylisticSet(6),
   'FontFeature.tabularFigures()': const FontFeature.tabularFigures(),
   'FontFeature.proportionalFigures()': const FontFeature.proportionalFigures()
@@ -71,81 +70,81 @@ class _MainApp extends State<MainApp> {
           fontSize: Props.fontSize,
           lineNumbers: Props.lineNumbers,
           theme: AnySyntaxHighlighterTheme(
-              classStyle: TextStyle(
-                  color: _theme['classStyle']?.color,
-                  fontWeight: fontWeights[_theme['classStyle']?.weight]!,
-                  fontStyle: fontStyles[_theme['classStyle']?.style]!
-              ),
-              staticStyle: TextStyle(
-                  color: _theme['staticStyle']?.color,
-                  fontWeight: fontWeights[_theme['staticStyle']?.weight]!,
-                  fontStyle: fontStyles[_theme['staticStyle']?.style]!,
-              ),
-              constructor: TextStyle(
-                  color: _theme['constructor']?.color,
-                  fontWeight: fontWeights[_theme['constructor']?.weight]!,
-                  fontStyle: fontStyles[_theme['constructor']?.style]!,
-              ),
-              multilineComment: TextStyle(
-                  color: _theme['multilineComment']?.color,
-                  fontWeight: fontWeights[_theme['multilineComment']?.weight]!,
-                  fontStyle: fontStyles[_theme['multilineComment']?.style]!,
-              ),
-              comment: TextStyle(
-                  color: _theme['comment']?.color,
-                  fontWeight: fontWeights[_theme['comment']?.weight]!,
-                  fontStyle: fontStyles[_theme['comment']?.style]!,
-              ),
-              keyword: TextStyle(
-                  color: _theme['keyword']?.color,
-                  fontWeight: fontWeights[_theme['keyword']?.weight]!,
-                  fontStyle: fontStyles[_theme['keyword']?.style]!,
-              ),
-              identifier: TextStyle(
-                  color: _theme['identifier']?.color,
-                  fontWeight: fontWeights[_theme['identifier']?.weight]!,
-                  fontStyle: fontStyles[_theme['identifier']?.style]!,
-              ),
-              function: TextStyle(
-                  color: _theme['function']?.color,
-                  fontWeight: fontWeights[_theme['function']?.weight]!,
-                  fontStyle: fontStyles[_theme['function']?.style]!,
-              ),
-              number: TextStyle(
-                  color: _theme['number']?.color,
-                  fontWeight: fontWeights[_theme['number']?.weight]!,
-                  fontStyle: fontStyles[_theme['number']?.style]!,
-              ),
-              string: TextStyle(
-                  color: _theme['string']?.color,
-                  fontWeight: fontWeights[_theme['string']?.weight]!,
-                  fontStyle: fontStyles[_theme['string']?.style]!,
-              ),
-              operator: TextStyle(
-                  color: _theme['operator']?.color,
-                  fontWeight: fontWeights[_theme['operator']?.weight]!,
-                  fontStyle: fontStyles[_theme['operator']?.style]!,
-              ),
-              separator: TextStyle(
-                  color: _theme['separator']?.color,
-                  fontWeight: fontWeights[_theme['separator']?.weight]!,
-                  fontStyle: fontStyles[_theme['separator']?.style]!,
-              ),
-              method: TextStyle(
-                color: _theme['method']?.color,
-                fontWeight: fontWeights[_theme['method']?.weight]!,
-                fontStyle: fontStyles[_theme['method']?.style]!,
-              ),
-              private: TextStyle(
-                color: _theme['private']?.color,
-                fontWeight: fontWeights[_theme['private']?.weight]!,
-                fontStyle: fontStyles[_theme['private']?.style]!,
-              ),
-              boxDecoration: BoxDecoration(color: _bgColor),
-              letterSpacing: Props.letterSpacing,
-              wordSpacing: Props.wordSpacing,
-              fontFamily: Props.fontFamily,
-              fontFeatures: Props.fontFeatures.map((k) => fontFeatures[k]!).toList(),
+            classStyle: TextStyle(
+                color: _theme['classStyle']?.color,
+                fontWeight: fontWeights[_theme['classStyle']?.weight]!,
+                fontStyle: fontStyles[_theme['classStyle']?.style]!),
+            staticStyle: TextStyle(
+              color: _theme['staticStyle']?.color,
+              fontWeight: fontWeights[_theme['staticStyle']?.weight]!,
+              fontStyle: fontStyles[_theme['staticStyle']?.style]!,
+            ),
+            constructor: TextStyle(
+              color: _theme['constructor']?.color,
+              fontWeight: fontWeights[_theme['constructor']?.weight]!,
+              fontStyle: fontStyles[_theme['constructor']?.style]!,
+            ),
+            multilineComment: TextStyle(
+              color: _theme['multilineComment']?.color,
+              fontWeight: fontWeights[_theme['multilineComment']?.weight]!,
+              fontStyle: fontStyles[_theme['multilineComment']?.style]!,
+            ),
+            comment: TextStyle(
+              color: _theme['comment']?.color,
+              fontWeight: fontWeights[_theme['comment']?.weight]!,
+              fontStyle: fontStyles[_theme['comment']?.style]!,
+            ),
+            keyword: TextStyle(
+              color: _theme['keyword']?.color,
+              fontWeight: fontWeights[_theme['keyword']?.weight]!,
+              fontStyle: fontStyles[_theme['keyword']?.style]!,
+            ),
+            identifier: TextStyle(
+              color: _theme['identifier']?.color,
+              fontWeight: fontWeights[_theme['identifier']?.weight]!,
+              fontStyle: fontStyles[_theme['identifier']?.style]!,
+            ),
+            function: TextStyle(
+              color: _theme['function']?.color,
+              fontWeight: fontWeights[_theme['function']?.weight]!,
+              fontStyle: fontStyles[_theme['function']?.style]!,
+            ),
+            number: TextStyle(
+              color: _theme['number']?.color,
+              fontWeight: fontWeights[_theme['number']?.weight]!,
+              fontStyle: fontStyles[_theme['number']?.style]!,
+            ),
+            string: TextStyle(
+              color: _theme['string']?.color,
+              fontWeight: fontWeights[_theme['string']?.weight]!,
+              fontStyle: fontStyles[_theme['string']?.style]!,
+            ),
+            operator: TextStyle(
+              color: _theme['operator']?.color,
+              fontWeight: fontWeights[_theme['operator']?.weight]!,
+              fontStyle: fontStyles[_theme['operator']?.style]!,
+            ),
+            separator: TextStyle(
+              color: _theme['separator']?.color,
+              fontWeight: fontWeights[_theme['separator']?.weight]!,
+              fontStyle: fontStyles[_theme['separator']?.style]!,
+            ),
+            method: TextStyle(
+              color: _theme['method']?.color,
+              fontWeight: fontWeights[_theme['method']?.weight]!,
+              fontStyle: fontStyles[_theme['method']?.style]!,
+            ),
+            private: TextStyle(
+              color: _theme['private']?.color,
+              fontWeight: fontWeights[_theme['private']?.weight]!,
+              fontStyle: fontStyles[_theme['private']?.style]!,
+            ),
+            boxDecoration: BoxDecoration(color: _bgColor),
+            letterSpacing: Props.letterSpacing,
+            wordSpacing: Props.wordSpacing,
+            fontFamily: Props.fontFamily,
+            fontFeatures:
+                Props.fontFeatures.map((k) => fontFeatures[k]!).toList(),
           ),
         ))),
         Expanded(
@@ -176,15 +175,20 @@ class _MainApp extends State<MainApp> {
                       return AlertDialog(
                         actions: [
                           IconButton(
-                              onPressed: ()=>Navigator.canPop(context)?Navigator.pop(context):{},
-                              icon: const Icon(Icons.close)
-                          )
+                              onPressed: () => Navigator.canPop(context)
+                                  ? Navigator.pop(context)
+                                  : {},
+                              icon: const Icon(Icons.close))
                         ],
-                        content:
-                            AnySyntaxHighlighter(generateThemeCode(_theme, _bgColor),isSelectableText: true),
+                        content: AnySyntaxHighlighter(
+                            generateThemeCode(_theme, _bgColor),
+                            isSelectableText: true),
                       );
                     }),
-                icon: const Icon(Icons.code,color: Colors.yellowAccent,)),
+                icon: const Icon(
+                  Icons.code,
+                  color: Colors.yellowAccent,
+                )),
           )
         ],
       ),
@@ -193,10 +197,10 @@ class _MainApp extends State<MainApp> {
           : Row(children: mainWidgets()),
       drawer: Drawer(
           child: Container(
-            padding: const EdgeInsets.all(10),
-            child: ListView(
-        controller: ScrollController(),
-        children: _theme.entries
+        padding: const EdgeInsets.all(10),
+        child: ListView(
+          controller: ScrollController(),
+          children: _theme.entries
               .map((e) => Wrap(
                     children: [
                       Text(e.key),
@@ -204,9 +208,7 @@ class _MainApp extends State<MainApp> {
                         child: Text('color',
                             style: TextStyle(
                                 backgroundColor: e.value.color,
-                                letterSpacing: 2
-                            )
-                        ),
+                                letterSpacing: 2)),
                         onPressed: () => showDialog(
                             context: context,
                             builder: (ctx) {
@@ -214,9 +216,10 @@ class _MainApp extends State<MainApp> {
                                 title: const Text('Pick A Color'),
                                 actions: [
                                   IconButton(
-                                      onPressed: ()=>Navigator.canPop(context)?Navigator.pop(context):{},
-                                      icon: const Icon(Icons.close)
-                                  )
+                                      onPressed: () => Navigator.canPop(context)
+                                          ? Navigator.pop(context)
+                                          : {},
+                                      icon: const Icon(Icons.close))
                                 ],
                                 content: SingleChildScrollView(
                                   child: ColorPicker(
@@ -233,8 +236,8 @@ class _MainApp extends State<MainApp> {
                       DropdownButton<String>(
                         value: e.value.style,
                         items: fontStyles.keys
-                            .map<DropdownMenuItem<String>>(
-                                (k) => DropdownMenuItem(value: k, child: Text(k)))
+                            .map<DropdownMenuItem<String>>((k) =>
+                                DropdownMenuItem(value: k, child: Text(k)))
                             .toList(),
                         onChanged: (newStyle) {
                           setState(() {
@@ -245,8 +248,8 @@ class _MainApp extends State<MainApp> {
                       DropdownButton<String>(
                         value: e.value.weight,
                         items: fontWeights.keys
-                            .map<DropdownMenuItem<String>>(
-                                (k) => DropdownMenuItem(value: k, child: Text(k)))
+                            .map<DropdownMenuItem<String>>((k) =>
+                                DropdownMenuItem(value: k, child: Text(k)))
                             .toList(),
                         onChanged: (newWeight) {
                           setState(() {
@@ -258,136 +261,132 @@ class _MainApp extends State<MainApp> {
                   ))
               .toList()
             ..add(Wrap(
-              children: [
-                const Text('background color'),
-                TextButton(
-                  child: Text('change..',
-                      style: TextStyle(backgroundColor: _bgColor)),
-                  onPressed: () => showDialog(
-                      context: context,
-                      builder: (ctx) {
-                        return AlertDialog(
-                          title: const Text('Pick A Color'),
-                          actions: [
-                            IconButton(
-                                onPressed: ()=>Navigator.canPop(context)?Navigator.pop(context):{},
-                                icon: const Icon(Icons.close)
-                            )
-                          ],
-                          content: SingleChildScrollView(
-                              child: ColorPicker(
-                                  pickerColor: _bgColor,
-                                  onColorChanged: (c) {
-                                    setState(() => _bgColor = c);
-                                  })),
-                        );
-                      }),
-                ),
-                TextField(
-                  keyboardType: TextInputType.number,
-                  decoration: const InputDecoration(hintText: 'LetterSpacing'),
-                  maxLines: 1,
-                  minLines: 1,
-                  onSubmitted: (value) {
-                    double? val;
-                    try {
-                      val = double.parse(value);
-                    } catch (err) {
-                      val = null;
-                    }
-                    setState(() {
-                      Props.letterSpacing = val;
-                    });
-                  },
-                ),
-                TextField(
-                  keyboardType: TextInputType.number,
-                  decoration: const InputDecoration(hintText: 'FontSize'),
-                  maxLines: 1,
-                  minLines: 1,
-                  onSubmitted: (value) {
-                    double? val;
-                    try {
-                      val = double.parse(value);
-                    } catch (err) {
-                      val = null;
-                    }
-                    setState(() {
-                      Props.fontSize = val;
-                    });
-                  },
-                ),
-                TextField(
-                  keyboardType: TextInputType.number,
-                  decoration: const InputDecoration(
-                    hintText: 'WordSpacing',
-                  ),
-                  maxLines: 1,
-                  minLines: 1,
-                  onSubmitted: (value) {
-                    double? val;
-                    try {
-                      val = double.parse(value);
-                    } catch (err) {
-                      val = null;
-                    }
-                    setState(() {
-                      Props.wordSpacing = val;
-                    });
-                  },
-                ),
-                TextField(
-                  decoration: const InputDecoration(hintText: 'FontFamily'),
-                  maxLines: 1,
-                  minLines: 1,
-                  onSubmitted: (value) {
-                    setState(() {
-                      Props.fontFamily = value;
-                    });
-                  },
-                ),
-                Checkbox(
-                    value: Props.lineNumbers,
-                    onChanged: (b){
-                      if(b == true){
-                        setState(() {
-                          Props.lineNumbers = true;
-                        });
-                      }else{
-                        setState(() {
-                          Props.lineNumbers = false;
-                        });
-                      }
-                    }
-                ),
-                const Text("Show Line Numbers(beta)"),
-                const Text('Choose Font Features'),
-              ]..addAll(
-                  fontFeatures.keys.map(
-                          (k) => Row(
-                        children: [
-                          Checkbox(
-                              value: Props.fontFeatures.contains(k),
-                              onChanged: (b){
-                                if(b == true){
-                                  setState(() {
-                                    Props.fontFeatures.add(k);
-                                  });
-                                }else{
-                                  setState(() {
-                                    Props.fontFeatures.remove(k);
-                                  });
-                                }
-                              }
-                          ),
-                          Text(k)
+                children: [
+              const Text('background color'),
+              TextButton(
+                child: Text('change..',
+                    style: TextStyle(backgroundColor: _bgColor)),
+                onPressed: () => showDialog(
+                    context: context,
+                    builder: (ctx) {
+                      return AlertDialog(
+                        title: const Text('Pick A Color'),
+                        actions: [
+                          IconButton(
+                              onPressed: () => Navigator.canPop(context)
+                                  ? Navigator.pop(context)
+                                  : {},
+                              icon: const Icon(Icons.close))
                         ],
-                      )
-                  ).toList()
-              )
-            )),
-      ),
-          )),
+                        content: SingleChildScrollView(
+                            child: ColorPicker(
+                                pickerColor: _bgColor,
+                                onColorChanged: (c) {
+                                  setState(() => _bgColor = c);
+                                })),
+                      );
+                    }),
+              ),
+              TextField(
+                keyboardType: TextInputType.number,
+                decoration: const InputDecoration(hintText: 'LetterSpacing'),
+                maxLines: 1,
+                minLines: 1,
+                onSubmitted: (value) {
+                  double? val;
+                  try {
+                    val = double.parse(value);
+                  } catch (err) {
+                    val = null;
+                  }
+                  setState(() {
+                    Props.letterSpacing = val;
+                  });
+                },
+              ),
+              TextField(
+                keyboardType: TextInputType.number,
+                decoration: const InputDecoration(hintText: 'FontSize'),
+                maxLines: 1,
+                minLines: 1,
+                onSubmitted: (value) {
+                  double? val;
+                  try {
+                    val = double.parse(value);
+                  } catch (err) {
+                    val = null;
+                  }
+                  setState(() {
+                    Props.fontSize = val;
+                  });
+                },
+              ),
+              TextField(
+                keyboardType: TextInputType.number,
+                decoration: const InputDecoration(
+                  hintText: 'WordSpacing',
+                ),
+                maxLines: 1,
+                minLines: 1,
+                onSubmitted: (value) {
+                  double? val;
+                  try {
+                    val = double.parse(value);
+                  } catch (err) {
+                    val = null;
+                  }
+                  setState(() {
+                    Props.wordSpacing = val;
+                  });
+                },
+              ),
+              TextField(
+                decoration: const InputDecoration(hintText: 'FontFamily'),
+                maxLines: 1,
+                minLines: 1,
+                onSubmitted: (value) {
+                  setState(() {
+                    Props.fontFamily = value;
+                  });
+                },
+              ),
+              Checkbox(
+                  value: Props.lineNumbers,
+                  onChanged: (b) {
+                    if (b == true) {
+                      setState(() {
+                        Props.lineNumbers = true;
+                      });
+                    } else {
+                      setState(() {
+                        Props.lineNumbers = false;
+                      });
+                    }
+                  }),
+              const Text("Show Line Numbers(beta)"),
+              const Text('Choose Font Features'),
+            ]..addAll(fontFeatures.keys
+                    .map((k) => Row(
+                          children: [
+                            Checkbox(
+                                value: Props.fontFeatures.contains(k),
+                                onChanged: (b) {
+                                  if (b == true) {
+                                    setState(() {
+                                      Props.fontFeatures.add(k);
+                                    });
+                                  } else {
+                                    setState(() {
+                                      Props.fontFeatures.remove(k);
+                                    });
+                                  }
+                                }),
+                            Text(k)
+                          ],
+                        ))
+                    .toList()))),
+        ),
+      )),
     );
   }
 
@@ -406,8 +405,8 @@ class _MainApp extends State<MainApp> {
       'string': Props(Colors.lightGreen, 'normal', 'normal'),
       'operator': Props(Colors.deepOrange, 'normal', 'normal'),
       'separator': Props(Colors.white, 'normal', 'normal'),
-      'method': Props(Colors.lightBlueAccent,'normal','normal'),
-      'private': Props(Colors.grey,'normal','normal')
+      'method': Props(Colors.lightBlueAccent, 'normal', 'normal'),
+      'private': Props(Colors.grey, 'normal', 'normal')
     };
   }
 }
@@ -436,7 +435,6 @@ String generateThemeCode(Map<String, Props> theme, Color bgColor) {
     ),
 
     ''');
-
   });
 
   s.write('''boxDecoration: BoxDecoration( 

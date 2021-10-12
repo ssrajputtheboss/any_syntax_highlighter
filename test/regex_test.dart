@@ -1,18 +1,16 @@
-
-
 import 'package:any_syntax_highlighter/utils/regex_collection.dart';
 import 'package:flutter_test/flutter_test.dart';
 
 void main() {
   group('all regex tests', () {
-    test('comment regex test', (){
+    test('comment regex test', () {
       var re = RegExp(RegexCollection.hashComment);
       const hash = "#this is a cool comment";
-      int c=0;
+      int c = 0;
       re.allMatches(hash).forEach((e) => c++);
       expect(1, c);
       const comment = '//comment\noh yeah//';
-      c=0;
+      c = 0;
       re = RegExp(RegexCollection.doubleSlashComment);
       re.allMatches(comment).forEach((e) => c++);
       expect(2, c);

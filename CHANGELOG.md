@@ -1,4 +1,4 @@
-## 0.0.1
+## 0.0.2
 
-* any_syntax_highlighter release 0.0.1
-* initial release
+* documentation updated
+* added ScrollControllers to SingleChildScrollView widgets to avoid future errors

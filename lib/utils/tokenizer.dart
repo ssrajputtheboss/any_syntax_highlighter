@@ -7,6 +7,7 @@ import 'package:any_syntax_highlighter/utils/regex_collection.dart';
 import 'package:any_syntax_highlighter/utils/token.dart';
 import 'package:any_syntax_highlighter/utils/token_types.dart';
 
+/// creates and returns list of tokens from String input
 List<Token> tokenizer(String input) {
   List<Token> tokens = [];
 
@@ -24,9 +25,7 @@ List<Token> tokenizer(String input) {
     RegexCollection.xmlComment
   ].join('|');
 
-  /*
-  string and comment should be calculated at the beginning to avoid ambiguous matches later
-   */
+  // string and comment should be calculated at the beginning to avoid ambiguous matches later
 
   RegExp(stringOrComment).allMatches(input).forEach((e) {
     stringCommentList.add(e.group(0)!);
@@ -166,11 +165,7 @@ List<Token> tokenizer(String input) {
   return tokens;
 }
 
-/*
-this functions initiates the starting properties of a token ,
-rest of the properties are calculated on basis of previous and next
-token
- */
+/// this functions initiates the starting properties of a token , rest of the properties are calculated on basis of previous and next token
 Token getTokenByString(String value) {
   if (RegexCollection.isString(value)) {
     // String found

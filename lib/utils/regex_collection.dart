@@ -62,33 +62,42 @@ class RegexCollection {
 
   // functions for checking
 
+  /// returns true if input token is an identifier and starts with capital letter
   static bool isTitle(String token) =>
       RegExp(title).stringMatch(token) == token;
 
+  /// returns true if input token is of type number
   static bool isNumber(String token) =>
       RegExp(number).stringMatch(token) == token;
 
+  /// returns true if input token is of type string
   static bool isString(String token) =>
       RegExp(anyString).stringMatch(token) == token;
 
+  /// returns true if input token is a null character (i.e. \x00)
   static bool isNullChar(String token) => RegExp(nullChar).hasMatch(token);
 
+  /// returns true if token is an identifier
   static bool isIdentifier(String token) =>
       RegExp(identifier).stringMatch(token) == token;
 
+  /// returns true if input token is an operator
   static bool isOperator(String token) =>
       RegExp(operators).stringMatch(token) == token;
 
+  /// returns true if input matches regex of any comment single line or multiline
   static bool isComment(String token) =>
       RegExp([hashComment, doubleSlashComment, multilineComment, xmlComment]
               .join('|'))
           .stringMatch(token) ==
       token;
 
+  /// returns true if input is a single line comment
   static bool isSingleLineComment(String token) =>
       RegExp([hashComment, doubleSlashComment].join("|")).stringMatch(token) ==
       token;
 
+  /// returns true if input token is an identifier and starts with underscore(_)
   static bool isPrivate(String token) =>
       RegExp(private).stringMatch(token) == token;
 }

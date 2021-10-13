@@ -65,16 +65,13 @@ class AnySyntaxHighlighter extends StatelessWidget {
       this.lineNumbers = false})
       : super(key: key);
 
-  /*
-  assertions before building widget
-   */
-
+  /// assertions before building widget
   void assertions() {
     // text must not contain \x00 character asserting before building
-
     assert(!text.contains('\x00'));
   }
 
+  /// returns the TextStyle defined in theme for a particular type of token
   TextStyle _getStyleByTokenType(String type) {
     switch (type) {
       case TokenTypes.keyword:
@@ -120,18 +117,22 @@ class AnySyntaxHighlighter extends StatelessWidget {
         return theme.multilineComment;
 
       default:
+        // will never reach here in real case
         return const TextStyle();
     }
   }
 
+  /// returns a fixed length string value for line number
   String _getLineValue(int value, int maxLength) =>
       '  ' + '  ' * (maxLength - '$value'.length) + '$value';
 
+  /// create and return TextSpans based on token inputs
   List<TextSpan> _createSpans() => tokenizer(text)
       .map((token) =>
           TextSpan(text: token.value, style: _getStyleByTokenType(token.type)))
       .toList();
 
+  /// creates main widget if ifSelectableText is true returns RichText otherwise SelectableText.rich()
   Widget _highlighter() => !isSelectableText
       ? RichText(
           text: TextSpan(
@@ -175,6 +176,7 @@ class AnySyntaxHighlighter extends StatelessWidget {
           textHeightBehavior: textHeightBehavior,
         );
 
+  /// creates line number widget, only when lineNumbers is set to true
   Widget _lineNumberWidget() {
     final int lineCount = text.split('\n').length + 1;
 
@@ -195,6 +197,7 @@ class AnySyntaxHighlighter extends StatelessWidget {
           children: lineNumberWidgets,
         ),
         SingleChildScrollView(
+          controller: ScrollController(),
           scrollDirection: Axis.horizontal,
           child: _highlighter(),
         )
@@ -213,6 +216,7 @@ class AnySyntaxHighlighter extends StatelessWidget {
         child: lineNumbers
             ? _lineNumberWidget()
             : SingleChildScrollView(
+                controller: ScrollController(),
                 scrollDirection: Axis.horizontal,
                 child: _highlighter(),
               ));

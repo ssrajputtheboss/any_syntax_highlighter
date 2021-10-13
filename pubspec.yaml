@@ -1,6 +1,6 @@
 name: any_syntax_highlighter
-description: A convention based syntax highlighter for any language.
-version: 0.0.1
+description: any_syntax_highlighter is a "convention" based syntax highlighting tool.
+version: 0.0.2
 homepage: https://github.com/ssrajputtheboss/any_syntax_highlighter.git
 
 environment:

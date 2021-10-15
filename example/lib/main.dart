@@ -366,7 +366,7 @@ class _MainApp extends State<MainApp> {
                       });
                     }
                   }),
-              const Text("Show Line Numbers(beta)"),
+              const Text("Show Line Numbers"),
               const Text('Choose Font Features'),
             ]..addAll(fontFeatures.keys
                     .map((k) => Row(

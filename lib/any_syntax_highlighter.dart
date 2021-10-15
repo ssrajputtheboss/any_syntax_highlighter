@@ -182,20 +182,28 @@ class AnySyntaxHighlighter extends StatelessWidget {
 
     final maxLength = '$lineCount'.length;
 
-    var lineNumberWidgets = <Widget>[];
+    var lineNumberWidgets = <InlineSpan>[];
 
     for (int i = 1; i <= lineCount; ++i) {
-      lineNumberWidgets.add(Text(
-        _getLineValue(i, maxLength),
+      lineNumberWidgets.add(TextSpan(
+        text: _getLineValue(i, maxLength) + '\n',
         style: theme.lineNumber,
       ));
     }
 
     return Row(
+      crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        Column(
-          children: lineNumberWidgets,
-        ),
+        Column(children: [
+          RichText(
+            text: TextSpan(
+                text: '',
+                children: lineNumberWidgets,
+                style: TextStyle(
+                  fontSize: fontSize,
+                )),
+          ),
+        ]),
         SingleChildScrollView(
           controller: ScrollController(),
           scrollDirection: Axis.horizontal,

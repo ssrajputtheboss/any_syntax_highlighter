@@ -59,6 +59,8 @@ class _MainApp extends State<MainApp> {
   String _text = '';
   late Map<String, Props> _theme;
   late Color _bgColor;
+  final TextEditingController _letterSpacingController =
+      TextEditingController(text: "1");
   _MainApp() {
     initializeTheme();
   }
@@ -292,6 +294,7 @@ class _MainApp extends State<MainApp> {
                 decoration: const InputDecoration(hintText: 'LetterSpacing'),
                 maxLines: 1,
                 minLines: 1,
+                controller: _letterSpacingController,
                 onSubmitted: (value) {
                   double? val;
                   try {
@@ -394,7 +397,7 @@ class _MainApp extends State<MainApp> {
     _bgColor = Colors.black;
     _theme = {
       'classStyle': Props(Colors.cyanAccent, 'normal', 'normal'),
-      'staticStyle': Props(Colors.pinkAccent, 'normal', 'italic'),
+      'staticStyle': Props(Colors.pinkAccent, 'normal', 'normal'),
       'constructor': Props(Colors.orangeAccent, 'normal', 'normal'),
       'multilineComment': Props(Colors.red, 'normal', 'italic'),
       'comment': Props(Colors.red, 'normal', 'italic'),
@@ -415,7 +418,7 @@ class Props {
   Color color;
   String weight, style;
   static String? fontFamily;
-  static double? letterSpacing, wordSpacing, fontSize;
+  static double? letterSpacing = 1, wordSpacing, fontSize;
   static bool lineNumbers = false;
   static Set<String> fontFeatures = {};
   Props(this.color, this.weight, this.style);

@@ -7,8 +7,10 @@ import 'package:any_syntax_highlighter/themes/any_syntax_highlighter_theme.dart'
 import 'package:flutter/cupertino.dart';
 
 class AnySyntaxHighlighterThemeCollection {
+  /// default theme used by AnySyntaxHighlighter widget
   static const defaultTheme = AnySyntaxHighlighterTheme();
 
+  /// theme like github web
   static const githubWebTheme = AnySyntaxHighlighterTheme(
       classStyle: TextStyle(
         color: Color.fromRGBO(113, 176, 251, 1),
@@ -83,6 +85,7 @@ class AnySyntaxHighlighterThemeCollection {
       boxDecoration: BoxDecoration(color: Color.fromRGBO(30, 28, 28, 1)),
       fontFeatures: [FontFeature.slashedZero()]);
 
+  /// light theme
   static const defaultLightTheme = AnySyntaxHighlighterTheme(
       classStyle: TextStyle(
         color: Color.fromRGBO(1, 86, 86, 1),

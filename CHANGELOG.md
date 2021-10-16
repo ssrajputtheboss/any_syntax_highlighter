@@ -1,4 +1,4 @@
-## 0.0.2
+## 0.0.3
 
+* line numbers issues fixed
 * documentation updated
-* added ScrollControllers to SingleChildScrollView widgets to avoid future errors

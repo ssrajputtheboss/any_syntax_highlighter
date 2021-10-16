@@ -7,25 +7,39 @@ import 'package:any_syntax_highlighter/themes/any_syntax_highlighter_base_theme.
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
+/// Actual theme class with modern oops language tokens
+/// contains all the tokens available in the base theme
 class AnySyntaxHighlighterTheme extends AnySyntaxHighlighterBaseTheme {
+  /// text styling for class style token
   final TextStyle classStyle;
 
+  /// text styling for static identifier token
+  /// for both static data member and method
   final TextStyle staticStyle;
 
+  /// text styling for method token ( functions followed by a . operator)
   final TextStyle method;
 
+  /// text styling for private token
   final TextStyle private;
 
+  /// text styling for constructor token
   final TextStyle constructor;
 
+  /// text styling for multiline comment token
   final TextStyle multilineComment;
 
+  /// letter spacing and word spacing in final widget
+  /// word spacing might not work as expected
   final double? letterSpacing, wordSpacing;
 
+  /// font family
   final String? fontFamily;
 
+  /// font features like slashed zero etc.
   final List<FontFeature> fontFeatures;
 
+  /// text styling for line numbers
   final TextStyle lineNumber; // testing
 
   const AnySyntaxHighlighterTheme(

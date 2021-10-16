@@ -2,6 +2,7 @@
 list of types of token
  */
 
+/// for now its a class to be replaced by enum in later versions
 class TokenTypes {
   static const keyword = 'keyword';
 

@@ -75,8 +75,8 @@ AnySyntaxHighlighter(
 
 ## Additional information
 
-Open for contribution, specially you can create beautiful themes using our web tool [AnySyntaxHighlighterThemeLab](https://ssrajputtheboss.github.io/any_syntax_highlighter_web_app/)
-For themes you need not necessarily need to raise an issue just build the theme, make sure you these things:-
+Open for contribution, specially if you can create themes using our web tool [AnySyntaxHighlighterThemeLab](https://ssrajputtheboss.github.io/any_syntax_highlighter_web_app/)
+For themes you need not necessarily need to raise an issue just build the theme, make sure you do these things:-
 * your made changes to any_syntax_highlighter_theme_collection.dart file only
 * you have dart formatted your code before making pull request
 

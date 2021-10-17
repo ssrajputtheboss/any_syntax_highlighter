@@ -61,6 +61,7 @@ class _MainApp extends State<MainApp> {
   late Color _bgColor;
   final TextEditingController _letterSpacingController =
       TextEditingController(text: "1");
+  final ScrollController scrollController = ScrollController();
   _MainApp() {
     initializeTheme();
   }
@@ -201,7 +202,7 @@ class _MainApp extends State<MainApp> {
           child: Container(
         padding: const EdgeInsets.all(10),
         child: ListView(
-          controller: ScrollController(),
+          controller: scrollController,
           children: _theme.entries
               .map((e) => Wrap(
                     children: [

@@ -12,37 +12,55 @@ import 'package:any_syntax_highlighter/utils/tokenizer.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 
+/// widget AnySyntaxHighlighter this widget will provide the syntax highlighting to input text
 class AnySyntaxHighlighter extends StatelessWidget {
+  /// input text code
   final String text;
 
+  /// theme for highlighting code
   final AnySyntaxHighlighterTheme theme;
 
+  /// if set true will build a SelectableText.rich() widget, builds RichText otherwise
   final bool isSelectableText; // for building SelectableText.rich() widget
 
+  /// padding and margin for outer container widget
   final double padding, margin;
 
+  /// to be passed as textAlign parameter of RichText widget
   final TextAlign textAlign;
 
+  /// to be passed as textDirection parameter of RichText widget
   final TextDirection? textDirection;
 
+  /// to be passed as softWrap parameter of RichText widget
   final bool softWrap;
 
+  /// to be passed as textOverflow parameter of RichText widget
+  /// default value is TextOverflow.clip
   final TextOverflow overflow;
 
+  /// to be passed as textScaleFactor parameter of RichText widget
   final double textScaleFactor;
 
+  /// to be passed as maxLines parameter of RichText widget
   final int? maxLines;
 
+  /// to be passed as locale parameter of RichText widget
   final Locale? locale;
 
+  /// to be passed as strutStyle parameter of RichText widget
   final StrutStyle? strutStyle;
 
+  /// to be passed as textWidthBasis parameter of RichText widget
   final TextWidthBasis textWidthBasis;
 
+  /// to be passed as textHeightBehavior parameter of RichText widget
   final TextHeightBehavior? textHeightBehavior;
 
+  /// set fontSize using this parameter
   final double? fontSize;
 
+  /// if true an additional line numbers widget will appear in left hand side
   final bool lineNumbers;
 
   const AnySyntaxHighlighter(this.text,
@@ -72,7 +90,7 @@ class AnySyntaxHighlighter extends StatelessWidget {
   }
 
   /// returns the TextStyle defined in theme for a particular type of token
-  TextStyle _getStyleByTokenType(String type) {
+  TextStyle _getStyleByTokenType(dynamic type) {
     switch (type) {
       case TokenTypes.keyword:
         return theme.keyword;
@@ -204,10 +222,12 @@ class AnySyntaxHighlighter extends StatelessWidget {
                 )),
           ),
         ]),
-        SingleChildScrollView(
-          controller: ScrollController(),
-          scrollDirection: Axis.horizontal,
-          child: _highlighter(),
+        Expanded(
+          child: SingleChildScrollView(
+            // controller: ScrollController(),
+            scrollDirection: Axis.horizontal,
+            child: _highlighter(),
+          ),
         )
       ],
     );
@@ -224,7 +244,7 @@ class AnySyntaxHighlighter extends StatelessWidget {
         child: lineNumbers
             ? _lineNumberWidget()
             : SingleChildScrollView(
-                controller: ScrollController(),
+                // controller: ScrollController(),
                 scrollDirection: Axis.horizontal,
                 child: _highlighter(),
               ));

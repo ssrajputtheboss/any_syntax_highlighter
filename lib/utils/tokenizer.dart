@@ -13,33 +13,13 @@ List<Token> tokenizer(String input) {
 
   List<String> stringCommentList = [];
 
-  final stringOrComment = [
-    RegexCollection.backtickString,
-    RegexCollection.tripleSingleQuoteString,
-    RegexCollection.tripleDoubleQuoteString,
-    RegexCollection.singleQuoteString,
-    RegexCollection.doubleQuoteString,
-    RegexCollection.hashComment,
-    RegexCollection.doubleSlashComment,
-    RegexCollection.multilineComment,
-    RegexCollection.xmlComment
-  ].join('|');
-
   // string and comment should be calculated at the beginning to avoid ambiguous matches later
 
-  RegExp(stringOrComment).allMatches(input).forEach((e) {
+  RegexCollection.regExpStringOrComment.allMatches(input).forEach((e) {
     stringCommentList.add(e.group(0)!);
 
     input = input.replaceFirst(e.group(0)!, RegexCollection.nullChar);
   });
-
-  final tokenizerString = [
-    RegexCollection.nullChar,
-    RegexCollection.identifier,
-    RegexCollection.number,
-    RegexCollection.operators,
-    RegexCollection.except
-  ].join('|');
 
   /*
   some properties of a token depends upon the trailing and upcoming token
@@ -48,10 +28,10 @@ List<Token> tokenizer(String input) {
 
   Token? previousToken, currentToken, nextToken;
 
-  final tokenizerRe = RegExp(tokenizerString);
-
-  final tokenList =
-      tokenizerRe.allMatches(input).map((e) => e.group(0)!).toList();
+  final tokenList = RegexCollection.regExpTokenizer
+      .allMatches(input)
+      .map((e) => e.group(0)!)
+      .toList();
 
   final listLength = tokenList.length;
 
@@ -165,7 +145,8 @@ List<Token> tokenizer(String input) {
   return tokens;
 }
 
-/// this functions initiates the starting properties of a token , rest of the properties are calculated on basis of previous and next token
+/// this functions initiates the starting properties of a token ,
+/// rest of the properties are calculated on basis of previous and next token
 Token getTokenByString(String value) {
   if (RegexCollection.isString(value)) {
     // String found

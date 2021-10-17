@@ -7,7 +7,7 @@ class Token {
   String value;
 
   /// type of token must be one of TokenTypes
-  String type;
+  dynamic type;
 
   /// if class context is true the upcoming identifier will
   /// be treated as a static identifier

@@ -2,33 +2,33 @@
 list of types of token
  */
 
-/// for now its a class to be replaced by enum in later versions
-class TokenTypes {
-  static const keyword = 'keyword';
+/// types of tokens
+enum TokenTypes {
+  keyword,
 
-  static const number = 'number';
+  number,
 
-  static const classType = 'class';
+  classType,
 
-  static const function = 'function';
+  function,
 
-  static const identifier = 'id';
+  identifier,
 
-  static const staticType = 'static';
+  staticType,
 
-  static const constructor = 'constructor';
+  constructor,
 
-  static const comment = 'comment';
+  comment,
 
-  static const string = 'string';
+  string,
 
-  static const operator = 'operator';
+  operator,
 
-  static const separator = 'separator';
+  separator,
 
-  static const method = 'method';
+  method,
 
-  static const private = 'private';
+  private,
 
-  static const multilineComment = 'multilinecomment';
+  multilineComment
 }

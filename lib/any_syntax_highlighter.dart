@@ -11,6 +11,7 @@ import 'package:any_syntax_highlighter/utils/token_types.dart';
 import 'package:any_syntax_highlighter/utils/tokenizer.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
+import 'package:google_fonts/google_fonts.dart';
 
 /// widget AnySyntaxHighlighter this widget will provide the syntax highlighting to input text
 class AnySyntaxHighlighter extends StatelessWidget {
@@ -63,6 +64,12 @@ class AnySyntaxHighlighter extends StatelessWidget {
   /// if true an additional line numbers widget will appear in left hand side
   final bool lineNumbers;
 
+  /// choose google fonts you wish to use
+  /// if it's value is null no google fonts will be used
+  /// if not null it will use GoogleFonts.getFont(useGoogleFont) to get
+  /// that font
+  final String? useGoogleFont;
+
   const AnySyntaxHighlighter(this.text,
       {Key? key,
       this.textAlign = TextAlign.start,
@@ -80,6 +87,7 @@ class AnySyntaxHighlighter extends StatelessWidget {
       this.isSelectableText = false,
       this.theme = const AnySyntaxHighlighterTheme(),
       this.fontSize,
+      this.useGoogleFont,
       this.lineNumbers = false})
       : super(key: key);
 
@@ -146,8 +154,12 @@ class AnySyntaxHighlighter extends StatelessWidget {
 
   /// create and return TextSpans based on token inputs
   List<TextSpan> _createSpans() => tokenizer(text)
-      .map((token) =>
-          TextSpan(text: token.value, style: _getStyleByTokenType(token.type)))
+      .map((token) => TextSpan(
+          text: token.value,
+          style: useGoogleFont == null
+              ? _getStyleByTokenType(token.type)
+              : GoogleFonts.getFont(useGoogleFont!,
+                  textStyle: _getStyleByTokenType(token.type))))
       .toList();
 
   /// creates main widget if ifSelectableText is true returns RichText otherwise SelectableText.rich()

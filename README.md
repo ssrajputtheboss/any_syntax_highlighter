@@ -14,6 +14,7 @@ any_syntax_highlighter is a 'convention based' syntax highlighter which provides
         * multiline comment /*.....\*/
     * identifier starting with _ => private
     * functions after . operator => method (highlighting for function and method are now different)
+ * Added google fonts! (Thanks to [google_fonts](https://pub.dev/packages/google_fonts) library)
 
 ## Getting started
 
@@ -44,9 +45,10 @@ AnySyntaxHighlighter(
           fontSize: 16,
           lineNumbers: true, // by default false
           theme: AnySyntaxHighlighterThemeCollection.githubWebTheme, // you can create and pass custom theme using AnySyntaxHighlighterTheme class
-          isSelectable true, // this creates a SelectableText.rich() widget, makes text selectable (by default false)
-          padding = 2,
-          margin = 0,
+          isSelectable: true, // this creates a SelectableText.rich() widget, makes text selectable (by default false)
+          padding : 2,
+          margin : 0,
+          useGoogleFont: 'Lato',
           /* other options are:- 
           textAlign,
           this.textDirection,
@@ -61,6 +63,21 @@ AnySyntaxHighlighter(
           */
 )
 ```
+
+## Using Google Fonts
+
+You can add any of the google fonts available in google_fonts library. Just pass
+a string name of google font you want to use to useGoogleFont property
+
+```dart
+AnySyntaxHighlighter(
+  '// google fonts usage demo',
+  useGoogleFont: 'Lato'
+)
+```
+
+Don't forget to add appropriate License for the font you are using for more details
+read [google_fonts documentation](https://pub.dev/packages/google_fonts).
 
 ## packages,classes and their definition
 

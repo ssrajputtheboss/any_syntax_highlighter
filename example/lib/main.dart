@@ -72,6 +72,7 @@ class _MainApp extends State<MainApp> {
           _text,
           fontSize: Props.fontSize,
           lineNumbers: Props.lineNumbers,
+          useGoogleFont: Props.useGoogleFont,
           theme: AnySyntaxHighlighterTheme(
             classStyle: TextStyle(
                 color: _theme['classStyle']?.color,
@@ -354,6 +355,16 @@ class _MainApp extends State<MainApp> {
                   });
                 },
               ),
+              TextField(
+                decoration: const InputDecoration(hintText: 'GoogleFontName'),
+                maxLines: 1,
+                minLines: 1,
+                onSubmitted: (value) {
+                  setState(() {
+                    Props.useGoogleFont = value.isEmpty ? null : value;
+                  });
+                },
+              ),
               Checkbox(
                   value: Props.lineNumbers,
                   onChanged: (b) {
@@ -422,43 +433,29 @@ class Props {
   static double? letterSpacing = 1, wordSpacing, fontSize;
   static bool lineNumbers = false;
   static Set<String> fontFeatures = {};
+  static String? useGoogleFont;
   Props(this.color, this.weight, this.style);
 }
 
 String generateThemeCode(Map<String, Props> theme, Color bgColor) {
-  StringBuffer s = StringBuffer('AnySyntaxHighlighterTheme(\n    ');
+  StringBuffer s = StringBuffer('const AnySyntaxHighlighterTheme(\n    ');
   theme.forEach((key, value) {
     s.write('''$key : TextStyle(
-    
       color: Color.fromRGBO(${value.color.red}, ${value.color.green}, ${value.color.blue}, ${value.color.opacity}),
-
       fontWeight: FontWeight.${value.weight},
-
       fontStyle: FontStyle.${value.style},
-
     ),
-
     ''');
   });
-
   s.write('''boxDecoration: BoxDecoration( 
-
       color: Color.fromRGBO(${bgColor.red}, ${bgColor.green}, ${bgColor.blue}, ${bgColor.opacity})
-
     ),
-
     letterSpacing: ${Props.letterSpacing},
-
     wordSpacing: ${Props.wordSpacing},
-
     fontFamily: "${Props.fontFamily}",
-
     fontFeatures: [
-
       ${Props.fontFeatures.join(',\n      ')}
-
     ],
-
 )''');
   return s.toString();
 }

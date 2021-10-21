@@ -11,7 +11,7 @@ class AnySyntaxHighlighterThemeCollection {
   static const defaultTheme = AnySyntaxHighlighterTheme();
 
   /// theme like github web
-  static const githubWebTheme = AnySyntaxHighlighterTheme(
+  static githubWebTheme() => const AnySyntaxHighlighterTheme(
       classStyle: TextStyle(
         color: Color.fromRGBO(113, 176, 251, 1),
         fontWeight: FontWeight.normal,
@@ -86,7 +86,7 @@ class AnySyntaxHighlighterThemeCollection {
       fontFeatures: [FontFeature.slashedZero()]);
 
   /// light theme
-  static const defaultLightTheme = AnySyntaxHighlighterTheme(
+  static defaultLightTheme() => const AnySyntaxHighlighterTheme(
       classStyle: TextStyle(
         color: Color.fromRGBO(1, 86, 86, 1),
         fontWeight: FontWeight.normal,

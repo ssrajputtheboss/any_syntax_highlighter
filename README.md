@@ -23,7 +23,9 @@ import package-
 import 'package:any_syntax_highlighter/any_syntax_highlighter.dart';
 ```
 ![github_web_theme](https://ssrajputtheboss.github.io/testing/ashs3.png)
-![default_theme](https://ssrajputtheboss.github.io/testing/ahss2.png)
+![default_theme_with_google_fonts](https://ssrajputtheboss.github.io/testing/ashgf.png)
+
+The above image contains McLaren font provided by google_fonts.
 
 ## Usage
 

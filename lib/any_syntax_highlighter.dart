@@ -159,68 +159,68 @@ class AnySyntaxHighlighter extends StatelessWidget {
 
   /// create and return TextSpans based on token inputs
   List<TextSpan> _createSpans() => tokenizer(text)
-      .map((token) => TextSpan(
-          text: token.value,
-          style: _getStyleByTokenType(token.type) ) )
+      .map((token) =>
+          TextSpan(text: token.value, style: _getStyleByTokenType(token.type)))
       .toList();
 
   /// creates main widget if ifSelectableText is true returns RichText otherwise SelectableText.rich()
-  Widget _highlighter() => !isSelectableText
-      ? RichText(
-          text: TextSpan(
-            text: '',
-            style: useGoogleFont == null ? TextStyle(
-                fontSize: fontSize,
-                fontFamily: theme.fontFamily,
-                letterSpacing: theme.letterSpacing,
-                wordSpacing: theme.wordSpacing,
-                fontFeatures: theme.fontFeatures):
-            GoogleFonts.getFont(
-                useGoogleFont!,
-                fontSize: fontSize,
-                letterSpacing: theme.letterSpacing,
-                wordSpacing: theme.wordSpacing,
-                fontFeatures: theme.fontFeatures
-            ),
-            children: _createSpans(),
-          ),
-          textAlign: textAlign,
-          textDirection: textDirection,
-          softWrap: softWrap,
-          overflow: overflow,
-          textScaleFactor: textScaleFactor,
-          maxLines: maxLines,
-          locale: locale,
-          strutStyle: strutStyle,
-          textWidthBasis: textWidthBasis,
-          textHeightBehavior: textHeightBehavior,
-        )
-      : SelectableText.rich(
-          TextSpan(
-            text: '',
-            style: useGoogleFont == null ? TextStyle(
-                fontSize: fontSize,
-                fontFamily: theme.fontFamily,
-                letterSpacing: theme.letterSpacing,
-                wordSpacing: theme.wordSpacing,
-                fontFeatures: theme.fontFeatures):
-            GoogleFonts.getFont(
-                useGoogleFont!,
-                fontSize: fontSize,
-                letterSpacing: theme.letterSpacing,
-                wordSpacing: theme.wordSpacing,
-                fontFeatures: theme.fontFeatures
-            ),
-            children: _createSpans(),
-          ),
-          textAlign: textAlign,
-          textDirection: textDirection,
-          textScaleFactor: textScaleFactor,
-          maxLines: maxLines,
-          strutStyle: strutStyle,
-          textWidthBasis: textWidthBasis,
-          textHeightBehavior: textHeightBehavior,
-        );
+  Widget _highlighter() => SingleChildScrollView(
+        scrollDirection: Axis.horizontal,
+        child: isSelectableText
+            ? SelectableText.rich(
+                TextSpan(
+                  text: '',
+                  style: useGoogleFont == null
+                      ? TextStyle(
+                          fontSize: fontSize,
+                          fontFamily: theme.fontFamily,
+                          letterSpacing: theme.letterSpacing,
+                          wordSpacing: theme.wordSpacing,
+                          fontFeatures: theme.fontFeatures)
+                      : GoogleFonts.getFont(useGoogleFont!,
+                          fontSize: fontSize,
+                          letterSpacing: theme.letterSpacing,
+                          wordSpacing: theme.wordSpacing,
+                          fontFeatures: theme.fontFeatures),
+                  children: _createSpans(),
+                ),
+                textAlign: textAlign,
+                textDirection: textDirection,
+                textScaleFactor: textScaleFactor,
+                maxLines: maxLines,
+                strutStyle: strutStyle,
+                textWidthBasis: textWidthBasis,
+                textHeightBehavior: textHeightBehavior,
+              )
+            : RichText(
+                text: TextSpan(
+                  text: '',
+                  style: useGoogleFont == null
+                      ? TextStyle(
+                          fontSize: fontSize,
+                          fontFamily: theme.fontFamily,
+                          letterSpacing: theme.letterSpacing,
+                          wordSpacing: theme.wordSpacing,
+                          fontFeatures: theme.fontFeatures)
+                      : GoogleFonts.getFont(useGoogleFont!,
+                          fontSize: fontSize,
+                          letterSpacing: theme.letterSpacing,
+                          wordSpacing: theme.wordSpacing,
+                          fontFeatures: theme.fontFeatures),
+                  children: _createSpans(),
+                ),
+                textAlign: textAlign,
+                textDirection: textDirection,
+                softWrap: softWrap,
+                overflow: overflow,
+                textScaleFactor: textScaleFactor,
+                maxLines: maxLines,
+                locale: locale,
+                strutStyle: strutStyle,
+                textWidthBasis: textWidthBasis,
+                textHeightBehavior: textHeightBehavior,
+              ),
+      );
 
   /// creates line number widget, only when lineNumbers is set to true
   Widget _lineNumberWidget() {
@@ -245,18 +245,16 @@ class AnySyntaxHighlighter extends StatelessWidget {
             text: TextSpan(
                 text: '',
                 children: lineNumberWidgets,
-                style: useGoogleFont == null ? TextStyle(
-                  fontSize: fontSize,
-                ): GoogleFonts.getFont(useGoogleFont!, fontSize: fontSize, backgroundColor: Colors.transparent )),
+                style: useGoogleFont == null
+                    ? TextStyle(
+                        fontSize: fontSize,
+                      )
+                    : GoogleFonts.getFont(useGoogleFont!,
+                        fontSize: fontSize,
+                        backgroundColor: Colors.transparent)),
           ),
         ]),
-        Expanded(
-          child: SingleChildScrollView(
-            // controller: ScrollController(),
-            scrollDirection: Axis.horizontal,
-            child: _highlighter(),
-          ),
-        )
+        Expanded(child: _highlighter())
       ],
     );
   }
@@ -269,12 +267,6 @@ class AnySyntaxHighlighter extends StatelessWidget {
         padding: EdgeInsets.all(padding),
         margin: EdgeInsets.all(margin),
         decoration: theme.boxDecoration,
-        child: lineNumbers
-            ? _lineNumberWidget()
-            : SingleChildScrollView(
-                // controller: ScrollController(),
-                scrollDirection: Axis.horizontal,
-                child: _highlighter(),
-              ));
+        child: lineNumbers ? _lineNumberWidget() : _highlighter());
   }
 }

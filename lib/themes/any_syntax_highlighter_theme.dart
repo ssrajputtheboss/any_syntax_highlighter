@@ -93,7 +93,6 @@ class AnySyntaxHighlighterTheme extends AnySyntaxHighlighterBaseTheme {
       this.fontFamily,
       this.fontFeatures = const [],
       this.lineNumber = const TextStyle(
-          backgroundColor: Colors.brown,
           color: Colors.white,
           fontFeatures: [FontFeature.tabularFigures()])})
       : super(

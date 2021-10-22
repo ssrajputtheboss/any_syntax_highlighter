@@ -70,6 +70,7 @@ class AnySyntaxHighlighter extends StatelessWidget {
   /// that font
   final String? useGoogleFont;
 
+  /// AnySyntaxHighlighter Widget constructor
   const AnySyntaxHighlighter(this.text,
       {Key? key,
       this.textAlign = TextAlign.start,
@@ -95,6 +96,10 @@ class AnySyntaxHighlighter extends StatelessWidget {
   void assertions() {
     // text must not contain \x00 character asserting before building
     assert(!text.contains('\x00'));
+
+    // line Numbers is for only RichText widget
+    // so both isSelectableText and lineNumbers can't be true one must be false
+    assert((lineNumbers && isSelectableText) == false);
   }
 
   /// returns the TextStyle defined in theme for a particular type of token
@@ -156,10 +161,7 @@ class AnySyntaxHighlighter extends StatelessWidget {
   List<TextSpan> _createSpans() => tokenizer(text)
       .map((token) => TextSpan(
           text: token.value,
-          style: useGoogleFont == null
-              ? _getStyleByTokenType(token.type)
-              : GoogleFonts.getFont(useGoogleFont!,
-                  textStyle: _getStyleByTokenType(token.type))))
+          style: _getStyleByTokenType(token.type) ) )
       .toList();
 
   /// creates main widget if ifSelectableText is true returns RichText otherwise SelectableText.rich()
@@ -167,12 +169,19 @@ class AnySyntaxHighlighter extends StatelessWidget {
       ? RichText(
           text: TextSpan(
             text: '',
-            style: TextStyle(
+            style: useGoogleFont == null ? TextStyle(
                 fontSize: fontSize,
                 fontFamily: theme.fontFamily,
                 letterSpacing: theme.letterSpacing,
                 wordSpacing: theme.wordSpacing,
-                fontFeatures: theme.fontFeatures),
+                fontFeatures: theme.fontFeatures):
+            GoogleFonts.getFont(
+                useGoogleFont!,
+                fontSize: fontSize,
+                letterSpacing: theme.letterSpacing,
+                wordSpacing: theme.wordSpacing,
+                fontFeatures: theme.fontFeatures
+            ),
             children: _createSpans(),
           ),
           textAlign: textAlign,
@@ -189,12 +198,19 @@ class AnySyntaxHighlighter extends StatelessWidget {
       : SelectableText.rich(
           TextSpan(
             text: '',
-            style: TextStyle(
+            style: useGoogleFont == null ? TextStyle(
                 fontSize: fontSize,
                 fontFamily: theme.fontFamily,
                 letterSpacing: theme.letterSpacing,
                 wordSpacing: theme.wordSpacing,
-                fontFeatures: theme.fontFeatures),
+                fontFeatures: theme.fontFeatures):
+            GoogleFonts.getFont(
+                useGoogleFont!,
+                fontSize: fontSize,
+                letterSpacing: theme.letterSpacing,
+                wordSpacing: theme.wordSpacing,
+                fontFeatures: theme.fontFeatures
+            ),
             children: _createSpans(),
           ),
           textAlign: textAlign,
@@ -229,9 +245,9 @@ class AnySyntaxHighlighter extends StatelessWidget {
             text: TextSpan(
                 text: '',
                 children: lineNumberWidgets,
-                style: TextStyle(
+                style: useGoogleFont == null ? TextStyle(
                   fontSize: fontSize,
-                )),
+                ): GoogleFonts.getFont(useGoogleFont!, fontSize: fontSize, backgroundColor: Colors.transparent )),
           ),
         ]),
         Expanded(

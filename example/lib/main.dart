@@ -186,6 +186,7 @@ class _MainApp extends State<MainApp> {
                         ],
                         content: AnySyntaxHighlighter(
                             generateThemeCode(_theme, _bgColor),
+                            useKeywordsSet: const {'dart'},
                             isSelectableText: true),
                       );
                     }),

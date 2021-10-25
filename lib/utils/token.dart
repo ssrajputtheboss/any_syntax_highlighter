@@ -2,6 +2,7 @@
 this file contains a class token which is used to store details of a token
  */
 
+/// Token class
 class Token {
   /// will store string value of token
   String value;

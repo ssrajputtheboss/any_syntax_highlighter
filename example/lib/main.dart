@@ -358,6 +358,7 @@ class _MainApp extends State<MainApp> {
               ),
               TextField(
                 decoration: const InputDecoration(hintText: 'GoogleFontName'),
+                enabled: false,
                 maxLines: 1,
                 minLines: 1,
                 onSubmitted: (value) {

@@ -6,6 +6,7 @@ import 'dart:ui';
 import 'package:any_syntax_highlighter/themes/any_syntax_highlighter_theme.dart';
 import 'package:flutter/cupertino.dart';
 
+/// default themes provided by this package
 class AnySyntaxHighlighterThemeCollection {
   /// default theme used by AnySyntaxHighlighter widget
   static const defaultTheme = AnySyntaxHighlighterTheme();

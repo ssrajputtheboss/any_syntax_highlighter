@@ -108,7 +108,9 @@ class AnySyntaxHighlighter extends StatelessWidget {
         'go',
         'javascript',
         'r',
-        'swift'
+        'swift',
+        'bash',
+        'ruby'
       },
       this.lineNumbers = false})
       : super(key: key);

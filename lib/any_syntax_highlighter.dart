@@ -79,6 +79,10 @@ class AnySyntaxHighlighter extends StatelessWidget {
   /// make sure to import corresponding library before using it
   final Set<String> useKeywordsSet;
 
+  /// allow interpolation within strings within {} brackets
+  /// this may produce some ambiguous matches
+  final bool useInterpolatedString;
+
   /// AnySyntaxHighlighter Widget constructor
   const AnySyntaxHighlighter(this.text,
       {Key? key,
@@ -98,6 +102,7 @@ class AnySyntaxHighlighter extends StatelessWidget {
       this.theme = const AnySyntaxHighlighterTheme(),
       this.fontSize,
       this.useGoogleFont,
+      this.useInterpolatedString = false,
       this.useKeywordsSet = const {
         'java',
         'python',
@@ -194,11 +199,21 @@ class AnySyntaxHighlighter extends StatelessWidget {
 
     // string and comment should be calculated at the beginning to avoid ambiguous matches later
 
-    RegexCollection.regExpStringOrComment.allMatches(input).forEach((e) {
-      stringCommentList.add(e.group(0)!);
+    if (useInterpolatedString) {
+      RegexCollection.regExpStringOrCommentWithInterpolation
+          .allMatches(input)
+          .forEach((e) {
+        stringCommentList.add(e.group(0)!);
 
-      input = input.replaceFirst(e.group(0)!, RegexCollection.nullChar);
-    });
+        input = input.replaceFirst(e.group(0)!, RegexCollection.nullChar);
+      });
+    } else {
+      RegexCollection.regExpStringOrComment.allMatches(input).forEach((e) {
+        stringCommentList.add(e.group(0)!);
+
+        input = input.replaceFirst(e.group(0)!, RegexCollection.nullChar);
+      });
+    }
 
     /*
   some properties of a token depends upon the trailing and upcoming token

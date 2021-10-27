@@ -3,32 +3,49 @@ this file provides a class RegexCollection which is collection
 of regex strings on based of which we will tokenize our input
  */
 
-/// Collection of regular expressions necessary for tokenization
 class RegexCollection {
-  // string regex
+  // string regex without interpolations
 
   /// regex string to match a single quote string
-  static const singleQuoteString =
-      r"[rf]?'((\{|\}).*?(\{|\})|(\\\n|(\\')|[^'\n])*?)*'";
+  static const singleQuoteString = r"[rf]?'(\\\n|(\\')|[^'\n])*'";
 
   /// regex string to match a double quote string
-  static const doubleQuoteString =
-      r'[rf]?"((\{|\}).*?(\{|\})|(\\\n|\\"|[^"\n])*?)*"';
+  static const doubleQuoteString = r'[rf]?"(\\\n|\\"|[^"\n])*"';
 
   /// regex string to match a triple double quote string
-  static const tripleDoubleQuoteString =
-      r'[rf]?"""((\{|\})(.|\n)*?(\{|\})|(.|\n)*?)*?"""';
+  static const tripleDoubleQuoteString = r'[rf]?"""(.|\n)*?"""';
 
   /// regex string to match a triple single quote string
-  static const tripleSingleQuoteString =
-      r"[rf]?'''((\{|\})(.|\n)*?(\{|\})|(.|\n)*?)*?'''";
+  static const tripleSingleQuoteString = r"[rf]?'''(.|\n)*?'''";
 
   /// regex string to match a backtick string
   /// like javascript `hello world`
-  static const backtickString = r'`((\{|\})(.|\n)*?(\{|\})|(.|\n)*?)*?`';
+  static const backtickString = r'`(.|\n)*?`';
 
   /// any string used for testing if a given string is string or not
-  static const anyString = r'''[rf]?("(.|\n)*"|'(.|\n)*')|`(.|\n)*`''';
+  static const anyString = r'''[rf]?("(.|\n)*"|'(.|\n)*')|`(.|\n)*?`''';
+
+  //string regex with interpolation
+
+  /// regex string to match a single quote string along with {...} interpolation
+  static const singleQuoteStringWithInterpolation =
+      r"[rf]?'((\{|\}).*?(\{|\})|(\\\n|(\\')|[^'\n])*?)*'";
+
+  /// regex string to match a double quote string along with {...} interpolation
+  static const doubleQuoteStringWithInterpolation =
+      r'[rf]?"((\{|\}).*?(\{|\})|(\\\n|\\"|[^"\n])*?)*"';
+
+  /// regex string to match a triple double quote string along with {...} interpolation
+  static const tripleDoubleQuoteStringWithInterpolation =
+      r'[rf]?"""((\{|\})(.|\n)*?(\{|\})|(.|\n)*?)*?"""';
+
+  /// regex string to match a triple single quote string along with {...} interpolation
+  static const tripleSingleQuoteStringWithInterpolation =
+      r"[rf]?'''((\{|\})(.|\n)*?(\{|\})|(.|\n)*?)*?'''";
+
+  /// regex string to match a backtick string along with {...} interpolation
+  static const backtickStringWithInterpolation =
+      r'`((\{|\})(.|\n)*?(\{|\})|(.|\n)*?)*?`';
 
   // single line comment regex
 
@@ -68,25 +85,18 @@ class RegexCollection {
   /// except this will catch all other remaining characters
   static const except = r'[^\w\x00+-/*<>=&|\^%?@!~\.]+';
 
-  /// regular expression for title
   static final regExpTitle = RegExp(title);
 
-  /// regular expression for number
   static final regExpNumber = RegExp(number);
 
-  /// regular expression for any string
   static final regExpAnyString = RegExp(anyString);
 
-  /// regular expression for null character
   static final regExpNullChar = RegExp(nullChar);
 
-  /// regular expression object for identifier
   static final regExpIdentifier = RegExp(identifier);
 
-  /// regular expression object for operators
   static final regExpOperators = RegExp(operators);
 
-  /// regular expression object for any comment
   static final regExpAnyComment = RegExp([
     hashComment,
     doubleSlashComment,
@@ -94,14 +104,11 @@ class RegexCollection {
     xmlComment
   ].join('|'));
 
-  /// regular expression object for single line comment
   static final regExpSingleLineComment =
       RegExp([hashComment, doubleSlashComment].join("|"));
 
-  /// regular expression object for private
   static final regExpPrivate = RegExp(private);
 
-  /// regular expression object for string and comment
   static final regExpStringOrComment = RegExp([
     backtickString,
     tripleSingleQuoteString,
@@ -114,7 +121,18 @@ class RegexCollection {
     xmlComment
   ].join('|'));
 
-  /// regular expression object for tokenizing input
+  static final regExpStringOrCommentWithInterpolation = RegExp([
+    backtickStringWithInterpolation,
+    tripleSingleQuoteStringWithInterpolation,
+    tripleDoubleQuoteStringWithInterpolation,
+    singleQuoteStringWithInterpolation,
+    doubleQuoteStringWithInterpolation,
+    hashComment,
+    doubleSlashComment,
+    multilineComment,
+    xmlComment
+  ].join('|'));
+
   static final regExpTokenizer =
       RegExp([nullChar, identifier, number, operators, except].join('|'));
 

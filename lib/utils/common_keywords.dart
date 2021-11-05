@@ -31,6 +31,11 @@ class Keywords {
     return false;
   }
 
+  /// check if a key exists in keywords map, return true if exists otherwise false
+  /// for ex `Keywords.exists('java') will return true`
+  static bool exists(String key) =>
+      _keywords.containsKey(key) || userKeywords.containsKey(key);
+
   /// default keywords sets provided by this package
   static const _keywords = {
     'java': {

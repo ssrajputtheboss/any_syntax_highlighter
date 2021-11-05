@@ -5,6 +5,7 @@ collection of default themes
 import 'dart:ui';
 import 'package:any_syntax_highlighter/themes/any_syntax_highlighter_theme.dart';
 import 'package:flutter/cupertino.dart';
+import 'package:flutter/material.dart';
 
 /// default themes provided by this package
 class AnySyntaxHighlighterThemeCollection {
@@ -108,6 +109,42 @@ class AnySyntaxHighlighterThemeCollection {
       private: TextStyle(
         color: Color.fromRGBO(77, 57, 57, 1),
       ),
+      lineNumber: TextStyle(color: Colors.white),
       boxDecoration: BoxDecoration(color: Color.fromRGBO(255, 255, 255, 0)),
       fontFeatures: [FontFeature.slashedZero()]);
+
+  /// freeLine theme
+  static AnySyntaxHighlighterTheme freeLineTheme() {
+    const black = TextStyle(
+      color: Colors.black,
+    );
+    const blackNBold =
+        TextStyle(color: Colors.black, fontWeight: FontWeight.bold);
+    const comment = TextStyle(
+      color: Color.fromRGBO(128, 119, 118, 1),
+      fontStyle: FontStyle.italic,
+    );
+    return const AnySyntaxHighlighterTheme(
+        classStyle: black,
+        staticStyle: black,
+        constructor: black,
+        multilineComment: comment,
+        comment: comment,
+        keyword: blackNBold,
+        identifier: black,
+        function: black,
+        number: TextStyle(
+          color: Color.fromRGBO(99, 196, 178, 1),
+        ),
+        string: TextStyle(
+          color: Color.fromRGBO(194, 34, 36, 1),
+        ),
+        operator: black,
+        separator: black,
+        method: black,
+        private: black,
+        lineNumber: TextStyle(color: Colors.black),
+        boxDecoration: BoxDecoration(color: Color.fromRGBO(239, 245, 244, 1)),
+        fontFeatures: [FontFeature.slashedZero()]);
+  }
 }

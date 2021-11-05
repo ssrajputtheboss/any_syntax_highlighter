@@ -72,16 +72,12 @@ class AnySyntaxHighlighter extends StatelessWidget {
   /// that font
   final String? useGoogleFont;
 
-  /// set of keywords for this instance of AnySyntaxHighlighter
+  /// set of reserved words for this instance of AnySyntaxHighlighter
   /// this allows to create language specific highlighting
-  /// user can add desired keywords by using
-  /// `Keywords.userKeywords['language_name'] = {'keyword1', 'keyword2'}`
+  /// user can add desired reserved words for a language by using
+  /// `ReservedWords.userReservedWords['language_name'] = {'keyword1', 'keyword2'}`
   /// make sure to import corresponding library before using it
-  final Set<String> useKeywordsSet;
-
-  /// allow interpolation within strings within {} brackets
-  /// this may produce some ambiguous matches
-  final bool useInterpolatedString;
+  final Set<String> reservedWordSets;
 
   /// AnySyntaxHighlighter Widget constructor
   const AnySyntaxHighlighter(this.text,
@@ -102,8 +98,7 @@ class AnySyntaxHighlighter extends StatelessWidget {
       this.theme = const AnySyntaxHighlighterTheme(),
       this.fontSize,
       this.useGoogleFont,
-      this.useInterpolatedString = false,
-      this.useKeywordsSet = const {
+      this.reservedWordSets = const {
         'java',
         'python',
         'c',
@@ -199,21 +194,11 @@ class AnySyntaxHighlighter extends StatelessWidget {
 
     // string and comment should be calculated at the beginning to avoid ambiguous matches later
 
-    if (useInterpolatedString) {
-      RegexCollection.regExpStringOrCommentWithInterpolation
-          .allMatches(input)
-          .forEach((e) {
-        stringCommentList.add(e.group(0)!);
+    RegexCollection.regExpStringOrComment.allMatches(input).forEach((e) {
+      stringCommentList.add(e.group(0)!);
 
-        input = input.replaceFirst(e.group(0)!, RegexCollection.nullChar);
-      });
-    } else {
-      RegexCollection.regExpStringOrComment.allMatches(input).forEach((e) {
-        stringCommentList.add(e.group(0)!);
-
-        input = input.replaceFirst(e.group(0)!, RegexCollection.nullChar);
-      });
-    }
+      input = input.replaceFirst(e.group(0)!, RegexCollection.nullChar);
+    });
 
     /*
   some properties of a token depends upon the trailing and upcoming token
@@ -356,7 +341,7 @@ class AnySyntaxHighlighter extends StatelessWidget {
       //number found
       return Token(value, TokenTypes.number, false);
     } else if (RegexCollection.isIdentifier(value)) {
-      if (Keywords.isKeyword(useKeywordsSet, value)) {
+      if (ReservedWords.isReservedWord(reservedWordSets, value)) {
         // keyword found
         return Token(value, TokenTypes.keyword, false);
       } else if (RegexCollection.isTitle(value)) {
@@ -375,7 +360,7 @@ class AnySyntaxHighlighter extends StatelessWidget {
     }
   }
 
-  /// creates main widget if ifSelectableText is true returns RichText otherwise SelectableText.rich()
+  /// creates main widget if isSelectableText is true returns RichText otherwise SelectableText.rich()
   Widget _highlighter() => SingleChildScrollView(
         scrollDirection: Axis.horizontal,
         child: isSelectableText

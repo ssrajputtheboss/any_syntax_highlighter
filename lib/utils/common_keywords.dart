@@ -2,27 +2,27 @@
 this file contains most used keywords across the most used programming languages
  */
 
-/// Keywords class it will keep collection of all keywords
-/// and provides a function to check if input is a keyword
-class Keywords {
-  /// additional keywords to be used by user
-  /// just add keywords in top level function once
+/// ReservedWords class it will keep collection of all reserved words including keywords
+/// and provides a function to check if input is a reserved word
+class ReservedWords {
+  /// additional reserved words to be used by user
+  /// just add reserved words in top level function once
   /// and use it anywhere in any instance of AnySyntaxHighlighter
-  /// for example using html elements as keywords:-
+  /// for example using html elements as reserved words:-
   /// `void main(){
-  ///   Keywords.userKeywords['html'] = { 'html', 'div', 'body', 'head'}
+  ///   ReservedWords.userReservedWords['html'] = { 'html', 'div', 'body', 'head'}
   /// }`
   /// Now use it anywhere by using:-
   /// `AnySyntaxHighlighter(
   ///   '<html>\n<head>\n</head>\n<body>\n<body>\n</html>',
-  ///   useKeywordsSet: const ['html'],
+  ///   reservedWordSets: const ['html'],
   /// )`
-  static Map<String, Set<String>> userKeywords = {};
+  static Map<String, Set<String>> userReservedWords = {};
 
-  /// function to check if input is a keyword
-  static bool isKeyword(Set<String> keySet, String value) {
+  /// function to check if input is a reserved word
+  static bool isReservedWord(Set<String> keySet, String value) {
     for (String key in keySet) {
-      var s1 = _keywords[key], s2 = userKeywords[key];
+      var s1 = _reservedWords[key], s2 = userReservedWords[key];
       if ((s1 != null && s1.contains(value)) ||
           (s2 != null && s2.contains(value))) {
         return true;
@@ -31,13 +31,13 @@ class Keywords {
     return false;
   }
 
-  /// check if a key exists in keywords map, return true if exists otherwise false
-  /// for ex `Keywords.exists('java') will return true`
+  /// check if a key exists in reserved words map, return true if exists otherwise false
+  /// for ex `ReservedWords.exists('java') will return true`
   static bool exists(String key) =>
-      _keywords.containsKey(key) || userKeywords.containsKey(key);
+      _reservedWords.containsKey(key) || userReservedWords.containsKey(key);
 
-  /// default keywords sets provided by this package
-  static const _keywords = {
+  /// default reserved word sets provided by this package
+  static const _reservedWords = {
     'java': {
       "if",
       "while",

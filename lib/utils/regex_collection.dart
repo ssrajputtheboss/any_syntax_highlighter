@@ -25,28 +25,6 @@ class RegexCollection {
   /// any string used for testing if a given string is string or not
   static const anyString = r'''[rf]?("(.|\n)*"|'(.|\n)*')|`(.|\n)*?`''';
 
-  //string regex with interpolation
-
-  /// regex string to match a single quote string along with {...} interpolation
-  static const singleQuoteStringWithInterpolation =
-      r"[rf]?'((\{|\}).*?(\{|\})|(\\\n|(\\')|[^'\n])*?)*'";
-
-  /// regex string to match a double quote string along with {...} interpolation
-  static const doubleQuoteStringWithInterpolation =
-      r'[rf]?"((\{|\}).*?(\{|\})|(\\\n|\\"|[^"\n])*?)*"';
-
-  /// regex string to match a triple double quote string along with {...} interpolation
-  static const tripleDoubleQuoteStringWithInterpolation =
-      r'[rf]?"""((\{|\})(.|\n)*?(\{|\})|(.|\n)*?)*?"""';
-
-  /// regex string to match a triple single quote string along with {...} interpolation
-  static const tripleSingleQuoteStringWithInterpolation =
-      r"[rf]?'''((\{|\})(.|\n)*?(\{|\})|(.|\n)*?)*?'''";
-
-  /// regex string to match a backtick string along with {...} interpolation
-  static const backtickStringWithInterpolation =
-      r'`((\{|\})(.|\n)*?(\{|\})|(.|\n)*?)*?`';
-
   // single line comment regex
 
   /// regex string to match a single line hash comment
@@ -115,18 +93,6 @@ class RegexCollection {
     tripleDoubleQuoteString,
     singleQuoteString,
     doubleQuoteString,
-    hashComment,
-    doubleSlashComment,
-    multilineComment,
-    xmlComment
-  ].join('|'));
-
-  static final regExpStringOrCommentWithInterpolation = RegExp([
-    backtickStringWithInterpolation,
-    tripleSingleQuoteStringWithInterpolation,
-    tripleDoubleQuoteStringWithInterpolation,
-    singleQuoteStringWithInterpolation,
-    doubleQuoteStringWithInterpolation,
     hashComment,
     doubleSlashComment,
     multilineComment,

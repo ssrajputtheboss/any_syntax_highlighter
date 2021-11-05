@@ -45,13 +45,13 @@ Usage with optional fields
 AnySyntaxHighlighter(
           '#your code goes here',
           fontSize: 16,
-          lineNumbers: true, // by default false
-          theme: AnySyntaxHighlighterThemeCollection.githubWebTheme, // you can create and pass custom theme using AnySyntaxHighlighterTheme class
+          lineNumbers: false, // by default false
+          theme: AnySyntaxHighlighterThemeCollection.githubWebTheme(), // you can create and pass custom theme using AnySyntaxHighlighterTheme class
           isSelectable: true, // this creates a SelectableText.rich() widget, makes text selectable (by default false)
-          padding : 2,
-          margin : 0,
           useGoogleFont: 'Lato',
           /* other options are:- 
+          padding,
+          margin,
           textAlign,
           this.textDirection,
           softWrap,

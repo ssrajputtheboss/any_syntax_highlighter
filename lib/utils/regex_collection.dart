@@ -4,7 +4,7 @@ of regex strings on based of which we will tokenize our input
  */
 
 class RegexCollection {
-  // string regex
+  // string regex without interpolations
 
   /// regex string to match a single quote string
   static const singleQuoteString = r"[rf]?'(\\\n|(\\')|[^'\n])*'";

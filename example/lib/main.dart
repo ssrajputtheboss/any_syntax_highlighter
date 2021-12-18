@@ -1,6 +1,7 @@
 import 'dart:ui';
 import 'package:any_syntax_highlighter/any_syntax_highlighter.dart';
 import 'package:any_syntax_highlighter/themes/any_syntax_highlighter_theme.dart';
+import 'package:any_syntax_highlighter/themes/any_syntax_highlighter_theme_collection.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
@@ -74,6 +75,10 @@ class _MainApp extends State<MainApp> {
           lineNumbers: Props.lineNumbers,
           useGoogleFont: Props.useGoogleFont,
           theme: AnySyntaxHighlighterTheme(
+            lineNumber: TextStyle(
+                color: _theme['lineNumber']?.color,
+                fontWeight: fontWeights[_theme['lineNumber']?.weight],
+                fontStyle: fontStyles[_theme['lineNumbers']?.style]),
             classStyle: TextStyle(
                 color: _theme['classStyle']?.color,
                 fontWeight: fontWeights[_theme['classStyle']?.weight]!,
@@ -186,6 +191,9 @@ class _MainApp extends State<MainApp> {
                         ],
                         content: AnySyntaxHighlighter(
                             generateThemeCode(_theme, _bgColor),
+                            reservedWordSets: const {'dart'},
+                            theme: AnySyntaxHighlighterThemeCollection
+                                .freeLineTheme(),
                             isSelectableText: true),
                       );
                     }),
@@ -357,6 +365,7 @@ class _MainApp extends State<MainApp> {
               ),
               TextField(
                 decoration: const InputDecoration(hintText: 'GoogleFontName'),
+                //enabled: false,
                 maxLines: 1,
                 minLines: 1,
                 onSubmitted: (value) {
@@ -421,7 +430,8 @@ class _MainApp extends State<MainApp> {
       'operator': Props(Colors.deepOrange, 'normal', 'normal'),
       'separator': Props(Colors.white, 'normal', 'normal'),
       'method': Props(Colors.lightBlueAccent, 'normal', 'normal'),
-      'private': Props(Colors.grey, 'normal', 'normal')
+      'private': Props(Colors.grey, 'normal', 'normal'),
+      'lineNumber': Props(Colors.white, 'normal', 'normal')
     };
   }
 }

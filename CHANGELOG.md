@@ -1,6 +1,4 @@
-## 0.0.6
+## 0.0.7
 
-* lineNumbers size fixed while using google fonts
-* now user can use either of isSelectableText or lineNumbers at a time
-* optimizations and boilerplate removal
-* default color of line numbers is now transparent
+* user can now add custom keywords set
+* user can now select & highlight only selected keyword set giving opportunity to create language specific highlighting

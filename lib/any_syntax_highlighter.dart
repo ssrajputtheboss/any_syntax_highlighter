@@ -4,7 +4,6 @@ library any_syntax_highlighter;
 this file contains the widget that this package is going to provide AnySyntaxHighlighterText
  */
 
-import 'dart:ui';
 
 import 'package:any_syntax_highlighter/themes/any_syntax_highlighter_theme.dart';
 import 'package:any_syntax_highlighter/utils/common_keywords.dart';
@@ -12,7 +11,6 @@ import 'package:any_syntax_highlighter/utils/regex_collection.dart';
 import 'package:any_syntax_highlighter/utils/token.dart';
 import 'package:any_syntax_highlighter/utils/token_types.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 /// widget AnySyntaxHighlighter this widget will provide the syntax highlighting to input text

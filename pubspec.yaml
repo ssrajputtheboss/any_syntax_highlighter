@@ -1,5 +1,5 @@
 name: any_syntax_highlighter
-description: any_syntax_highlighter is a "convention" based syntax highlighting tool.
+description: any_syntax_highlighter is a lightweight "convention" based syntax highlighting tool.
 version: 0.0.7
 homepage: https://github.com/ssrajputtheboss/any_syntax_highlighter.git
 

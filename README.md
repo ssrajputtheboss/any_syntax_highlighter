@@ -1,10 +1,10 @@
 # any_syntax_highlighter
 
-any_syntax_highlighter is a 'convention based' syntax highlighter which provides highlighting to input text code.
+any_syntax_highlighter is a lightweight 'convention based' syntax highlighter which provides highlighting to input text code.
 
 ## Features
 
-* set of keywords of ~9 programming languages which are mostly used ( if needed will add more...)
+* add custom keywords or use default ones
 * convention based highlighting 
     * identifiers starting with uppercase are considered as class/constructor
     * Class.abc => static variable
@@ -13,8 +13,8 @@ any_syntax_highlighter is a 'convention based' syntax highlighter which provides
         * single line comment starting with //
         * multiline comment /*.....\*/
     * identifier starting with _ => private
-    * functions after . operator => method (highlighting for function and method are now different)
- * Added google fonts! (Thanks to [google_fonts](https://pub.dev/packages/google_fonts) library)
+    * functions after . operator => method (highlighting for function and method are different)
+ * Use google fonts! (Thanks to [google_fonts](https://pub.dev/packages/google_fonts) library)
 
 ## Getting started
 

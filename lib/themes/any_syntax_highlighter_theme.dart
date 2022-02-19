@@ -4,7 +4,6 @@ this file contains the actual theme class for any syntax highlighter with more t
 
 import 'dart:ui';
 import 'package:any_syntax_highlighter/themes/any_syntax_highlighter_base_theme.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 /// Actual theme class with modern oops language tokens

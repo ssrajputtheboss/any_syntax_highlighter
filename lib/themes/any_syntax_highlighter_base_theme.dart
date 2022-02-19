@@ -2,7 +2,6 @@
 this file contains the basic type of tokens that all programming languages do have
  */
 
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/painting.dart';
 

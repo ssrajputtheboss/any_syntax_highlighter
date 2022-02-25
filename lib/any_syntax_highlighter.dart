@@ -4,7 +4,6 @@ library any_syntax_highlighter;
 this file contains the widget that this package is going to provide AnySyntaxHighlighterText
  */
 
-
 import 'package:any_syntax_highlighter/themes/any_syntax_highlighter_theme.dart';
 import 'package:any_syntax_highlighter/utils/common_keywords.dart';
 import 'package:any_syntax_highlighter/utils/regex_collection.dart';
@@ -101,7 +100,7 @@ class AnySyntaxHighlighter extends StatelessWidget {
         'python',
         'c',
         'cpp',
-        'csharp',
+        'c#',
         'dart',
         'go',
         'javascript',
@@ -168,6 +167,9 @@ class AnySyntaxHighlighter extends StatelessWidget {
       case TokenTypes.multilineComment:
         return theme.multilineComment;
 
+      case TokenTypes.lineNumber:
+        return theme.lineNumber;
+
       default:
         // will never reach here in real case
         return const TextStyle();
@@ -176,7 +178,7 @@ class AnySyntaxHighlighter extends StatelessWidget {
 
   /// returns a fixed length string value for line number
   String _getLineValue(int value, int maxLength) =>
-      '  ' + '  ' * (maxLength - '$value'.length) + '$value';
+      '  ' + '  ' * (maxLength - '$value'.length) + '$value' + '  ';
 
   /// create and return TextSpans based on token inputs
   List<TextSpan> _createSpans() => tokenizer(text)
@@ -212,12 +214,13 @@ class AnySyntaxHighlighter extends StatelessWidget {
 
     final listLength = tokenList.length;
 
-    int p = 0;
+    int p = 0,
+        currentLineNumber = 1,
+        maxLength = '${text.split('\n').length + 1}'.length;
 
     if (listLength != 0) {
       if (RegexCollection.isNullChar(tokenList[0])) {
         currentToken = getTokenByString(stringCommentList[p]);
-
         p++;
       } else {
         currentToken = getTokenByString(tokenList[0]);
@@ -232,6 +235,11 @@ class AnySyntaxHighlighter extends StatelessWidget {
       } else {
         nextToken = getTokenByString(tokenList[1]);
       }
+    }
+
+    if (lineNumbers) {
+      tokens.add(Token(_getLineValue(currentLineNumber++, maxLength),
+          TokenTypes.lineNumber, false));
     }
 
     for (int i = 0; i < listLength; ++i) {
@@ -298,7 +306,23 @@ class AnySyntaxHighlighter extends StatelessWidget {
         }
       }
 
-      tokens.add(currentToken!);
+      if (currentToken != null &&
+          currentToken.value.contains('\n') &&
+          lineNumbers) {
+        var tkns = <Token>[];
+        final splits = currentToken.value.split('\n');
+        tkns.add(
+            Token(splits[0], currentToken.type, currentToken.isClassContext));
+        for (int i = 1; i < splits.length; ++i) {
+          tkns.add(Token('\n' + _getLineValue(currentLineNumber++, maxLength),
+              TokenTypes.lineNumber, false));
+          tkns.add(
+              Token(splits[i], currentToken.type, currentToken.isClassContext));
+        }
+        tokens.addAll(tkns);
+      } else {
+        tokens.add(currentToken!);
+      }
 
       if (currentToken.type != TokenTypes.separator) {
         previousToken = currentToken;
@@ -462,6 +486,6 @@ class AnySyntaxHighlighter extends StatelessWidget {
         padding: EdgeInsets.all(padding),
         margin: EdgeInsets.all(margin),
         decoration: theme.boxDecoration,
-        child: lineNumbers ? _lineNumberWidget() : _highlighter());
+        child: _highlighter());
   }
 }

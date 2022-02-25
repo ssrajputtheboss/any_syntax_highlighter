@@ -30,5 +30,7 @@ enum TokenTypes {
 
   private,
 
-  multilineComment
+  multilineComment,
+
+  lineNumber
 }

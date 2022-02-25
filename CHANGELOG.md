@@ -1,4 +1,2 @@
-## 0.0.9
+## 0.0.10
 
-* imports optimized
-* no major changes

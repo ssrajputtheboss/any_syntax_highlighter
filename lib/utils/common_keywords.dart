@@ -254,7 +254,7 @@ class ReservedWords {
       'static_cast',
       'xor_eq'
     },
-    'csharp': {
+    'c#': {
       'abstract',
       'as',
       'base',

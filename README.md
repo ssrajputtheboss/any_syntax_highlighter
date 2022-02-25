@@ -47,8 +47,10 @@ AnySyntaxHighlighter(
           fontSize: 16,
           lineNumbers: false, // by default false
           theme: AnySyntaxHighlighterThemeCollection.githubWebTheme(), // you can create and pass custom theme using AnySyntaxHighlighterTheme class
-          isSelectable: true, // this creates a SelectableText.rich() widget, makes text selectable (by default false)
+          isSelectableText: true, // this creates a SelectableText.rich() widget, makes text selectable (by default false)
           useGoogleFont: 'Lato',
+          copyIcon: const Icon(Icons.copy_rounded,color:Colors.black),// default is white colored icon
+          hasCopyButton: true,// by default false
           /* other options are:- 
           padding,
           margin,

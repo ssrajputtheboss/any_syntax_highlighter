@@ -10,6 +10,7 @@ import 'package:any_syntax_highlighter/utils/regex_collection.dart';
 import 'package:any_syntax_highlighter/utils/token.dart';
 import 'package:any_syntax_highlighter/utils/token_types.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 /// widget AnySyntaxHighlighter this widget will provide the syntax highlighting to input text
@@ -76,6 +77,12 @@ class AnySyntaxHighlighter extends StatelessWidget {
   /// make sure to import corresponding library before using it
   final Set<String> reservedWordSets;
 
+  /// enable copy button widget at top right corner
+  final bool hasCopyButton;
+
+  /// custom icon for copu button
+  final Icon copyIcon;
+
   /// AnySyntaxHighlighter Widget constructor
   const AnySyntaxHighlighter(this.text,
       {Key? key,
@@ -109,7 +116,12 @@ class AnySyntaxHighlighter extends StatelessWidget {
         'bash',
         'ruby'
       },
-      this.lineNumbers = false})
+      this.lineNumbers = false,
+      this.hasCopyButton = false,
+      this.copyIcon = const Icon(
+        Icons.copy_rounded,
+        color: Colors.white,
+      )})
       : super(key: key);
 
   /// assertions before building widget
@@ -119,7 +131,8 @@ class AnySyntaxHighlighter extends StatelessWidget {
 
     // line Numbers is for only RichText widget as of now
     // so both isSelectableText and lineNumbers can't be true one must be false
-    assert((lineNumbers && isSelectableText) == false);
+    // not needed anymore
+    // assert((lineNumbers && isSelectableText) == false);
   }
 
   /// returns the TextStyle defined in theme for a particular type of token
@@ -441,6 +454,13 @@ class AnySyntaxHighlighter extends StatelessWidget {
               ),
       );
 
+  /// floating copy button widget
+  Widget floatingCopyButton() {
+    return IconButton(
+        onPressed: () => Clipboard.setData(ClipboardData(text: text)),
+        icon: copyIcon);
+  }
+
   /// creates line number widget, only when lineNumbers is set to true
   Widget _lineNumberWidget() {
     final int lineCount = text.split('\n').length + 1;
@@ -486,6 +506,14 @@ class AnySyntaxHighlighter extends StatelessWidget {
         padding: EdgeInsets.all(padding),
         margin: EdgeInsets.all(margin),
         decoration: theme.boxDecoration,
-        child: _highlighter());
+        child: hasCopyButton
+            ? Stack(
+                alignment: Alignment.topRight,
+                children: [
+                  Align(alignment: Alignment.topLeft, child: _highlighter()),
+                  floatingCopyButton()
+                ],
+              )
+            : _highlighter());
   }
 }

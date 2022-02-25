@@ -73,6 +73,8 @@ class _MainApp extends State<MainApp> {
           _text,
           fontSize: Props.fontSize,
           lineNumbers: Props.lineNumbers,
+          isSelectableText: Props.isSelectableText,
+          hasCopyButton: Props.hasCopyButton,
           useGoogleFont: Props.useGoogleFont,
           theme: AnySyntaxHighlighterTheme(
             lineNumber: TextStyle(
@@ -192,6 +194,7 @@ class _MainApp extends State<MainApp> {
                         content: AnySyntaxHighlighter(
                             generateThemeCode(_theme, _bgColor),
                             reservedWordSets: const {'dart'},
+                            hasCopyButton: true,
                             theme: AnySyntaxHighlighterThemeCollection
                                 .freeLineTheme(),
                             isSelectableText: true),
@@ -374,6 +377,42 @@ class _MainApp extends State<MainApp> {
                   });
                 },
               ),
+              Row(
+                children: [
+                  Checkbox(
+                      value: Props.isSelectableText,
+                      onChanged: (b) {
+                        if (b == true) {
+                          setState(() {
+                            Props.isSelectableText = true;
+                          });
+                        } else {
+                          setState(() {
+                            Props.isSelectableText = false;
+                          });
+                        }
+                      }),
+                  const Text("Make Text Selectable")
+                ],
+              ),
+              Row(
+                children: [
+                  Checkbox(
+                      value: Props.hasCopyButton,
+                      onChanged: (b) {
+                        if (b == true) {
+                          setState(() {
+                            Props.hasCopyButton = true;
+                          });
+                        } else {
+                          setState(() {
+                            Props.hasCopyButton = false;
+                          });
+                        }
+                      }),
+                  const Text("Enable Copy Button")
+                ],
+              ),
               Checkbox(
                   value: Props.lineNumbers,
                   onChanged: (b) {
@@ -441,7 +480,9 @@ class Props {
   String weight, style;
   static String? fontFamily;
   static double? letterSpacing = 1, wordSpacing, fontSize;
-  static bool lineNumbers = false;
+  static bool lineNumbers = false,
+      isSelectableText = false,
+      hasCopyButton = false;
   static Set<String> fontFeatures = {};
   static String? useGoogleFont;
   Props(this.color, this.weight, this.style);

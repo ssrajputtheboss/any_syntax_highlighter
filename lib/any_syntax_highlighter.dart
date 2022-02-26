@@ -461,7 +461,7 @@ class AnySyntaxHighlighter extends StatelessWidget {
         icon: copyIcon);
   }
 
-  /// creates line number widget, only when lineNumbers is set to true
+  /*/// creates line number widget, only when lineNumbers is set to true
   Widget _lineNumberWidget() {
     final int lineCount = text.split('\n').length + 1;
 
@@ -496,7 +496,7 @@ class AnySyntaxHighlighter extends StatelessWidget {
         Expanded(child: _highlighter())
       ],
     );
-  }
+  }*/
 
   @override
   Widget build(BuildContext context) {

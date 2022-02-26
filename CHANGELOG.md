@@ -1,7 +1,3 @@
-## 0.0.10
+## 0.0.11
 
-* Inline line numbers (added support to selectable text also)
-* added copy icon
-* now isSelectableText and lineNumbers both can be true at same time
-* documentation updated
-* example app updated
+* removed unused private method

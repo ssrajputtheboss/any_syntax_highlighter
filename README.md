@@ -15,6 +15,8 @@ any_syntax_highlighter is a lightweight 'convention based' syntax highlighter wh
     * identifier starting with _ => private
     * functions after . operator => method (highlighting for function and method are different)
  * Use google fonts! (Thanks to [google_fonts](https://pub.dev/packages/google_fonts) library)
+ 
+_Note: boxDecoration has been changed to decoration since v0.0.12_
 
 ## Getting started
 
@@ -64,6 +66,7 @@ AnySyntaxHighlighter(
           strutStyle,
           textWidthBasis,
           textHeightBehavior,
+          overrideDecoration
           */
 )
 ```

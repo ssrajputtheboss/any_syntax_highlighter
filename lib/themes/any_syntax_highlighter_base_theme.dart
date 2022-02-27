@@ -32,9 +32,10 @@ abstract class AnySyntaxHighlighterBaseTheme {
   /// text styling for separator token
   final TextStyle separator;
 
-  /// background box decoration
+  /// background decoration
   /// to be passed to a Container widget
-  final BoxDecoration boxDecoration;
+  /// boxDecoration renamed to decoration since v0.0.12
+  final Decoration decoration;
 
   const AnySyntaxHighlighterBaseTheme({
     required this.comment,
@@ -45,6 +46,6 @@ abstract class AnySyntaxHighlighterBaseTheme {
     required this.string,
     required this.operator,
     required this.separator,
-    required this.boxDecoration,
+    required this.decoration,
   });
 }

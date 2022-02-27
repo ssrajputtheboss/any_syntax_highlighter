@@ -1,3 +1,4 @@
-## 0.0.11
+## 0.0.12
 
-* removed unused private method
+* changed boxDecoration to decoration (major change, old codes will break after this change)
+* added overrideDecoration option

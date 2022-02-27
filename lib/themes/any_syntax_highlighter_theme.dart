@@ -85,8 +85,7 @@ class AnySyntaxHighlighterTheme extends AnySyntaxHighlighterBaseTheme {
       final TextStyle separator = const TextStyle(
         color: Colors.white,
       ),
-      final BoxDecoration boxDecoration =
-          const BoxDecoration(color: Colors.black87),
+      final Decoration decoration = const BoxDecoration(color: Colors.black87),
       this.letterSpacing = 1,
       this.wordSpacing,
       this.fontFamily,
@@ -102,5 +101,5 @@ class AnySyntaxHighlighterTheme extends AnySyntaxHighlighterBaseTheme {
             string: string,
             operator: operator,
             separator: separator,
-            boxDecoration: boxDecoration);
+            decoration: decoration);
 }

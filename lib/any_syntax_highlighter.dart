@@ -83,6 +83,9 @@ class AnySyntaxHighlighter extends StatelessWidget {
   /// custom icon for copu button
   final Icon copyIcon;
 
+  /// override theme's box decoration
+  final Decoration? overrideDecoration;
+
   /// AnySyntaxHighlighter Widget constructor
   const AnySyntaxHighlighter(this.text,
       {Key? key,
@@ -121,7 +124,8 @@ class AnySyntaxHighlighter extends StatelessWidget {
       this.copyIcon = const Icon(
         Icons.copy_rounded,
         color: Colors.white,
-      )})
+      ),
+      this.overrideDecoration})
       : super(key: key);
 
   /// assertions before building widget
@@ -505,7 +509,7 @@ class AnySyntaxHighlighter extends StatelessWidget {
     return Container(
         padding: EdgeInsets.all(padding),
         margin: EdgeInsets.all(margin),
-        decoration: theme.boxDecoration,
+        decoration: overrideDecoration ?? theme.decoration,
         child: hasCopyButton
             ? Stack(
                 alignment: Alignment.topRight,

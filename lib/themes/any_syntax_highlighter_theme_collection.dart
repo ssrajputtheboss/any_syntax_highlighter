@@ -57,7 +57,7 @@ class AnySyntaxHighlighterThemeCollection {
       private: TextStyle(
         color: Color.fromRGBO(255, 255, 255, 0),
       ),
-      boxDecoration: BoxDecoration(color: Color.fromRGBO(30, 28, 28, 1)),
+      decoration: BoxDecoration(color: Color.fromRGBO(30, 28, 28, 1)),
       fontFeatures: [FontFeature.slashedZero()]);
 
   /// light theme
@@ -109,7 +109,7 @@ class AnySyntaxHighlighterThemeCollection {
         color: Color.fromRGBO(77, 57, 57, 1),
       ),
       lineNumber: TextStyle(color: Colors.white),
-      boxDecoration: BoxDecoration(color: Color.fromRGBO(255, 255, 255, 0)),
+      decoration: BoxDecoration(color: Color.fromRGBO(255, 255, 255, 0)),
       fontFeatures: [FontFeature.slashedZero()]);
 
   /// freeLine theme
@@ -143,7 +143,7 @@ class AnySyntaxHighlighterThemeCollection {
         method: black,
         private: black,
         lineNumber: TextStyle(color: Colors.black),
-        boxDecoration: BoxDecoration(color: Color.fromRGBO(239, 245, 244, 1)),
+        decoration: BoxDecoration(color: Color.fromRGBO(239, 245, 244, 1)),
         fontFeatures: [FontFeature.slashedZero()]);
   }
 }

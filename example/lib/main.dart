@@ -150,7 +150,7 @@ class _MainApp extends State<MainApp> {
               fontWeight: fontWeights[_theme['private']?.weight]!,
               fontStyle: fontStyles[_theme['private']?.style]!,
             ),
-            boxDecoration: BoxDecoration(color: _bgColor),
+            decoration: BoxDecoration(color: _bgColor),
             letterSpacing: Props.letterSpacing,
             wordSpacing: Props.wordSpacing,
             fontFamily: Props.fontFamily,
@@ -168,11 +168,10 @@ class _MainApp extends State<MainApp> {
             });
           },
         )),
-      ];
+      ].reversed.toList();
   @override
   Widget build(BuildContext context) {
-    final isMobile = defaultTargetPlatform == TargetPlatform.android ||
-        defaultTargetPlatform == TargetPlatform.iOS;
+    final bool isPortrait = MediaQuery.of(context).size.aspectRatio < 1;
     return Scaffold(
       appBar: AppBar(
         title: const Text('AnySyntaxHighlighterLab'),
@@ -195,8 +194,20 @@ class _MainApp extends State<MainApp> {
                             generateThemeCode(_theme, _bgColor),
                             reservedWordSets: const {'dart'},
                             hasCopyButton: true,
+                            copyIcon: const Icon(Icons.copy_rounded,
+                                color: Colors.black),
                             theme: AnySyntaxHighlighterThemeCollection
                                 .freeLineTheme(),
+                            useGoogleFont: 'Comfortaa',
+                            overrideDecoration: BoxDecoration(
+                                color: (AnySyntaxHighlighterThemeCollection
+                                            .freeLineTheme()
+                                        .decoration as BoxDecoration)
+                                    .color,
+                                borderRadius: const BorderRadius.all(
+                                    Radius.circular(15.0))),
+                            padding: 10,
+                            fontSize: 12,
                             isSelectableText: true),
                       );
                     }),
@@ -207,7 +218,7 @@ class _MainApp extends State<MainApp> {
           )
         ],
       ),
-      body: isMobile
+      body: isPortrait
           ? Column(children: mainWidgets())
           : Row(children: mainWidgets()),
       drawer: Drawer(

@@ -1,4 +1,4 @@
-## 0.0.12
+## 0.0.13
 
-* changed boxDecoration to decoration (major change, old codes will break after this change)
-* added overrideDecoration option
+* upgraded packages
+* upgraded to flutter 3

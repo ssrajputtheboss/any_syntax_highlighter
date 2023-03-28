@@ -195,7 +195,7 @@ class AnySyntaxHighlighter extends StatelessWidget {
 
   /// returns a fixed length string value for line number
   String _getLineValue(int value, int maxLength) =>
-      '  ' + '  ' * (maxLength - '$value'.length) + '$value' + '  ';
+      '  ${'  ' * (maxLength - '$value'.length)}$value  ';
 
   /// create and return TextSpans based on token inputs
   List<TextSpan> _createSpans() => tokenizer(text)
@@ -331,7 +331,7 @@ class AnySyntaxHighlighter extends StatelessWidget {
         tkns.add(
             Token(splits[0], currentToken.type, currentToken.isClassContext));
         for (int i = 1; i < splits.length; ++i) {
-          tkns.add(Token('\n' + _getLineValue(currentLineNumber++, maxLength),
+          tkns.add(Token('\n${_getLineValue(currentLineNumber++, maxLength)}',
               TokenTypes.lineNumber, false));
           tkns.add(
               Token(splits[i], currentToken.type, currentToken.isClassContext));

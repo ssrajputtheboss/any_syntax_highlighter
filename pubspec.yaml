@@ -1,6 +1,6 @@
 name: any_syntax_highlighter
 description: any_syntax_highlighter is a lightweight "convention" based syntax highlighting tool.
-version: 0.0.12
+version: 0.0.13
 homepage: https://github.com/ssrajputtheboss/any_syntax_highlighter.git
 
 environment:
@@ -10,12 +10,12 @@ environment:
 dependencies:
   flutter:
     sdk: flutter
-  google_fonts: ^2.1.0
+  google_fonts: ^4.0.3
 
 dev_dependencies:
   flutter_test:
     sdk: flutter
-  flutter_lints: ^1.0.0
+  flutter_lints: ^2.0.1
 
 # For information on the generic Dart part of this file, see the
 # following page: https://dart.dev/tools/pub/pubspec

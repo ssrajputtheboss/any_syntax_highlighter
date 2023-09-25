@@ -400,63 +400,70 @@ class AnySyntaxHighlighter extends StatelessWidget {
   }
 
   /// creates main widget if isSelectableText is true returns RichText otherwise SelectableText.rich()
-  Widget _highlighter() => SingleChildScrollView(
-        scrollDirection: Axis.horizontal,
-        child: isSelectableText
-            ? SelectableText.rich(
-                TextSpan(
-                  text: '',
-                  style: useGoogleFont == null
-                      ? TextStyle(
-                          fontSize: fontSize,
-                          fontFamily: theme.fontFamily,
-                          letterSpacing: theme.letterSpacing,
-                          wordSpacing: theme.wordSpacing,
-                          fontFeatures: theme.fontFeatures)
-                      : GoogleFonts.getFont(useGoogleFont!,
-                          fontSize: fontSize,
-                          letterSpacing: theme.letterSpacing,
-                          wordSpacing: theme.wordSpacing,
-                          fontFeatures: theme.fontFeatures),
-                  children: _createSpans(),
-                ),
-                textAlign: textAlign,
-                textDirection: textDirection,
-                textScaleFactor: textScaleFactor,
-                maxLines: maxLines,
-                strutStyle: strutStyle,
-                textWidthBasis: textWidthBasis,
-                textHeightBehavior: textHeightBehavior,
-              )
-            : RichText(
-                text: TextSpan(
-                  text: '',
-                  style: useGoogleFont == null
-                      ? TextStyle(
-                          fontSize: fontSize,
-                          fontFamily: theme.fontFamily,
-                          letterSpacing: theme.letterSpacing,
-                          wordSpacing: theme.wordSpacing,
-                          fontFeatures: theme.fontFeatures)
-                      : GoogleFonts.getFont(useGoogleFont!,
-                          fontSize: fontSize,
-                          letterSpacing: theme.letterSpacing,
-                          wordSpacing: theme.wordSpacing,
-                          fontFeatures: theme.fontFeatures),
-                  children: _createSpans(),
-                ),
-                textAlign: textAlign,
-                textDirection: textDirection,
-                softWrap: softWrap,
-                overflow: overflow,
-                textScaleFactor: textScaleFactor,
-                maxLines: maxLines,
-                locale: locale,
-                strutStyle: strutStyle,
-                textWidthBasis: textWidthBasis,
-                textHeightBehavior: textHeightBehavior,
-              ),
-      );
+  Widget _highlighter() => LayoutBuilder(
+    builder: (context, BoxConstraints constraints) {
+      return SingleChildScrollView(
+            scrollDirection: Axis.horizontal,
+            child: ConstrainedBox(
+              constraints: BoxConstraints(minWidth: constraints.maxWidth),
+              child: isSelectableText
+                  ? SelectableText.rich(
+                      TextSpan(
+                        text: '',
+                        style: useGoogleFont == null
+                            ? TextStyle(
+                                fontSize: fontSize,
+                                fontFamily: theme.fontFamily,
+                                letterSpacing: theme.letterSpacing,
+                                wordSpacing: theme.wordSpacing,
+                                fontFeatures: theme.fontFeatures)
+                            : GoogleFonts.getFont(useGoogleFont!,
+                                fontSize: fontSize,
+                                letterSpacing: theme.letterSpacing,
+                                wordSpacing: theme.wordSpacing,
+                                fontFeatures: theme.fontFeatures),
+                        children: _createSpans(),
+                      ),
+                      textAlign: textAlign,
+                      textDirection: textDirection,
+                      textScaleFactor: textScaleFactor,
+                      maxLines: maxLines,
+                      strutStyle: strutStyle,
+                      textWidthBasis: textWidthBasis,
+                      textHeightBehavior: textHeightBehavior,
+                    )
+                  : RichText(
+                      text: TextSpan(
+                        text: '',
+                        style: useGoogleFont == null
+                            ? TextStyle(
+                                fontSize: fontSize,
+                                fontFamily: theme.fontFamily,
+                                letterSpacing: theme.letterSpacing,
+                                wordSpacing: theme.wordSpacing,
+                                fontFeatures: theme.fontFeatures)
+                            : GoogleFonts.getFont(useGoogleFont!,
+                                fontSize: fontSize,
+                                letterSpacing: theme.letterSpacing,
+                                wordSpacing: theme.wordSpacing,
+                                fontFeatures: theme.fontFeatures),
+                        children: _createSpans(),
+                      ),
+                      textAlign: textAlign,
+                      textDirection: textDirection,
+                      softWrap: softWrap,
+                      overflow: overflow,
+                      textScaleFactor: textScaleFactor,
+                      maxLines: maxLines,
+                      locale: locale,
+                      strutStyle: strutStyle,
+                      textWidthBasis: textWidthBasis,
+                      textHeightBehavior: textHeightBehavior,
+                    ),
+            ),
+          );
+    }
+  );
 
   /// floating copy button widget
   Widget floatingCopyButton() {
@@ -514,7 +521,10 @@ class AnySyntaxHighlighter extends StatelessWidget {
             ? Stack(
                 alignment: Alignment.topRight,
                 children: [
-                  Align(alignment: Alignment.topLeft, child: _highlighter()),
+                  Align(
+                      alignment: Alignment.topLeft,
+                      child: _highlighter(),
+                  ),
                   floatingCopyButton()
                 ],
               )

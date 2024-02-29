@@ -11,7 +11,6 @@ import 'package:any_syntax_highlighter/utils/token.dart';
 import 'package:any_syntax_highlighter/utils/token_types.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:google_fonts/google_fonts.dart';
 
 /// widget AnySyntaxHighlighter this widget will provide the syntax highlighting to input text
 class AnySyntaxHighlighter extends StatelessWidget {
@@ -64,12 +63,6 @@ class AnySyntaxHighlighter extends StatelessWidget {
   /// if true an additional line numbers widget will appear in left hand side
   final bool lineNumbers;
 
-  /// choose google fonts you wish to use
-  /// if it's value is null no google fonts will be used
-  /// if not null it will use GoogleFonts.getFont(useGoogleFont) to get
-  /// that font
-  final String? useGoogleFont;
-
   /// set of reserved words for this instance of AnySyntaxHighlighter
   /// this allows to create language specific highlighting
   /// user can add desired reserved words for a language by using
@@ -104,7 +97,6 @@ class AnySyntaxHighlighter extends StatelessWidget {
       this.isSelectableText = false,
       this.theme = const AnySyntaxHighlighterTheme(),
       this.fontSize,
-      this.useGoogleFont,
       this.reservedWordSets = const {
         'java',
         'python',
@@ -406,23 +398,17 @@ class AnySyntaxHighlighter extends StatelessWidget {
             ? SelectableText.rich(
                 TextSpan(
                   text: '',
-                  style: useGoogleFont == null
-                      ? TextStyle(
-                          fontSize: fontSize,
-                          fontFamily: theme.fontFamily,
-                          letterSpacing: theme.letterSpacing,
-                          wordSpacing: theme.wordSpacing,
-                          fontFeatures: theme.fontFeatures)
-                      : GoogleFonts.getFont(useGoogleFont!,
-                          fontSize: fontSize,
-                          letterSpacing: theme.letterSpacing,
-                          wordSpacing: theme.wordSpacing,
-                          fontFeatures: theme.fontFeatures),
+                  style: TextStyle(
+                      fontSize: fontSize,
+                      fontFamily: theme.fontFamily,
+                      letterSpacing: theme.letterSpacing,
+                      wordSpacing: theme.wordSpacing,
+                      fontFeatures: theme.fontFeatures),
                   children: _createSpans(),
                 ),
                 textAlign: textAlign,
                 textDirection: textDirection,
-                textScaleFactor: textScaleFactor,
+                textScaler: TextScaler.linear(textScaleFactor),
                 maxLines: maxLines,
                 strutStyle: strutStyle,
                 textWidthBasis: textWidthBasis,
@@ -431,25 +417,19 @@ class AnySyntaxHighlighter extends StatelessWidget {
             : RichText(
                 text: TextSpan(
                   text: '',
-                  style: useGoogleFont == null
-                      ? TextStyle(
-                          fontSize: fontSize,
-                          fontFamily: theme.fontFamily,
-                          letterSpacing: theme.letterSpacing,
-                          wordSpacing: theme.wordSpacing,
-                          fontFeatures: theme.fontFeatures)
-                      : GoogleFonts.getFont(useGoogleFont!,
-                          fontSize: fontSize,
-                          letterSpacing: theme.letterSpacing,
-                          wordSpacing: theme.wordSpacing,
-                          fontFeatures: theme.fontFeatures),
+                  style: TextStyle(
+                      fontSize: fontSize,
+                      fontFamily: theme.fontFamily,
+                      letterSpacing: theme.letterSpacing,
+                      wordSpacing: theme.wordSpacing,
+                      fontFeatures: theme.fontFeatures),
                   children: _createSpans(),
                 ),
                 textAlign: textAlign,
                 textDirection: textDirection,
                 softWrap: softWrap,
                 overflow: overflow,
-                textScaleFactor: textScaleFactor,
+                textScaler: TextScaler.linear(textScaleFactor),
                 maxLines: maxLines,
                 locale: locale,
                 strutStyle: strutStyle,
@@ -488,13 +468,9 @@ class AnySyntaxHighlighter extends StatelessWidget {
             text: TextSpan(
                 text: '',
                 children: lineNumberWidgets,
-                style: useGoogleFont == null
-                    ? TextStyle(
+                style: TextStyle(
                         fontSize: fontSize,
-                      )
-                    : GoogleFonts.getFont(useGoogleFont!,
-                        fontSize: fontSize,
-                        backgroundColor: Colors.transparent)),
+                      ),
           ),
         ]),
         Expanded(child: _highlighter())

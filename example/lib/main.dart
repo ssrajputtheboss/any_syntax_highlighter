@@ -2,12 +2,7 @@ import 'dart:ui';
 import 'package:any_syntax_highlighter/any_syntax_highlighter.dart';
 import 'package:any_syntax_highlighter/themes/any_syntax_highlighter_theme.dart';
 import 'package:any_syntax_highlighter/themes/any_syntax_highlighter_theme_collection.dart';
-import 'package:flutter/cupertino.dart';
-import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/painting.dart';
-import 'package:flutter/rendering.dart';
-import 'package:flutter/widgets.dart';
 import 'package:flutter_colorpicker/flutter_colorpicker.dart';
 
 const fontStyles = <String, FontStyle>{
@@ -53,7 +48,7 @@ class MainApp extends StatefulWidget {
   const MainApp({Key? key}) : super(key: key);
 
   @override
-  _MainApp createState() => _MainApp();
+  State<MainApp> createState() => _MainApp();
 }
 
 class _MainApp extends State<MainApp> {
@@ -75,7 +70,6 @@ class _MainApp extends State<MainApp> {
           lineNumbers: Props.lineNumbers,
           isSelectableText: Props.isSelectableText,
           hasCopyButton: Props.hasCopyButton,
-          useGoogleFont: Props.useGoogleFont,
           theme: AnySyntaxHighlighterTheme(
             lineNumber: TextStyle(
                 color: _theme['lineNumber']?.color,
@@ -198,7 +192,6 @@ class _MainApp extends State<MainApp> {
                                 color: Colors.black),
                             theme: AnySyntaxHighlighterThemeCollection
                                 .freeLineTheme(),
-                            useGoogleFont: 'Comfortaa',
                             overrideDecoration: BoxDecoration(
                                 color: (AnySyntaxHighlighterThemeCollection
                                             .freeLineTheme()
@@ -286,8 +279,7 @@ class _MainApp extends State<MainApp> {
                     ],
                   ))
               .toList()
-            ..add(Wrap(
-                children: [
+            ..add(Wrap(children: [
               const Text('background color'),
               TextButton(
                 child: Text('change..',
@@ -439,26 +431,27 @@ class _MainApp extends State<MainApp> {
                   }),
               const Text("Show Line Numbers"),
               const Text('Choose Font Features'),
-            ]..addAll(fontFeatures.keys
-                    .map((k) => Row(
-                          children: [
-                            Checkbox(
-                                value: Props.fontFeatures.contains(k),
-                                onChanged: (b) {
-                                  if (b == true) {
-                                    setState(() {
-                                      Props.fontFeatures.add(k);
-                                    });
-                                  } else {
-                                    setState(() {
-                                      Props.fontFeatures.remove(k);
-                                    });
-                                  }
-                                }),
-                            Text(k)
-                          ],
-                        ))
-                    .toList()))),
+              ...fontFeatures.keys
+                  .map((final String key) => Row(
+                        children: [
+                          Checkbox(
+                              value: Props.fontFeatures.contains(key),
+                              onChanged: (b) {
+                                if (b == true) {
+                                  setState(() {
+                                    Props.fontFeatures.add(key);
+                                  });
+                                } else {
+                                  setState(() {
+                                    Props.fontFeatures.remove(key);
+                                  });
+                                }
+                              }),
+                          Text(key)
+                        ],
+                      ))
+                  .toList(),
+            ])),
         ),
       )),
     );
